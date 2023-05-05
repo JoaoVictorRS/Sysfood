@@ -1,12 +1,11 @@
 <?php
-class AdministradoresController
+require_once('application.php');
+class AdministradoresController extends Application
 {
-    private $pdo;
-
+    
     public function __construct()
     {
-        $this->pdo = new PDO('mysql:host=localhost;dbname=sysfood', 'root', '');
-        $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        parent::__construct();
     }
 
     public function index()

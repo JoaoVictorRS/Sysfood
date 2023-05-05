@@ -1,13 +1,11 @@
 <?php
-class EmpresasController
+require_once('application.php');
+class EmpresasController extends Application
 {
-    private $pdo;
 
     public function __construct()
     {
-        // Conectar ao banco de dados usando PDO
-        $this->pdo = new PDO('mysql:host=localhost;dbname=sysfood', 'root', '');
-        $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        parent::__construct();
     }
 
     public function index()
