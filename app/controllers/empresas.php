@@ -14,7 +14,7 @@ class EmpresasController extends Application
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function create($data)
+    public function create($data, $endereco)
     {
         $stmt = $this->pdo->prepare('INSERT INTO empresas (nomeEmpresa, cnpj, email, senha, endereco_id, criado_em) VALUES
                                     (:nomeEmpresa, :cnpj, :email, :senha, :endereco_id, :criado_em)');
@@ -23,7 +23,7 @@ class EmpresasController extends Application
             ':cnpj' => $data['cnpj'],
             ':email' => $data['email'],
             ':senha' => $data['senha'],
-            ':endereco_id' => $data['endereco_id'],
+            ':endereco_id' => $endereco,
             ':criado_em' => date('Y-m-d H:i:s')
         ));
         return $this->pdo->lastInsertId();
