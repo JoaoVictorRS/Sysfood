@@ -1,6 +1,6 @@
 <?php
-require_once('application.php');
-class PedidosController extends Application
+require_once('application_controller.php');
+class PedidosController extends ApplicationController
 {
 
     public function __construct()

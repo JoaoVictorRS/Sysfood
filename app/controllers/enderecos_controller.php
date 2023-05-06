@@ -1,6 +1,6 @@
 <?php
-require_once('application.php');
-class EnderecosController extends Application
+require_once('application_controller.php');
+class EnderecosController extends ApplicationController
 {
 
     public function __construct()

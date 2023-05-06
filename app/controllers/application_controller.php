@@ -1,5 +1,5 @@
 <?php
-class Application {
+class ApplicationController {
 
     protected $pdo;
 

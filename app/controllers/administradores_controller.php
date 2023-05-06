@@ -1,6 +1,6 @@
 <?php
-require_once('application.php');
-class AdministradoresController extends Application
+require_once('application_controller.php');
+class AdministradoresController extends ApplicationController
 {
     
     public function __construct()
