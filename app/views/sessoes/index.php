@@ -1,19 +1,13 @@
 <?php require_once '../../views/layouts/user/header.php'; ?>
+<?php require_once '../../views/layouts/user/left_menu.php'; ?>
 <div class="container">
-    <div class="text-right mb-3">
+    <div class="d-flex justify-content-between align-items-center">
+        <div class="flex-grow-1">
+            <h1>Sessões</h1>
+        </div>
         <a href="create.php" class="btn btn-primary">Nova Sessão</a>
     </div>
     <table class="table">
-        <h1>Sessões</h1>
-        <thead>
-            <tr>
-                <th>Nome da Sessão</th>
-                <th>Hora de Início</th>
-                <th>Hora de Fim</th>
-                <th>Status</th>
-                <th>Ações</th>
-            </tr>
-        </thead>
         <tbody>
             <?php
                     require_once('../../controllers/sessoes.php');
@@ -23,18 +17,31 @@
             <?php if (!empty($sessoes)): ?>
             <?php foreach ($sessoes as $sessao): ?>
             <tr>
-                <td><?php echo $sessao['nome_sessao']; ?></td>
-                <td><?php echo $sessao['hora_inicio']; ?></td>
-                <td><?php echo $sessao['hora_fim']; ?></td>
-                <td><?php echo $sessao['status_sessao']; ?></td>
-                <td colspan="6">
-                    <a href="show.php?id=<?= $sessao['id'] ?>" class="btn btn-sm btn-primary">Pesquisar</a>
-                    <a href="edit.php?id=<?= $sessao['id'] ?>" class="btn btn-sm btn-info">Editar</a>
-                    <form action="<?= $sessoesController->delete($sessao['id']) ?>" method="POST">
-                        <input type="hidden" name="_method" value="DELETE">
-                        <button type="submit" class="btn btn-sm btn-danger">Excluir</button>
-                    </form>
-                </td>
+                <div class="row mb-6">
+                    <div class="col-md-6">
+                        <div class="card mb-2">
+                            <div class="card-body">
+                                <h5 class="card-title"><?= $sessao['nome_sessao']; ?></h5>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div class="flex-grow-1">
+                                        <label for=""><?= $sessao['hora_inicio']; ?></label>
+                                        <label for=""><?= $sessao['status_sessao']; ?></label>
+                                    </div>
+                                    <div>
+                                        <form action="<?= $sessoesController->delete($sessao['id']) ?>" method="POST">
+                                            <input type="hidden" name="_method" value="DELETE">
+                                            <button type="submit" class="btn btn-sm btn-danger">Excluir</button>
+                                        </form>
+                                        <a href="edit.php?id=<?= $sessao['id'] ?>"
+                                            class="btn btn-sm btn-info">Editar</a>
+                                        <a href="show.php?id=<?= $sessao['id'] ?>"
+                                            class="btn btn-sm btn-primary">Pesquisar</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </tr>
             <?php endforeach; ?>
             <?php else: ?>

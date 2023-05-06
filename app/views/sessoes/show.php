@@ -60,7 +60,7 @@
                 <?php endforeach; ?>
                 <?php else: ?>
                 <tr>
-                    <td colspan="6" class="text-center">Nenhuma sessão encontrada.</td>
+                    <td colspan="6" class="text-center">Nenhuma pedido encontrado.</td>
                 </tr>
                 <?php endif; ?>
             </tbody>
