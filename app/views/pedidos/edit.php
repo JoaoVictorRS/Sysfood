@@ -13,7 +13,7 @@
         <h1>Editar Pedido</h1>
         <hr>
         <?php
-            require_once('../../controllers/pedidos.php');
+            require_once('../../controllers/pedidos_controller.php');
             
             $pedidosController = new PedidosController();
             $pedido = $pedidosController->show($_GET['id']);

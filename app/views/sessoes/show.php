@@ -10,8 +10,8 @@
 <body>
     <div class="container">
         <?php
-            require_once('../../controllers/sessoes.php');
-            require_once('../../controllers/pedidos.php');
+            require_once('../../controllers/sessoes_controller.php');
+            require_once('../../controllers/pedidos_controller.php');
             $pedidosController = new PedidosController();
             $pedido = $pedidosController->show($_GET['id'])
         ?>
@@ -34,7 +34,7 @@
             </thead>
             <tbody>
                 <?php
-                    require_once('../../controllers/pedidos.php');
+                    require_once('../../controllers/pedidos_controller.php');
                     $pedidosController = new PedidosController();
                     $pedidos = $pedidosController->show_pedidos($_GET['id']);
                 ?>

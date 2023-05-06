@@ -10,7 +10,7 @@
     <table class="table">
         <tbody>
             <?php
-                    require_once('../../controllers/sessoes.php');
+                    require_once('../../controllers/sessoes_controller.php');
                     $sessoesController = new SessoesController();
                     $sessoes = $sessoesController->index();
                 ?>

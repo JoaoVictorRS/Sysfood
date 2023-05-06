@@ -42,7 +42,7 @@
         </form>
     </div>
     <?php
-    require_once('../../controllers/pedidos.php');
+    require_once('../../controllers/pedidos_controller.php');
     
     $pedidosController = new PedidosController();
     
