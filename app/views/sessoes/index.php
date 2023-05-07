@@ -8,14 +8,15 @@
         <a href="create.php" class="btn btn-primary">Nova Sessão</a>
     </div>
     <table class="table">
+        <hr>
         <tbody>
             <?php
-                    require_once('../../controllers/sessoes_controller.php');
-                    $sessoesController = new SessoesController();
-                    $sessoes = $sessoesController->index();
-                ?>
-            <?php if (!empty($sessoes)): ?>
-            <?php foreach ($sessoes as $sessao): ?>
+            require_once('../../controllers/sessoes_controller.php');
+            $sessoesController = new SessoesController();
+            $sessoes = $sessoesController->index();
+            ?>
+            <?php if (!empty($sessoes)) : ?>
+            <?php foreach ($sessoes as $sessao) : ?>
             <tr>
                 <div class="row mb-6">
                     <div class="col-md-6">
@@ -28,14 +29,14 @@
                                         <label for=""><?= $sessao['status_sessao']; ?></label>
                                     </div>
                                     <div>
-                                        <form action="<?= $sessoesController->delete($sessao['id']) ?>" method="POST">
-                                            <input type="hidden" name="_method" value="DELETE">
-                                            <button type="submit" class="btn btn-sm btn-danger">Excluir</button>
-                                        </form>
                                         <a href="edit.php?id=<?= $sessao['id'] ?>"
                                             class="btn btn-sm btn-info">Editar</a>
                                         <a href="show.php?id=<?= $sessao['id'] ?>"
                                             class="btn btn-sm btn-primary">Pesquisar</a>
+                                        <form action="<?= $sessoesController->delete($sessao['id']) ?>" method="POST">
+                                            <input type="hidden" name="_method" value="DELETE">
+                                            <button type="submit" class="btn btn-sm btn-danger">Excluir</button>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
@@ -44,7 +45,7 @@
                 </div>
             </tr>
             <?php endforeach; ?>
-            <?php else: ?>
+            <?php else : ?>
             <tr>
                 <td colspan="6" class="text-center">Nenhuma sessão encontrada.</td>
             </tr>

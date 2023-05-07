@@ -2,20 +2,12 @@
 <?php require_once '../../views/layouts/user/left_menu.php'; ?>
 <? session_start(); ?>
 <div class="container mt-5">
-    <h1>Editar Produto</h1>
+    <h1>Criar Produto</h1>
     <hr>
-    <?php
-            require_once('../../controllers/produtos_controller.php');
-            
-            $produtosController = new ProdutosController();
-            $produto = $produtosController->show($_GET['id']);
-            
-        ?>
-    <form action="" method="post">
+    <form action="" method="post" enctype="multipart/form-data">
         <div class="form-group">
-            <label for="nome_produto">Nome do produto:</label>
-            <input type="text" name="nome_produto" id="nome_produto" class="form-control"
-                value="<?= $produto['nome_produto'] ?>" required>
+            <label for="nome_produto">Nome do Produto:</label>
+            <input type="text" name="nome_produto" id="nome_produto" class="form-control" required>
         </div>
         <div class="form-group">
             <label for="descricao">Descrição do produto:</label>
@@ -23,12 +15,11 @@
         </div>
         <div class="form-group">
             <label for="valor">Preço do Produto:</label>
-            <input type="text" name="valor" id="valor" class="form-control" value="<?= $produto['valor'] ?>" required>
+            <input type="text" name="valor" id="valor" class="form-control" required>
         </div>
         <div class="form-group">
             <label for="imagem">Foto do produto:</label>
-            <input type="file" name="imagem" id="imagem" class="form-control" value="<?= $produto['imagem'] ?>"
-                required>
+            <input type="file" name="imagem" id="imagem" class="form-control" required>
         </div>
         <div class="form-group">
             <?php
@@ -49,5 +40,15 @@
         <a href="index.php" class="btn btn-secondary">Cancelar</a>
     </form>
 </div>
-<?php $sessoesController->update($produto['id'], $_POST); ?>
+<?php
+    require_once('../../controllers/produtos_controller.php');
+    
+    $produtosController = new ProdutosController();
+    
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        $produtosController->create($_POST);
+        header('Location: index.php');
+        exit();
+    }
+    ?>
 <?php require_once '../../views/layouts/user/footer.php'; ?>

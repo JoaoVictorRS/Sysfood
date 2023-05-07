@@ -9,9 +9,21 @@
 
     <!-- Tables -->
     <li class="menu-item">
-        <a href="index.php" class="menu-link">
+        <a href="../sessoes/index.php" class="menu-link">
             <i class='menu-icon tf-icons bx bx-window'></i>
             <div>Sessões</div>
+        </a>
+    </li>
+    <li class="menu-item">
+        <a href="../produtos/index.php" class="menu-link">
+            <i class='menu-icon tf-icons bx bx-window'></i>
+            <div>Produtos</div>
+        </a>
+    </li>
+    <li class="menu-item">
+        <a href="../categorias/index.php" class="menu-link">
+            <i class='menu-icon tf-icons bx bx-window'></i>
+            <div>Categorias</div>
         </a>
     </li>
 </ul>
@@ -42,13 +54,6 @@
             <!-- /Search -->
 
             <ul class="navbar-nav flex-row align-items-center ms-auto">
-                <!-- Place this tag where you want the button to render. -->
-                <li class="nav-item lh-1 me-3">
-                    <a class="github-button" href="https://github.com/themeselection/sneat-html-admin-template-free"
-                        data-icon="octicon-star" data-size="large" data-show-count="true"
-                        aria-label="Star themeselection/sneat-html-admin-template-free on GitHub">Star</a>
-                </li>
-
                 <!-- User -->
                 <li class="nav-item navbar-dropdown dropdown-user dropdown">
                     <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">

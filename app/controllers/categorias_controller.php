@@ -1,6 +1,6 @@
 <?php
 require_once('application_controller.php');
-class CategoriaController extends ApplicationController
+class CategoriasController extends ApplicationController
 {
 
     public function __construct()
@@ -16,10 +16,9 @@ class CategoriaController extends ApplicationController
 
     public function create($data)
     {
-        $stmt = $this->pdo->prepare('INSERT INTO categorias (nome_categoria, criado_em) VALUES (:nome_categoria, :criado_em)');
+        $stmt = $this->pdo->prepare('INSERT INTO categorias (nome_categoria) VALUES (:nome_categoria)');
         $stmt->execute(array(
-            ':nome_categoria' => $data['nome_categoria'],
-            ':criado_em' => date('Y-m-d H:i:s')
+            ':nome_categoria' => $data['nome_categoria']
         ));
         return $this->pdo->lastInsertId();
     }

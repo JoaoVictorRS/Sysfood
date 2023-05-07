@@ -1,3 +1,4 @@
+<?php ob_start();?>
 <!DOCTYPE html>
 <html lang="en" class="light-style layout-menu-fixed" dir="ltr" data-theme="theme-default" data-assets-path="../assets/"
     data-template="vertical-menu-template-free">
@@ -77,7 +78,7 @@
                                 </g>
                             </svg>
                         </span>
-                        <span class="app-brand-text demo menu-text fw-bolder ms-2">Sysfood</span>
+                        <span class="app-brand-text demo fw-bolder ms-3">Sysfood</span>
                     </a>
 
                     <a href="javascript:void(0);"
@@ -85,5 +86,4 @@
                         <i class="bx bx-chevron-left bx-sm align-middle"></i>
                     </a>
                 </div>
-
                 <div class="menu-inner-shadow"></div>

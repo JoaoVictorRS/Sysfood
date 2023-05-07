@@ -16,11 +16,9 @@ class SessoesController extends ApplicationController
 
     public function create($data)
     {
-        $stmt = $this->pdo->prepare('INSERT INTO sessoes (nome_sessao, hora_inicio, hora_fim, status_sessao) VALUES (:nome_sessao, :hora_inicio, :hora_fim, :status_sessao)');
+        $stmt = $this->pdo->prepare('INSERT INTO sessoes (nome_sessao, status_sessao) VALUES (:nome_sessao, :status_sessao)');
         $stmt->execute(array(
             ':nome_sessao' => $data['nome_sessao'],
-            ':hora_inicio' => $data['hora_inicio'],
-            ':hora_fim' => $data['hora_fim'],
             ':status_sessao' => $data['status_sessao'] = 'Em andamento'
         ));
         return $this->pdo->lastInsertId();
@@ -60,7 +58,7 @@ class SessoesController extends ApplicationController
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $stmt = $this->pdo->prepare('DELETE FROM sessoes WHERE id = :id');
             $stmt->execute(array(':id' => $id));
-            // Verifica se a sessão foi excluída com sucesso
+            
             if ($stmt->rowCount() > 0) {
                 // Caso a sessão tenha sido excluída com sucesso
                 $_SESSION['message'] = 'Sessão excluída com sucesso.';
@@ -71,7 +69,7 @@ class SessoesController extends ApplicationController
                 $_SESSION['message_type'] = 'error';
             }
             header("Location: index.php");
-            exit;
+            die();
         }
     }
 }

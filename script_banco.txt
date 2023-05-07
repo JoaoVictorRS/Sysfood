@@ -9,14 +9,14 @@ CREATE TABLE usuarios (
   data_nascimento DATE NOT NULL,
   email VARCHAR(50) NOT NULL,
   senha VARCHAR(50) NOT NULL,
-  criado_em DATETIME NOT NULL,
+  criado_em DATETIME NOT NULL DEFAULT NOW(),
   PRIMARY KEY (id)
 );
 
 CREATE TABLE administradores (
   id INT NOT NULL AUTO_INCREMENT,
   usuario_id INT NOT NULL,
-  criado_em DATETIME NOT NULL,
+  criado_em DATETIME NOT NULL DEFAULT NOW(),
   PRIMARY KEY (id),
   FOREIGN KEY (usuario_id) REFERENCES usuarios(id)
 );
@@ -29,7 +29,7 @@ CREATE TABLE enderecos (
   estado VARCHAR(50) NOT NULL,
   cep VARCHAR(50),
   complemento VARCHAR(50),
-  criado_em DATETIME NOT NULL,
+  criado_em DATETIME NOT NULL DEFAULT NOW(),
   PRIMARY KEY (id)
 );
 
@@ -40,7 +40,7 @@ CREATE TABLE empresas (
   email VARCHAR(50) NOT NULL,
   senha VARCHAR(50) NOT NULL,
   endereco_id INT NOT NULL,
-  criado_em DATETIME NOT NULL,
+  criado_em DATETIME NOT NULL DEFAULT NOW(),
   PRIMARY KEY (id),
   FOREIGN KEY (endereco_id) REFERENCES enderecos(id)
 );
@@ -52,7 +52,7 @@ CREATE TABLE funcionarios (
   empresa_id INT NOT NULL,
   usuario_id INT NOT NULL,
   endereco_id INT NOT NULL,
-  criado_em DATETIME NOT NULL,
+  criado_em DATETIME NOT NULL DEFAULT NOW(),
   PRIMARY KEY (id),
   FOREIGN KEY (empresa_id) REFERENCES empresas(id),
   FOREIGN KEY (usuario_id) REFERENCES usuarios(id),
@@ -62,7 +62,7 @@ CREATE TABLE funcionarios (
 CREATE TABLE categorias (
   id INT NOT NULL AUTO_INCREMENT,
   nome_categoria VARCHAR(50) NOT NULL,
-  criado_em DATETIME NOT NULL,
+  criado_em DATETIME NOT NULL DEFAULT NOW(),
   PRIMARY KEY (id)
 );
 
@@ -73,7 +73,7 @@ CREATE TABLE produtos (
   valor FLOAT NOT NULL,
   imagem VARCHAR(255) NOT NULL,
   categoria_id INT NOT NULL,
-  criado_em DATETIME NOT NULL,
+  criado_em DATETIME NOT NULL DEFAULT NOW(),
   PRIMARY KEY (id),
   FOREIGN KEY (categoria_id) REFERENCES categorias(id)
 );
@@ -81,10 +81,9 @@ CREATE TABLE produtos (
 CREATE TABLE sessoes (
   id INT NOT NULL AUTO_INCREMENT,
   nome_sessao VARCHAR(50) NOT NULL,
-  hora_inicio TIME NOT NULL,
-  hora_fim TIME,
+  hora_inicio TIME NOT NULL DEFAULT NOW(),
+  hora_fim TIME DEFAULT NOW(),
   status_sessao VARCHAR(50) NOT NULL,
-  criado_em DATETIME NOT NULL,
   PRIMARY KEY (id)
 );
 
@@ -92,12 +91,11 @@ CREATE TABLE pedidos (
   id INT NOT NULL AUTO_INCREMENT,
   descricao VARCHAR(50),
   nome_cliente TIME NOT NULL,
-  hora_inicio TIME NOT NULL,
-  hora_fim TIME,
+  hora_inicio TIME NOT NULL DEFAULT NOW(),
+  hora_fim TIME DEFAULT NOW(),
   valor_total FLOAT,
   status_pedido VARCHAR(50) NOT NULL,
   sessao_id INT NOT NULL,
-  criado_em DATETIME NOT NULL,
   PRIMARY KEY (id),
   FOREIGN KEY (sessao_id) REFERENCES sessoes(id)
 );
@@ -108,7 +106,7 @@ CREATE TABLE pedido_produtos (
   valor_total FLOAT NOT NULL,
   produto_id INT NOT NULL,
   pedido_id INT NOT NULL,
-  criado_em DATETIME NOT NULL,
+  criado_em DATETIME NOT NULL DEFAULT NOW(),
   PRIMARY KEY (id),
   FOREIGN KEY (produto_id) REFERENCES produtos(id),
   FOREIGN KEY (pedido_id) REFERENCES pedidos(id)

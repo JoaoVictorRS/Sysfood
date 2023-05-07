@@ -15,13 +15,30 @@ class ProdutosController extends ApplicationController
     }
 
     public function create($data)
-    {
+    {   
+        if (isset($_FILES['imagem'])) {
+            // Define o diretório onde a imagem será salva
+            $uploadDir = 'C:/xampp/htdocs/Sysfood/app/uploads/';
+            if (!file_exists($uploadDir)) {
+                mkdir($uploadDir, 0777, true); // Cria o diretório caso não exista
+            }
+            // Cria um nome único para a imagem usando o timestamp
+            $fileName = time() . '_' . $_FILES['imagem']['name'];
+            // Define o caminho completo onde a imagem será salva
+            $uploadPath = $uploadDir . $fileName;
+            // Move a imagem do diretório temporário para o diretório definitivo
+            move_uploaded_file($_FILES['imagem']['tmp_name'], $uploadPath);
+            // Define o caminho relativo da imagem
+            $relativePath = $fileName;
+        } else {
+            $relativePath = '';
+        }
         $stmt = $this->pdo->prepare('INSERT INTO produtos (nome_produto, descricao, valor, imagem, categoria_id, criado_em) VALUES (:nome_produto, :descricao, :valor, :imagem, :categoria_id, :criado_em)');
         $stmt->execute(array(
             ':nome_produto' => $data['nome_produto'],
             ':descricao' => $data['descricao'],
             ':valor' => $data['valor'],
-            ':imagem' => $data['imagem'],
+            ':imagem' => $relativePath,
             ':categoria_id' => $data['categoria_id'],
             ':criado_em' => date('Y-m-d H:i:s')
         ));

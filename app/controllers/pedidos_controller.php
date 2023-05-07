@@ -46,12 +46,10 @@ class PedidosController extends ApplicationController
     public function update($id, $data)
     {   
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $stmt = $this->pdo->prepare('UPDATE pedidos SET descricao = :descricao, nome_cliente = :nome_cliente, hora_inicio = :hora_inicio, hora_fim = :hora_fim, valor_total = :valor_total, status_pedido = :status_pedido WHERE id = :id');
+            $stmt = $this->pdo->prepare('UPDATE pedidos SET descricao = :descricao, nome_cliente = :nome_cliente, valor_total = :valor_total, status_pedido = :status_pedido WHERE id = :id');
             $stmt->execute(array(
                 ':descricao' => $data['descricao'],
-                ':nome_cliente' => $data['nome_cliente'],
-                ':hora_inicio' => $data['hora_inicio'],
-                ':hora_fim' => $data['hora_fim'],
+                ':nome_cliente' => $data['nome_cliente'],   
                 ':valor_total' => $data['valor_total'],
                 ':status_pedido' => $data['status_pedido'],
                 ':id' => $id
@@ -83,8 +81,9 @@ class PedidosController extends ApplicationController
                 $_SESSION['message'] = 'Erro ao excluir sessão.';
                 $_SESSION['message_type'] = 'error';
             }
+
             header("Location: index.php");
             exit;
         }
-    }
+    }   
 }

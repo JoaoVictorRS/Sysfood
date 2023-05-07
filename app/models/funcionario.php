@@ -1,5 +1,5 @@
 <?php
-class Funcionario {
+class Funcionario extends Application {
 
     private $id;
     private $empresa_id;
@@ -8,5 +8,10 @@ class Funcionario {
     private $cargo;
     private $cpf;
     private $criado_em;
+
+    public function __construct()
+    {
+        parent::__construct();
+    }
     
 }

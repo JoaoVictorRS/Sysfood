@@ -1,45 +1,44 @@
 <?php require_once '../../views/layouts/user/header.php'; ?>
+<?php require_once '../../views/layouts/user/left_menu.php'; ?>
 <div class="container">
-    <h1>Sessões</h1>
-    <div class="text-right mb-3">
-        <a href="create.php" class="btn btn-primary">Nova Sessão</a>
+    <? session_start(); ?>
+    <div class="d-flex justify-content-between align-items-center">
+        <div class="flex-grow-1">
+            <h1>Produtos</h1>
+        </div>
+        <a href="create.php" class="btn btn-primary">Nova Produto</a>
     </div>
     <table class="table">
         <thead>
             <tr>
-                <th>Nome da Sessão</th>
-                <th>Hora de Início</th>
-                <th>Hora de Fim</th>
-                <th>Status</th>
-                <th>Ações</th>
+                <th>Foto</th>
+                <th>Nome do produto</th>
+                <th>Descrição</th>
+                <th>Categoria</th>
+                <th>Valor</th>
             </tr>
         </thead>
         <tbody>
             <?php
-                    require_once('../../controllers/sessoes_controller.php');
-                    $sessoesController = new SessoesController();
-                    $sessoes = $sessoesController->index();
-                ?>
-            <?php if (!empty($sessoes)): ?>
-            <?php foreach ($sessoes as $sessao): ?>
+                require_once('../../controllers/produtos_controller.php');
+                $produtosController = new ProdutosController();
+                $produtos = $produtosController->index();
+            ?>
+            <?php if (!empty($produtos)): ?>
+            <?php foreach ($produtos as $produto): ?>
             <tr>
-                <td><?php echo $sessao['nome_sessao']; ?></td>
-                <td><?php echo $sessao['hora_inicio']; ?></td>
-                <td><?php echo $sessao['hora_fim']; ?></td>
-                <td><?php echo $sessao['status_sessao']; ?></td>
-                <td colspan="6">
-                    <a href="show.php?id=<?= $sessao['id'] ?>" class="btn btn-sm btn-primary">Pesquisar</a>
-                    <a href="edit.php?id=<?= $sessao['id'] ?>" class="btn btn-sm btn-info">Editar</a>
-                    <form action="<?= $sessoesController->delete($sessao['id']) ?>" method="POST">
-                        <input type="hidden" name="_method" value="DELETE">
-                        <button type="submit" class="btn btn-sm btn-danger">Excluir</button>
-                    </form>
+                <td><img src="../../uploads/<?= $produto['imagem']; ?>" alt=""
+                        style="width: 200px; height: 150px; border-radius: 20px;">
                 </td>
+                <td><?= $produto['nome_produto']; ?></td>
+                <td><?= $produto['descricao']; ?></td>
+                <td><?= $produto['categoria_id']; ?></td>
+                <td><?= $produto['valor']; ?></td>
             </tr>
             <?php endforeach; ?>
             <?php else: ?>
             <tr>
-                <td colspan="6" class="text-center">Nenhuma sessão encontrada.</td>
+                <td colspan="2" class="text-center">Nenhuma produto encontrada.</td>
             </tr>
             <?php endif; ?>
         </tbody>
