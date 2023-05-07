@@ -8,20 +8,24 @@ class PedidoProdutosController extends ApplicationController
         parent::__construct();
     }
 
-    public function index()
+    public function index($idPedido)
     {
-        $stmt = $this->pdo->query('SELECT * FROM pedido_produtos');
+        $stmt = $this->pdo->prepare('SELECT * FROM pedido_produtos WHERE pedido_id = :idPedido');
+        $stmt->execute(array(':idPedido' => $idPedido));
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
     
-    public function create($data)
-    {
+    public function create($data, $pedido)        
+    {   
+        $produtosController = new ProdutosController();
+        $pedido_dados = $produtosController->show($data['produto_id']);
+        $total = $data['quantidade'] * $pedido_dados['valor'];
         $stmt = $this->pdo->prepare('INSERT INTO pedido_produtos (produto_id, pedido_id, quantidade, valor_total, criado_em) VALUES (:produto_id, :pedido_id, :quantidade, :valor_total, :criado_em)');
         $stmt->execute(array(
             ':produto_id' => $data['produto_id'],
-            ':pedido_id' => $data['pedido_id'],
+            ':pedido_id' => $pedido,
             ':quantidade' => $data['quantidade'],
-            ':valor_total' => $data['valor_total'],
+            ':valor_total' => $total,
             ':criado_em' => date('Y-m-d H:i:s')
         ));
         return $this->pdo->lastInsertId();

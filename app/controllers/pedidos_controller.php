@@ -16,15 +16,12 @@ class PedidosController extends ApplicationController
 
     public function create($data, $id_sessao)
     {
-        $stmt = $this->pdo->prepare('INSERT INTO pedidos (descricao, nome_cliente, hora_inicio, hora_fim, sessao_id, valor_total, status_pedido) VALUES (:descricao, :nome_cliente, :hora_inicio, :hora_fim, :sessao_id, :valor_total, :status_pedido)');
+        $stmt = $this->pdo->prepare('INSERT INTO pedidos (descricao, nome_cliente, sessao_id, valor_total) VALUES (:descricao, :nome_cliente, :sessao_id, :status_pedido)');
         $stmt->execute(array(
             ':descricao' => $data['descricao'],
             ':nome_cliente' => $data['nome_cliente'],
-            ':hora_inicio' => $data['hora_inicio'],
-            ':hora_fim' => $data['hora_fim'],
             ':sessao_id' => $data['sessao_id'] = $id_sessao,
-            ':valor_total' => $data['valor_total'],
-            ':status_pedido' => $data['status_pedido']
+            ':status_pedido' => $data['status_pedido'] = "Na fila"
         ));
         return $this->pdo->lastInsertId();
     }
@@ -50,7 +47,6 @@ class PedidosController extends ApplicationController
             $stmt->execute(array(
                 ':descricao' => $data['descricao'],
                 ':nome_cliente' => $data['nome_cliente'],   
-                ':valor_total' => $data['valor_total'],
                 ':status_pedido' => $data['status_pedido'],
                 ':id' => $id
             ));

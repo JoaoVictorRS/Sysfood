@@ -1,16 +1,13 @@
 <?php require_once '../../views/layouts/user/header.php'; ?>
 <?php require_once '../../views/layouts/user/left_menu.php'; ?>
-<? session_start(); ?>
 <div class="container">
     <?php
-    require_once('../../controllers/sessoes_controller.php');
-    require_once('../../controllers/pedidos_controller.php');
-    $pedidosController = new PedidosController();
-    $pedido = $pedidosController->show($_GET['id'])
-    ?>
-    <div class="text-right mb-3">
-        <a href="../pedidos/create.php?id_sessao=<?= $_GET['id'] ?>" class="btn btn-primary">Novo pedido</a>
-    </div>
+            require_once('../../controllers/pedidos_controller.php');
+            
+            $pedidosController = new PedidosController();
+            $pedido = $pedidosController->show($_GET['id'])
+        ?>
+    <h1>Detalhes do Pedido</h1>
     <table class="table">
         <thead>
             <h1>
@@ -57,6 +54,6 @@
             <?php endif; ?>
         </tbody>
     </table>
-    <a class="btn btn-secondary" href="index.php">Voltar</a>
+    <a class="btn btn-secondary" href="../sessoes/show.php?id=<?= $pedido['sessao_id'] ?>">Voltar</a>
 </div>
 <?php require_once '../../views/layouts/user/footer.php'; ?>
