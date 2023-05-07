@@ -18,7 +18,7 @@ class ProdutosController extends ApplicationController
     {   
         if (isset($_FILES['imagem'])) {
             // Define o diretório onde a imagem será salva
-            $uploadDir = 'C:/xampp/htdocs/Sysfood/app/uploads/';
+            $uploadDir = '../../uploads/';
             if (!file_exists($uploadDir)) {
                 mkdir($uploadDir, 0777, true); // Cria o diretório caso não exista
             }
