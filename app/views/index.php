@@ -53,8 +53,9 @@ session_start();
                             <li class="scroll-to-section"><a href="#services">Serviços</a></li>
                             <li class="scroll-to-section"><a href="#pricing">Preços</a></li>
                             <li>
-                                <div class="gradient-button"><a id="modal_trigger" href="#modal"><i
-                                            class="fa fa-sign-in-alt"></i> Entrar</a></div>
+                                <div class="gradient-button"><a id="modal_trigger" data-bs-toggle="modal"
+                                        data-bs-target="#exampleModal"><i class="fa fa-sign-in-alt"></i> Entrar</a>
+                                </div>
                             </li>
                         </ul>
                         <a class='menu-trigger'>
@@ -66,71 +67,122 @@ session_start();
         </div>
     </header>
 
-    <div id="modal" class="popupContainer" style="display:none;">
-        <div class="popupHeader">
-            <span class="header_title">Login</span>
-            <span class="modal_close"><i class="fa fa-times"></i></span>
-        </div>
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel" style="color: #0d6efd">Conecte-se</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <section class="">
+                        <!-- Social Login -->
+                        <div class="social_login">
+                            <div class="action_btns">
+                                <div class="one_half"><a href="#" id="login_form" class="btn">Acessar</a></div>
+                                <div class="one_half last"><a href="#" id="register_form" class="btn">Registrar</a>
+                                </div>
+                            </div>
+                        </div>
 
-        <section class="popupBody">
-            <!-- Social Login -->
-            <div class="social_login">
-                <div class="action_btns">
-                    <div class="one_half"><a href="#" id="login_form" class="btn">Acessar</a></div>
-                    <div class="one_half last"><a href="#" id="register_form" class="btn">Registrar</a></div>
+                        <div class="user_login">
+                            <form>
+
+                                <label>Email</label>
+                                <input type="text" class="form-control" />
+
+
+                                <label>Senha</label>
+                                <input type="password" class="form-control" />
+                                <br>
+                                <div class="checkbox">
+                                    <input id="remember" type="checkbox" />
+                                    <label for="remember">
+                                        Lembrar de mim neste computador</label>
+                                    <div class="d-flex flex-row-reverse align-items-center">
+                                        <a href="#" class="forgot_password">Esqueceu a senha?</a>
+                                    </div>
+                                </div>
+
+                                <div class="action_btns">
+                                    <div class="one_half"><a href="#" class="btn back_btn"><i
+                                                class="fa fa-angle-double-left"></i>
+                                            Voltar</a></div>
+                                    <div class="one_half last"><a href="#" class="btn btn_red">Acessar</a></div>
+                                </div>
+                            </form>
+                        </div>
+
+                        <div class="user_register box">
+                            <form>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label>Nome da Empresa</label>
+                                        <input type="text" class="form-control" />
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label>CNPJ</label>
+                                        <input type="text" class="form-control" />
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label>Email</label>
+                                        <input type="email" class="form-control" />
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label>Senha</label>
+                                        <input type="password" class="form-control" />
+                                    </div>
+                                </div>
+                                <label for="">Endereço</label>
+                                <hr>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label>Rua</label>
+                                        <input type="text" class="form-control" />
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <label>Bairro</label>
+                                        <input type="text" class="form-control" />
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <label>Cidade</label>
+                                        <input type="text" class="form-control" />
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <label>Estado</label>
+                                        <input type="text" class="form-control" />
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <label>CEP</label>
+                                        <input type="text" class="form-control" />
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <label>Complemento</label>
+                                        <input type="text" class="form-control" />
+                                    </div>
+                                </div>
+                                <div style="margin-bottom: 20px;"></div>
+
+                                <div class="action_btns">
+                                    <div class="one_half"><a href="#" class="btn back_btn"><i
+                                                class="fa fa-angle-double-left"></i>
+                                            Voltar</a></div>
+                                    <div class="one_half last"><a href="#" class="btn btn_red">Registrar</a></div>
+                                </div>
+                            </form>
+                        </div>
+                    </section>
                 </div>
             </div>
-
-            <!-- Username & Password Login form -->
-            <div class="user_login">
-                <form>
-                    <label>Email</label>
-                    <input type="text" />
-                    <br />
-
-                    <label>Senha</label>
-                    <input type="password" />
-                    <br />
-
-                    <div class="checkbox">
-                        <input id="remember" type="checkbox" />
-                        <label for="remember">
-                            Lembrar de mim neste computador</label>
-                    </div>
-
-                    <div class="action_btns">
-                        <div class="one_half"><a href="#" class="btn back_btn"><i class="fa fa-angle-double-left"></i>
-                                Voltar</a></div>
-                        <div class="one_half last"><a href="#" class="btn btn_red">Acessar</a></div>
-                    </div>
-                </form>
-
-                <a href="#" class="forgot_password">Esqueceu a senha?</a>
-            </div>
-
-            <!-- Register Form -->
-            <div class="user_register">
-                <form>
-                    <label>Nome</label>
-                    <input type="text" />
-                    <br />
-
-                    <label>Email</label>
-                    <input type="email" />
-                    <br />
-
-                    <label>Senha</label>
-                    <input type="password" />
-                    <br />
-
-                    <div class="action_btns">
-                        <div class="one_half"><a href="#" class="btn back_btn"><i class="fa fa-angle-double-left"></i>
-                                Voltar</a></div>
-                        <div class="one_half last"><a href="#" class="btn btn_red">Registrar</a></div>
-                    </div>
-                </form>
-            </div>
-        </section>
+        </div>
     </div>
 
     <div class="main-banner wow fadeIn" id="top" data-wow-duration="1s" data-wow-delay="0.5s">
@@ -143,8 +195,9 @@ session_start();
                                 data-wow-delay="1s">
                                 <div class="row">
                                     <div class="col-lg-12">
-                                        <h2>Sysfood</h2>
-                                        <p>O sistema de gerenciamento de pedidos Sysfood é um solução ideal para
+                                        <h2 style="font-family: Marker Felt, fantasy">Sysfood</h2>
+                                        <p style=" font-family: Marker Felt, fantasy">O sistema de gerenciamento de
+                                            pedidos Sysfood é um solução ideal para
                                             pequenos restaurantes que buscam se destacar no mercado altamente
                                             competitivo da gastronomia.
                                         </p>
@@ -168,11 +221,14 @@ session_start();
             <div class="row">
                 <div class="col-lg-8 offset-lg-2">
                     <div class="section-heading  wow fadeInDown" data-wow-duration="1s" data-wow-delay="0.5s">
-                        <h4>Quais serviços <em>Sysfood</em> tem a oferecer?</h4>
-                        <img src="../assets/images/heading-line-dec.png" alt="">
-                        <p>O Sysfood disponibiliza várias ferramentas e funcionalidades, desde o
-                        gerenciamento de pedidos até a emissão de relatórios financeiros. Os cards
-                        abaixo detalham de forma mais precisa os serviços oferecidos.
+                        <h4 style="font-family: Marker Felt, fantasy">Quais serviços <em
+                                style="font-family: Marker Felt, fantasy">Sysfood</em> tem a oferecer?
+                        </h4>
+                        <img src=" ../assets/images/heading-line-dec.png" alt="">
+                        <p style="font-family: Marker Felt, fantasy">O Sysfood disponibiliza várias ferramentas e
+                            funcionalidades, desde o
+                            gerenciamento de pedidos até a emissão de relatórios financeiros. Os cards
+                            abaixo detalham de forma mais precisa os serviços oferecidos.
                         </p>
                     </div>
                 </div>
@@ -315,8 +371,6 @@ session_start();
             </div>
         </div>
     </footer>
-
-
     <!-- Scripts -->
     <script src="../vendor/jquery/jquery.min.js"></script>
     <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
