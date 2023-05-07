@@ -45,7 +45,8 @@ session_start();
                 <div class="col-12">
                     <nav class="main-nav">
                         <a href="index.php" class="logo">
-                            <img src="../assets/images/logo.png" alt="Chain App Dev">
+                            <img src="../assets/images/sysfood_logo_interna.png" alt="Chain App Dev"
+                                style="width: 120px; height: 120px;">
                         </a>
                         <ul class="nav">
                             <li class="scroll-to-section"><a href="#top" class="active">Home</a></li>
