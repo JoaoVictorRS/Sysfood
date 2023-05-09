@@ -80,7 +80,7 @@ session_start();
                         <div class="social_login">
                             <div class="action_btns">
                                 <div class="one_half"><a href="#" id="login_form" class="btn">Acessar</a></div>
-                                <div class="one_half last"><a href="#" id="register_form" class="btn">Registrar</a>
+                                <div class="one_half last"><a href="site/cadastrar.php" id="register_form" class="btn">Registrar</a>
                                 </div>
                             </div>
                         </div>
@@ -113,8 +113,8 @@ session_start();
                             </form>
                         </div>
 
-                        <div class="user_register box">
-                            <form>
+                        <!--WASN'T THIS SUPOSED TO BE CALLED IN THE REGISTER PHP FILE??? JESUS FUCKING CHRISST <div class="user_register box">
+                            <form method="post">
                                 <div class="row">
                                     <div class="col-md-6">
                                         <label>Nome da Empresa</label>
@@ -178,7 +178,7 @@ session_start();
                                     <div class="one_half last"><a href="#" class="btn btn_red">Registrar</a></div>
                                 </div>
                             </form>
-                        </div>
+                        </div>-->
                     </section>
                 </div>
             </div>

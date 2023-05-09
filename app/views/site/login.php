@@ -3,25 +3,25 @@
 
     if($_SERVER['REQUEST_METHOD'] == 'POST') {
         $error = [];
-        $nome = isset($_POST['nome']) ? $_POST['nome'] : '';
-        $password = isset($_POST['password']) ? md5($_POST['password']) : '';
+        $nome = isset($_POST['email']) ? $_POST['email'] : '';
+        $password = isset($_POST['senha']) ? md5($_POST['senha']) : '';
 
         $dbh = Conexao::getInstance();
 
-        $query = "SELECT * FROM `pccsampledb`.`usuarios` WHERE nome = :nome AND `password` = :password";
+        $query = "SELECT * FROM `sysfood`.`usuarios` WHERE email = :email AND senha = :senha";
         $stmt = $dbh->prepare($query);
-        $stmt->bindParam(':nome', $nome);
-        $stmt->bindParam(':password', $password);
+        $stmt->bindParam(':email', $email);
+        $stmt->bindParam(':senha', $senha);
 
         $stmt->execute();
         $row = $stmt->fetch(PDO::FETCH_ASSOC);
        
         if($row) {
             $_SESSION['usuario'] = [
-                'nome' => $row['nome'],
+                'email' => $row['email'],
                 'perfil' => $row['perfil'],
             ];
-            header('location: usuario_admin.php');
+            header('location: sessoes/index.php');
         } else {
             session_destroy();
             header('location: index.php?error=Usuário ou senha inválidos.');
