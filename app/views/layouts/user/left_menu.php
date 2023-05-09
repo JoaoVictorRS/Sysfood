@@ -1,7 +1,7 @@
 <ul class="menu-inner py-1">
     <!-- Dashboard -->
     <li class="menu-item">
-        <a href="index.html" class="menu-link">
+        <a href="../dashboard/bem_vindo.php" class="menu-link">
             <i class="menu-icon tf-icons bx bx-home-circle"></i>
             <div data-i18n="Analytics">Dashboard</div>
         </a>
@@ -24,6 +24,12 @@
         <a href="../categorias/index.php" class="menu-link">
             <i class='menu-icon tf-icons bx bx-window'></i>
             <div>Categorias</div>
+        </a>
+    </li>
+    <li class="menu-item">
+        <a href="../funcionarios/index.php" class="menu-link">
+            <i class='menu-icon tf-icons bx bx-window'></i>
+            <div>Funcionários</div>
         </a>
     </li>
 </ul>
