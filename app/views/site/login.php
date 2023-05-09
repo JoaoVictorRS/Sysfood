@@ -6,13 +6,10 @@
         $nome = isset($_POST['email']) ? $_POST['email'] : '';
         $password = isset($_POST['senha']) ? md5($_POST['senha']) : '';
 
-        //$dbh = Conexao::getInstance();
+        $dbh = Conexao::getInstance();
+    
 
-        echo "<pre>".print_r($_POST)."</pre>";
-
-    /*
-
-        $query = "SELECT * FROM `sysfood`.`usuarios` WHERE email = :email AND senha = :senha";
+        $query = "SELECT * FROM `sysfood`.`empresas` WHERE email = :email AND senha = :senha";
         $stmt = $dbh->prepare($query);
         $stmt->bindParam(':email', $email);
         $stmt->bindParam(':senha', $senha);
@@ -23,14 +20,12 @@
         if($row) {
             $_SESSION['usuario'] = [
                 'email' => $row['email'],
-                'perfil' => $row['perfil'],
             ];
-            header('location: sessoes/index.php');
+            header('location: ../sessoes/');
         } else {
             session_destroy();
-            header('location: index.php?error=Usuário ou senha inválidos.');
+            header('location: ../index.php?error=Usuário ou senha inválidos.');
         }
-    */
     }
 ?>
 <!--POP LOGIN-->
