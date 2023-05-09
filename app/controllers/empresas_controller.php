@@ -16,10 +16,10 @@ class EmpresasController extends ApplicationController
 
     public function create($data, $endereco)
     {
-        $stmt = $this->pdo->prepare('INSERT INTO empresas (nomeEmpresa, cnpj, email, senha, endereco_id, criado_em) VALUES
-                                    (:nomeEmpresa, :cnpj, :email, :senha, :endereco_id, :criado_em)');
+        $stmt = $this->pdo->prepare('INSERT INTO empresas (nome_empresa, cnpj, email, senha, endereco_id, criado_em) VALUES
+                                    (:nome_empresa, :cnpj, :email, :senha, :endereco_id, :criado_em)');
         $stmt->execute(array(
-            ':nomeEmpresa' => $data['nomeEmpresa'],
+            ':nome_empresa' => $data['nome_empresa'],
             ':cnpj' => $data['cnpj'],
             ':email' => $data['email'],
             ':senha' => $data['senha'],
@@ -38,10 +38,10 @@ class EmpresasController extends ApplicationController
 
     public function update($id, $data)
     {
-        $stmt = $this->pdo->prepare('UPDATE empresas SET nomeEmpresa = :nomeEmpresa, cnpj = :cnpj, email = :email, senha =
+        $stmt = $this->pdo->prepare('UPDATE empresas SET nome_empresa = :nome_empresa, cnpj = :cnpj, email = :email, senha =
                                     :senha, endereco_id = :endereco_id WHERE id = :id');
         $stmt->execute(array(
-            ':nomeEmpresa' => $data['nomeEmpresa'],
+            ':nome_empresa' => $data['nome_empresa'],
             ':cnpj' => $data['cnpj'],
             ':email' => $data['email'],
             ':senha' => $data['senha'],

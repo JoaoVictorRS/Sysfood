@@ -86,14 +86,14 @@ session_start();
                         </div>
 
                         <div class="user_login">
-                            <form>
+                            <form action="site/login.php" method="post">
 
                                 <label>Email</label>
-                                <input type="text" class="form-control" />
+                                <input type="text" name="email" class="form-control" />
 
 
                                 <label>Senha</label>
-                                <input type="password" class="form-control" />
+                                <input type="password" name="senha" class="form-control" />
                                 <br>
                                 <div class="checkbox">
                                     <input id="remember" type="checkbox" />
@@ -108,7 +108,7 @@ session_start();
                                     <div class="one_half"><a href="#" class="btn back_btn"><i
                                                 class="fa fa-angle-double-left"></i>
                                             Voltar</a></div>
-                                    <div class="one_half last"><a href="#" class="btn btn_red">Acessar</a></div>
+                                    <div class="one_half last"><a href="#"><input class="btn btn_red" type="submit" value="Acessar"></a></div>
                                 </div>
                             </form>
                         </div>
@@ -118,22 +118,22 @@ session_start();
                                 <div class="row">
                                     <div class="col-md-6">
                                         <label>Nome da Empresa</label>
-                                        <input type="text" id="nome_empresa" class="form-control" />
+                                        <input type="text" name="nome_empresa" class="form-control" />
                                     </div>
                                     <div class="col-md-6">
                                         <label>CNPJ</label>
-                                        <input type="text" id="cnpj" class="form-control" />
+                                        <input type="text" name="cnpj" class="form-control" />
                                     </div>
                                 </div>
 
                                 <div class="row">
                                     <div class="col-md-6">
                                         <label>Email</label>
-                                        <input type="email" id="email" class="form-control" />
+                                        <input type="email" name="email" class="form-control" />
                                     </div>
                                     <div class="col-md-6">
                                         <label>Senha</label>
-                                        <input type="password" id="senha" class="form-control" />
+                                        <input type="password" name="senha" class="form-control" />
                                     </div>
                                 </div>
                                 <label for="">Endereço</label>
@@ -141,32 +141,32 @@ session_start();
                                 <div class="row">
                                     <div class="col-md-6">
                                         <label>Rua</label>
-                                        <input type="text" id="rua" class="form-control" />
+                                        <input type="text" name="rua" class="form-control" />
                                     </div>
 
                                     <div class="col-md-6">
                                         <label>Bairro</label>
-                                        <input type="text" id="bairro" class="form-control" />
+                                        <input type="text" name="bairro" class="form-control" />
                                     </div>
 
                                     <div class="col-md-6">
                                         <label>Cidade</label>
-                                        <input type="text" id="cidade" class="form-control" />
+                                        <input type="text" name="cidade" class="form-control" />
                                     </div>
 
                                     <div class="col-md-6">
                                         <label>Estado</label>
-                                        <input type="text" id="estado" class="form-control" />
+                                        <input type="text" name="estado" class="form-control" />
                                     </div>
 
                                     <div class="col-md-6">
                                         <label>CEP</label>
-                                        <input type="text" id="cep" class="form-control" />
+                                        <input type="text" name="cep" class="form-control" />
                                     </div>
 
                                     <div class="col-md-6">
                                         <label>Complemento</label>
-                                        <input type="text" id="cep" class="form-control" />
+                                        <input type="text" name="complemento" class="form-control" />
                                     </div>
                                 </div>
                                 <div style="margin-bottom: 20px;"></div>
@@ -175,7 +175,7 @@ session_start();
                                     <div class="one_half"><a href="#" class="btn back_btn"><i
                                                 class="fa fa-angle-double-left"></i>
                                             Voltar</a></div>
-                                    <div class="one_half last"><a href="#" class="btn btn_red">Registrar</a></div>
+                                    <div class="one_half last"><a href="#"><input class="btn btn_red" type="submit" value="Registrar"></a></div>
                                 </div>
                             </form>
                         </div>

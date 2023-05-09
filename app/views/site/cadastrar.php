@@ -6,7 +6,7 @@
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
-    $bd = Conexao::getInstance();
+    $db = Conexao::getInstance();
 
     //Vai para empresa
     $nome_empresa = isset($_POST['nome_empresa']) ? $_POST['nome_empresa'] : '';
@@ -32,32 +32,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $empesaController = new EmpresasController;
     $empresa = $empesaController->create($_POST, $endereco);
 
-    //Verifica se as informações colocadas no bd foram cadastradas com sucesso
-    $query_empresa = "SELECT * FROM `sysfood`.`empresa` WHERE nome_empresa = :nome_empresa AND senha = :senha AND cnpj = :cnpj";
-    $stmt_empresa = $dbh->prepare($query);
-    $stmt_empresa->bindParam(':nome', $nome);
-    $stmt_empresa->bindParam(':cnpj', $cnpj);
-    $stmt_empresa->bindParam(':password', $password);
+    header('Location: ../');
 
-    $stmt_empresa->execute();
-    $row_empresa = $stmt_empresa->fetch(PDO::FETCH_ASSOC);
-
-    $query_endereco = "SELECT * FROM `sysfood`.`endereco` WHERE cep = :cep AND rua = :rua AND bairro = :bairro";
-    $stmt_endereco = $dbh->prepare($query);
-    $stmt_endereco->bindParam(':cep', $cep);
-    $stmt_endereco->bindParam(':rua', $rua);
-    $stmt_endereco->bindParam(':bairro', $bairro);
-
-    $stmt_endereco->execute();
-    $row_endereco = $stmt_endereco->fetch(PDO::FETCH_ASSOC);
-
-    //Se as informações foram cadastradas corretamente redireciona para a aba de login, se não 
-    if ($row_empresa && $row_endereco) {
-        //Acho que seria legal que aparecesse uma modal dizendo que o cadastro foi realizado com sucesso e desaparecesse 3 seg dps
-        header("Location: localhost/PCC/app/views/index.php");
-    }else{
-        header('location: localhost/PCC/app/views/index.php?error=Dados Cadastrais Invalidos.');
-    }
 }
 
 

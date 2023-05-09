@@ -1,12 +1,16 @@
 <?php
-    require_once "../models/database/conexao.php";
+    require_once "../../models/database/conexao.php";
 
     if($_SERVER['REQUEST_METHOD'] == 'POST') {
         $error = [];
         $nome = isset($_POST['email']) ? $_POST['email'] : '';
         $password = isset($_POST['senha']) ? md5($_POST['senha']) : '';
 
-        $dbh = Conexao::getInstance();
+        //$dbh = Conexao::getInstance();
+
+        echo "<pre>".print_r($_POST)."</pre>";
+
+    /*
 
         $query = "SELECT * FROM `sysfood`.`usuarios` WHERE email = :email AND senha = :senha";
         $stmt = $dbh->prepare($query);
@@ -26,6 +30,7 @@
             session_destroy();
             header('location: index.php?error=Usuário ou senha inválidos.');
         }
+    */
     }
 ?>
 <!--POP LOGIN-->
