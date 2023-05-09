@@ -80,7 +80,7 @@ session_start();
                         <div class="social_login">
                             <div class="action_btns">
                                 <div class="one_half"><a href="#" id="login_form" class="btn">Acessar</a></div>
-                                <div class="one_half last"><a href="site/cadastrar.php" id="register_form" class="btn">Registrar</a>
+                                <div class="one_half last"><a href="" id="register_form" class="btn">Registrar</a>
                                 </div>
                             </div>
                         </div>
@@ -114,26 +114,26 @@ session_start();
                         </div>
 
                         <div class="user_register box">
-                            <form method="post">
+                            <form method="post" action="site/cadastrar.php">
                                 <div class="row">
                                     <div class="col-md-6">
                                         <label>Nome da Empresa</label>
-                                        <input type="text" class="form-control" />
+                                        <input type="text" id="nome_empresa" class="form-control" />
                                     </div>
                                     <div class="col-md-6">
                                         <label>CNPJ</label>
-                                        <input type="text" class="form-control" />
+                                        <input type="text" id="cnpj" class="form-control" />
                                     </div>
                                 </div>
 
                                 <div class="row">
                                     <div class="col-md-6">
                                         <label>Email</label>
-                                        <input type="email" class="form-control" />
+                                        <input type="email" id="email" class="form-control" />
                                     </div>
                                     <div class="col-md-6">
                                         <label>Senha</label>
-                                        <input type="password" class="form-control" />
+                                        <input type="password" id="senha" class="form-control" />
                                     </div>
                                 </div>
                                 <label for="">Endereço</label>
@@ -141,32 +141,32 @@ session_start();
                                 <div class="row">
                                     <div class="col-md-6">
                                         <label>Rua</label>
-                                        <input type="text" class="form-control" />
+                                        <input type="text" id="rua" class="form-control" />
                                     </div>
 
                                     <div class="col-md-6">
                                         <label>Bairro</label>
-                                        <input type="text" class="form-control" />
+                                        <input type="text" id="bairro" class="form-control" />
                                     </div>
 
                                     <div class="col-md-6">
                                         <label>Cidade</label>
-                                        <input type="text" class="form-control" />
+                                        <input type="text" id="cidade" class="form-control" />
                                     </div>
 
                                     <div class="col-md-6">
                                         <label>Estado</label>
-                                        <input type="text" class="form-control" />
+                                        <input type="text" id="estado" class="form-control" />
                                     </div>
 
                                     <div class="col-md-6">
                                         <label>CEP</label>
-                                        <input type="text" class="form-control" />
+                                        <input type="text" id="cep" class="form-control" />
                                     </div>
 
                                     <div class="col-md-6">
                                         <label>Complemento</label>
-                                        <input type="text" class="form-control" />
+                                        <input type="text" id="cep" class="form-control" />
                                     </div>
                                 </div>
                                 <div style="margin-bottom: 20px;"></div>

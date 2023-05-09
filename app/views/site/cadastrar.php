@@ -1,7 +1,12 @@
 <?php
+    
     require_once '../../controllers/enderecos_controller.php';
     require_once '../../controllers/empresas_controller.php';
+    require_once '../../models/database/conexao.php';
+
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+    $bd = Conexao::getInstance();
 
     //Vai para empresa
     $nome_empresa = isset($_POST['nome_empresa']) ? $_POST['nome_empresa'] : '';
@@ -58,7 +63,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 ?>
 
-<!--Modal Registrar-->
+<!--Modal Registrar
 <div class="user_register box">
     <form method="post" action="">
         <div class="row">
@@ -121,3 +126,4 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         </div>
     </form>
 </div>
+-->
