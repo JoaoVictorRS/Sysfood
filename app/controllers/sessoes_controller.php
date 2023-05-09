@@ -32,7 +32,8 @@ class SessoesController extends ApplicationController
     }
 
     public function update($id, $data)
-    {   if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $stmt = $this->pdo->prepare('UPDATE sessoes SET nome_sessao = :nome_sessao, hora_inicio = :hora_inicio, hora_fim = :hora_fim, status_sessao = :status_sessao WHERE id = :id');
             $stmt->execute(array(
                 ':nome_sessao' => $data['nome_sessao'],
@@ -55,21 +56,12 @@ class SessoesController extends ApplicationController
 
     public function delete($id)
     {   
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $stmt = $this->pdo->prepare('DELETE FROM sessoes WHERE id = :id');
-            $stmt->execute(array(':id' => $id));
-            
-            if ($stmt->rowCount() > 0) {
-                // Caso a sessão tenha sido excluída com sucesso
-                $_SESSION['message'] = 'Sessão excluída com sucesso.';
-                $_SESSION['message_type'] = 'success';
-            } else {
-                // Caso contrário, exibe uma mensagem de erro
-                $_SESSION['message'] = 'Erro ao excluir sessão.';
-                $_SESSION['message_type'] = 'error';
-            }
-            header("Location: index.php");
-            die();
-        }
+        $pedido = $this->pdo->prepare('DELETE FROM pedidos WHERE sessao_id = :id');
+        $pedido->execute(array(':id' => $id));
+        $stmt = $this->pdo->prepare('DELETE FROM sessoes WHERE id = :id');
+        $stmt->execute(array(':id' => $id));
+
+        header("Location: index.php");
+        exit;
     }
 }

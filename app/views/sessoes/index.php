@@ -11,40 +11,43 @@
         <hr>
         <tbody>
             <?php
-            require_once('../../controllers/sessoes_controller.php');
-            $sessoesController = new SessoesController();
-            $sessoes = $sessoesController->index();
-            ?>
+        require_once('../../controllers/sessoes_controller.php');
+        $sessoesController = new SessoesController();
+        $sessoes = $sessoesController->index();
+        ?>
             <?php if (!empty($sessoes)) : ?>
-            <?php foreach ($sessoes as $sessao) : ?>
-            <tr>
-                <div class="row mb-6">
-                    <div class="col-md-6">
-                        <div class="card mb-2">
-                            <div class="card-body">
-                                <h5 class="card-title"><?= $sessao['nome_sessao']; ?></h5>
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <div class="flex-grow-1">
-                                        <label for=""><?= $sessao['hora_inicio']; ?></label>
-                                        <label for=""><?= $sessao['status_sessao']; ?></label>
-                                    </div>
-                                    <div>
-                                        <a href="edit.php?id=<?= $sessao['id'] ?>"
-                                            class="btn btn-sm btn-info">Editar</a>
-                                        <a href="show.php?id=<?= $sessao['id'] ?>"
-                                            class="btn btn-sm btn-primary">Pesquisar</a>
-                                        <form action="<?= $sessoesController->delete($sessao['id']) ?>" method="POST">
-                                            <input type="hidden" name="_method" value="DELETE">
-                                            <button type="submit" class="btn btn-sm btn-danger">Excluir</button>
-                                        </form>
-                                    </div>
+            <div class="row mb-6">
+                <?php foreach ($sessoes as $sessao) : ?>
+                <div class="col-md-6">
+                    <div class="card mb-2">
+                        <div class="card-body">
+                            <h5 class="card-title"><?= $sessao['nome_sessao']; ?></h5>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="flex-grow-1">
+                                    <label for=""><?= $sessao['hora_inicio']; ?></label>
+                                    <label for=""><?= $sessao['status_sessao']; ?></label>
                                 </div>
+                                <div>
+                                    <form action="" method="POST">
+                                        <input type="hidden" name="id_sessao" value="<?= $sessao['id'] ?>">
+                                        <button type="submit" class="btn btn-sm btn-danger"
+                                            onclick="return confirm('Tem certeza que deseja excluir a sessão <?= $sessao['nome_sessao'] ?>?')">Excluir</button>
+                                    </form>
+                                    <a href="edit.php?id=<?= $sessao['id'] ?>" class="btn btn-sm btn-info">Editar</a>
+                                    <a href="show.php?id=<?= $sessao['id'] ?>"
+                                        class="btn btn-sm btn-primary">Pesquisar</a>
+                                </div>
+                                <?php
+                                    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                                        $sessoesController->delete($_POST['id_sessao']);
+                                    }
+                                ?>
                             </div>
                         </div>
                     </div>
                 </div>
-            </tr>
-            <?php endforeach; ?>
+                <?php endforeach; ?>
+            </div>
             <?php else : ?>
             <tr>
                 <td colspan="6" class="text-center">Nenhuma sessão encontrada.</td>
@@ -52,5 +55,6 @@
             <?php endif; ?>
         </tbody>
     </table>
+
 </div>
 <?php require_once '../../views/layouts/user/footer.php'; ?>

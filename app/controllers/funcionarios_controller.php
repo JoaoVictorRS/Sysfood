@@ -13,15 +13,14 @@ class FuncionariosController extends ApplicationController {
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
   
-    public function create($data) {
-      $stmt = $this->pdo->prepare('INSERT INTO funcionarios (empresa_id, endereco_id, usuario_id, cargo, cpf, criado_em) VALUES (:empresa_id, :endereco_id, :usuario_id, :cargo, :cpf, :criado_em)');
+    public function create($data, $endereco, $usuario) {
+      $stmt = $this->pdo->prepare('INSERT INTO funcionarios (empresa_id, endereco_id, usuario_id, cargo, cpf) VALUES (:empresa_id, :endereco_id, :usuario_id, :cargo, :cpf)');
       $stmt->execute(array(
-        ':empresa_id' => $data['empresa_id'],
-        ':endereco_id' => $data['endereco_id'],
-        ':usuario_id' => $data['usuario_id'],
+        ':empresa_id' => 1,
+        ':endereco_id' => $endereco,
+        ':usuario_id' => $usuario,
         ':cargo' => $data['cargo'],
-        ':cpf' => $data['cpf'],
-        ':criado_em' => date('Y-m-d H:i:s')
+        ':cpf' => $data['cpf']
       ));
       return $this->pdo->lastInsertId();
     }
@@ -33,11 +32,8 @@ class FuncionariosController extends ApplicationController {
     }
   
     public function update($id, $data) {
-      $stmt = $this->pdo->prepare('UPDATE funcionarios SET empresa_id = :empresa_id, endereco_id = :endereco_id, usuario_id = :usuario_id, cargo = :cargo, cpf = :cpf WHERE id = :id');
+      $stmt = $this->pdo->prepare('UPDATE funcionarios SET cargo = :cargo, cpf = :cpf WHERE id = :id');
       $stmt->execute(array(
-        ':empresa_id' => $data['empresa_id'],
-        ':endereco_id' => $data['endereco_id'],
-        ':usuario_id' => $data['usuario_id'],
         ':cargo' => $data['cargo'],
         ':cpf' => $data['cpf'],
         ':id' => $id
@@ -46,6 +42,8 @@ class FuncionariosController extends ApplicationController {
   
     public function delete($id) {
       $stmt = $this->pdo->prepare('DELETE FROM funcionarios WHERE id = :id');
+      $stmt->execute(array(':id' => $id));
+      $stmt = $this->pdo->prepare('DELETE FROM usuarios WHERE id = :id');
       $stmt->execute(array(':id' => $id));
     }
 }

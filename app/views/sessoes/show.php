@@ -8,14 +8,14 @@
     $pedidosController = new PedidosController();
     $pedido = $pedidosController->show($_GET['id'])
     ?>
-    <div class="text-right mb-3">
+    <div class="d-flex justify-content-between align-items-center">
+        <div class="flex-grow-1">
+            <h1>Pedidos</h1>
+        </div>
         <a href="../pedidos/create.php?id_sessao=<?= $_GET['id'] ?>" class="btn btn-primary">Novo pedido</a>
     </div>
     <table class="table">
         <thead>
-            <h1>
-                Pedidos
-            </h1>
             <tr>
                 <th>Descrição do pedido</th>
                 <th>Nome do cliente</th>
@@ -40,13 +40,16 @@
                 <td><?= $pedido['hora_fim']; ?></td>
                 <td><?= $pedido['valor_total']; ?></td>
                 <td><?= $pedido['status_pedido']; ?></td>
-                <td colspan="6">
-                    <a href="../pedidos/show.php?id=<?= $pedido['id'] ?>" class="btn btn-sm btn-primary">Pesquisar</a>
-                    <a href="../pedidos/edit.php?id=<?= $pedido['id'] ?>" class="btn btn-sm btn-info">Editar</a>
-                    <form action="<?= $pedidosController->delete($pedido['id']) ?>" method="POST">
-                        <input type="hidden" name="_method" value="DELETE">
-                        <button type="submit" class="btn btn-sm btn-danger">Excluir</button>
-                    </form>
+                <td>
+                    <div>
+                        <form action="<?= $pedidosController->delete($pedido['id']) ?>" method="POST">
+                            <input type="hidden" name="_method" value="DELETE">
+                            <button type="submit" class="btn btn-sm btn-danger">Excluir</button>
+                        </form>
+                        <a href="../pedidos/show.php?id=<?= $pedido['id'] ?>"
+                            class="btn btn-sm btn-primary">Pesquisar</a>
+                        <a href="../pedidos/edit.php?id=<?= $pedido['id'] ?>" class="btn btn-sm btn-info">Editar</a>
+                    </div>
                 </td>
             </tr>
             <?php endforeach; ?>
