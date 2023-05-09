@@ -113,7 +113,7 @@ session_start();
                             </form>
                         </div>
 
-                        <!--WASN'T THIS SUPOSED TO BE CALLED IN THE REGISTER PHP FILE??? JESUS FUCKING CHRISST <div class="user_register box">
+                        <div class="user_register box">
                             <form method="post">
                                 <div class="row">
                                     <div class="col-md-6">
@@ -178,7 +178,7 @@ session_start();
                                     <div class="one_half last"><a href="#" class="btn btn_red">Registrar</a></div>
                                 </div>
                             </form>
-                        </div>-->
+                        </div>
                     </section>
                 </div>
             </div>
