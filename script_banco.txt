@@ -90,7 +90,7 @@ CREATE TABLE sessoes (
 CREATE TABLE pedidos (
   id INT NOT NULL AUTO_INCREMENT,
   descricao VARCHAR(50),
-  nome_cliente TIME NOT NULL,
+  nome_cliente VARCHAR(50) NOT NULL,
   hora_inicio TIME NOT NULL DEFAULT NOW(),
   hora_fim TIME DEFAULT NOW(),
   valor_total FLOAT,
