@@ -22,7 +22,7 @@ class EmpresasController extends ApplicationController
             ':nome_empresa' => $data['nome_empresa'],
             ':cnpj' => $data['cnpj'],
             ':email' => $data['email'],
-            ':senha' => $data['senha'],
+            ':senha' => md5($data['senha']),
             ':endereco_id' => $endereco,
             ':criado_em' => date('Y-m-d H:i:s')
         ));

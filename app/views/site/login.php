@@ -1,10 +1,12 @@
 <?php
     require_once "../../models/database/conexao.php";
 
+    session_start();
+
     if($_SERVER['REQUEST_METHOD'] == 'POST') {
         $error = [];
-        $nome = isset($_POST['email']) ? $_POST['email'] : '';
-        $password = isset($_POST['senha']) ? md5($_POST['senha']) : '';
+        $email = isset($_POST['email']) ? $_POST['email'] : '';
+        $senha = isset($_POST['senha']) ? md5($_POST['senha']) : '';
 
         $dbh = Conexao::getInstance();
     
