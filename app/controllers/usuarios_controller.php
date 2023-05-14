@@ -22,7 +22,8 @@ class UsuariosController extends ApplicationController
             ':sobrenome' => $data['sobrenome'],
             ':data_nascimento' => $data['data_nascimento'],
             ':email' => $data['email'],
-            ':senha' => 123456
+            //Vamo definir como padrão a senha o cpf do funcionario? ai dps coloca uma opç de mudar
+            ':senha' => md5($data['cpf'])
         ));
         return $this->pdo->lastInsertId();
     }
