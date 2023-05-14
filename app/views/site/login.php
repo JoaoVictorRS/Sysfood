@@ -1,11 +1,13 @@
 <?php
     require_once "../../models/database/conexao.php";
 
+    session_start();
+
     if($_SERVER['REQUEST_METHOD'] == 'POST') {
         $error = [];
         $email = isset($_POST['email']) ? $_POST['email'] : '';
         //função md5 temporariamente removida
-        $senha = isset($_POST['senha']) ? $_POST['senha'] : '';
+        $senha = isset($_POST['senha']) ? md5($_POST['senha']) : '';
 
         $dbh = Conexao::getInstance();
         
@@ -45,6 +47,8 @@
                 'email' => $row_F['email'],
                 'cargo' => $row_cargo['cargo']
             ];
+            
+            //Aqui vai ter uma condicional pra ver qual pagina ser redirecionado, tipo, adm vai pra pag adm e funcionario comum vai pra funcionario comum
             header('location: ../dashboard/bem_vindo.php');
         }else{
             session_destroy();
