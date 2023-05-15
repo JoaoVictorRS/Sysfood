@@ -5,6 +5,10 @@
         session_start();
         var_dump($_SESSION);
         echo session_id();
+
+        if (empty($_SESSION['usuario'])) {
+            header('location: ../index.php?error=Acesso nao autorizado.');
+        }
     ?>
 
 </div>

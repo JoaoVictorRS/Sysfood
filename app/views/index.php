@@ -239,45 +239,29 @@ session_start();
                 <div class="col-lg-3">
                     <div class="service-item first-service">
                         <div class="icon"></div>
-                        <h4>App Maintenance</h4>
-                        <p>You are not allowed to redistribute this template ZIP file on any other website.</p>
-                        <div class="text-button">
-                            <a href="#">Read More <i class="fa fa-arrow-right"></i></a>
-                        </div>
+                        <h4>Gerenciamento de Pedidos</h4>
+                        <p>Melhora a eficiência e a produtividade do negócio, reduz erros no processamento dos pedidos, fornece informações precisas e simplifica o processo de faturamento. Melhora a experiência do cliente, levando a uma maior satisfação e lucratividade.</p>
                     </div>
                 </div>
                 <div class="col-lg-3">
                     <div class="service-item second-service">
                         <div class="icon"></div>
-                        <h4>Rocket Speed of App</h4>
-                        <p>You are allowed to use the Chain App Dev HTML template. Feel free to modify or edit this
-                            layout.</p>
-                        <div class="text-button">
-                            <a href="#">Read More <i class="fa fa-arrow-right"></i></a>
-                        </div>
+                        <h4>Geração de Relatorios</h4>
+                        <p>Fornece informações valiosas sobre o desempenho do negócio, como receita, despesas, lucro e volume de vendas. Ajuda os gerentes a tomarem decisões sobre preços, promoções e estratégias de marketing, identificar oportunidades de crescimento e problemas de desempenho.</p>
                     </div>
                 </div>
                 <div class="col-lg-3">
                     <div class="service-item third-service">
                         <div class="icon"></div>
-                        <h4>Multi Workflow Idea</h4>
-                        <p>If this template is beneficial for your work, please support us <a rel="nofollow"
-                                href="https://paypal.me/templatemo" target="_blank">a little via PayPal</a>. Thank you.
-                        </p>
-                        <div class="text-button">
-                            <a href="#">Read More <i class="fa fa-arrow-right"></i></a>
-                        </div>
+                        <h4>Intuitivo</h4>
+                        <p>Fácil de usar e compreender, aumentando a eficiência e produtividade do usuário. Minimiza erros e aumenta a satisfação do usuário, resultando em uma experiência mais agradável e eficaz. Leva a uma melhor adoção e utilização do sistema, aumentando a efetividade do investimento.</p>
                     </div>
                 </div>
                 <div class="col-lg-3">
                     <div class="service-item fourth-service">
                         <div class="icon"></div>
-                        <h4>24/7 Help &amp; Support</h4>
-                        <p>Lorem ipsum dolor consectetur adipiscing elit sedder williamsburg photo booth quinoa and
-                            fashion axe.</p>
-                        <div class="text-button">
-                            <a href="#">Read More <i class="fa fa-arrow-right"></i></a>
-                        </div>
+                        <h4>Multiplataforma</h4>
+                        <p>Pode ser executado em diferentes sistemas operacionais e dispositivos, o que aumenta sua acessibilidade e a flexibilidade. Permite que os usuários acessem o sistema de qualquer lugar e a qualquer momento. Resultando em economia de custos e maior escalabilidade do negócio.</p>
                     </div>
                 </div>
             </div>
