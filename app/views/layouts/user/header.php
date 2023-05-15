@@ -45,3 +45,4 @@
                     </a>
                 </div>
                 <div class="menu-inner-shadow"></div>
+                <?php session_start();?>

@@ -1,6 +1,5 @@
 <?php require_once '../../views/layouts/user/header.php'; ?>
 <?php require_once '../../views/layouts/user/left_menu.php'; ?>
-<? session_start(); ?>
 <div class="container mt-5">
     <h1>Editar Produto</h1>
     <hr>

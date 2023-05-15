@@ -8,6 +8,7 @@
             <label for="nome_sessao">Nome da Sessão:</label>
             <input type="text" name="nome_sessao" id="nome_sessao" class="form-control" required>
         </div>
+        <hr>
         <button type="submit" class="btn btn-primary">Salvar</button>
         <a href="index.php" class="btn btn-secondary">Cancelar</a>
     </form>

@@ -4,31 +4,31 @@
     <h1>Editar Pedido</h1>
     <hr>
     <?php
-            require_once('../../controllers/pedidos_controller.php');
-            
-            $pedidosController = new PedidosController();
-            $pedido = $pedidosController->show($_GET['id']);
-            
-        ?>
-    <form action="" method="post">
+        require_once('../../controllers/pedidos_controller.php');
+        
+        $pedidosController = new PedidosController();
+        $pedido = $pedidosController->show($_GET['id']);
+    ?>
+    <form action="" method="POST">
         <div class="form-group">
-            <label for="nome_sessao">Descrição do pedido:</label>
-            <input type="text" name="nome_sessao" id="nome_sessao" class="form-control"
-                value="<?= $pedido['descricao'] ?>" required>
+            <label for="descricao">Descrição do pedido:</label>
+            <input type="text" name="descricao" id="descricao" class="form-control" value="<?= $pedido['descricao'] ?>"
+                required>
         </div>
         <div class="form-group">
-            <label for="nome_sessao">Nome do cliente:</label>
-            <input type="text" name="nome_sessao" id="nome_sessao" class="form-control"
+            <label for="nome_cliente">Nome do cliente:</label>
+            <input type="text" name="nome_cliente" id="nome_cliente" class="form-control"
                 value="<?= $pedido['nome_cliente'] ?>" required>
         </div>
-        <div class="form-group">
-            <label for="status_sessao">Status:</label>
-            <input type="text" name="nome_sessao" id="nome_sessao" class="form-control"
-                value="<?= $pedido['status_pedido'] ?>" required>
-        </div>
+        <hr>
         <button type="submit" class="btn btn-primary">Salvar</button>
-        <a href="index.php" class="btn btn-secondary">Cancelar</a>
+        <a href="../sessoes/show.php?id=<?= $_GET['pedidos'] ?>" class="btn btn-secondary">Cancelar</a>
     </form>
 </div>
-<?php $pedidosController->update($pedido['id'], $_POST); ?>
-<?php require_once '../../views/layouts/user/footer.php'; ?>
+<?php
+if ($_SERVER['REQUEST_METHOD'] === 'POST' ) { 
+    $pedidosController->update($_GET['id'], $_POST);
+    header("Location: ../sessoes/show.php?id=".$_GET['pedidos']);
+}
+require_once '../../views/layouts/user/footer.php';
+?>

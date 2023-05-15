@@ -23,7 +23,11 @@
                 require_once('../../controllers/usuarios_controller.php');
                 $usuariosController = new UsuariosController();
                 $funcionariosController = new FuncionariosController();
-                $funcionarios = $funcionariosController->index()
+                if (isset($_SESSION['empresa'])) {
+                    $funcionarios = $funcionariosController->index($_SESSION['empresa']['id']);
+                } else {
+                    $funcionarios = $funcionariosController->index($_SESSION['funcionario']['empresa_id']);
+                }
             ?>
             <?php if (!empty($funcionarios)) : ?>
             <?php foreach ($funcionarios as $funcionario) : ?>
@@ -33,7 +37,7 @@
                 <td><?= $funcionario['cpf']; ?></td>
                 <td><?= $funcionario['cargo']; ?></td>
                 <td><?= $usuario['email']; ?></td>
-                <td style="width: 200px;">
+                <td>
                     <form action="" method="POST">
                         <input type="hidden" name="id_funcionario" value="<?= $funcionario['id'] ?>">
                         <button type="submit" class="btn btn-sm btn-danger"

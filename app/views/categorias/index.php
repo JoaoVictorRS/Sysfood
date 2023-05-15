@@ -5,7 +5,7 @@
         <div class="flex-grow-1">
             <h1>Categorias</h1>
         </div>
-        <a href="create.php" class="btn btn-primary">Nova Produto</a>
+        <a href="create.php" class="btn btn-primary">Nova Categoria</a>
     </div>
     <table class="table">
         <thead>
@@ -33,7 +33,7 @@
             <?php endforeach; ?>
             <?php else: ?>
             <tr>
-                <td colspan="6" class="text-center">Nenhuma produto encontrada.</td>
+                <td colspan="6" class="text-center">Nenhuma categoria encontrada.</td>
             </tr>
             <?php endif; ?>
         </tbody>

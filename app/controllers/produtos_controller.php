@@ -14,6 +14,11 @@ class ProdutosController extends ApplicationController
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    public function index_quantidade() {
+        $stmt = $this->pdo->query('SELECT * FROM produtos');
+        return $stmt->rowCount();
+    }
+
     public function create($data)
     {   
         if (isset($_FILES['imagem'])) {

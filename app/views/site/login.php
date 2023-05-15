@@ -21,38 +21,42 @@
         $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
         //Query de verificação se é um funcionario
-        $query_F = "SELECT * FROM `sysfood`.`funcionarios` INNER JOIN `sysfood`.`usuarios` ON `funcionarios`.`usuario_id` = `usuarios`.`id` WHERE email = :email AND senha = :senha";
-        $stmt_F = $dbh->prepare($query_F);
-        $stmt_F->bindParam(':email', $email);
-        $stmt_F->bindParam(':senha', $senha);
+        $query_usuario = "SELECT * FROM `sysfood`.`usuarios` WHERE email = :email AND senha = :senha";
+        $stmt_usuario = $dbh->prepare($query_usuario);
+        $stmt_usuario->bindParam(':email', $email);
+        $stmt_usuario->bindParam(':senha', $senha);
 
-        $stmt_F->execute();
-        $row_F = $stmt_F->fetch(PDO::FETCH_ASSOC);
+        $stmt_usuario->execute();
+        $row_usuario = $stmt_usuario->fetch(PDO::FETCH_ASSOC);
 
-        if($row){
-            $_SESSION['usuario'] = [
-                'email' => $row['email'],
+        if($row) {
+            $_SESSION['empresa'] = [
+                'id' => $row['id'],
+                'nome_empresa' => $row['nome_empresa'],
+                'email' => $row['email']
             ];
             header('location: ../dashboard/bem_vindo.php');
-        }else if ($row_F) {
-            //Query que pega o cargo do otario
-            $query_cargo = "SELECT cargo FROM `sysfood`.`funcionarios` WHERE id = :id";
-            $stmt_cargo = $dbh->prepare($query_cargo);
-            $stmt_cargo->bindParam(':id', $row_F['id']);
+        } elseif($row_usuario) {
+            $query_funcionario = "SELECT * FROM `sysfood`.`funcionarios` WHERE usuario_id = :id";
+            $stmt_funcionario = $dbh->prepare($query_funcionario);
+            $stmt_funcionario->bindParam(':id', $row_usuario['id']);
+            $stmt_funcionario->execute();
+            $row_funcionario = $stmt_funcionario->fetch(PDO::FETCH_ASSOC);
 
-            $stmt_cargo->execute();
-            $row_cargo = $stmt_cargo->fetch(PDO::FETCH_ASSOC);
-
-            $_SESSION['usuario'] = [
-                'email' => $row_F['email'],
-                'cargo' => $row_cargo['cargo']
+            $_SESSION['funcionario'] = [
+                'usuario_id' => $row_funcionario['usuario_id'],
+                'id' => $row_funcionario['id'],
+                'nome' => $row_usuario['nome'],
+                'email' => $row_usuario['email'],
+                'cargo' => $row_funcionario['cargo'],
+                'empresa_id' => $row_funcionario['empresa_id']
             ];
             
             //Aqui vai ter uma condicional pra ver qual pagina ser redirecionado, tipo, adm vai pra pag adm e funcionario comum vai pra funcionario comum
             header('location: ../dashboard/bem_vindo.php');
         }else{
             session_destroy();
-            header('location: ../index.php?error=Usuário ou senha inválidos.');
+            header('location: ../index.php?error=Usuário ou senha inválidos'.$row_F['id'] );
         }
 
     }

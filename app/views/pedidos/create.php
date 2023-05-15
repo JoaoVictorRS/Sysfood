@@ -6,12 +6,13 @@
     <form action="" method="post">
         <div class="form-group">
             <label for="descricao">Descrição do pedido:</label>
-            <input type="textarea" name="descricao" id="descricao" class="form-control" required>
+            <textarea name="descricao" id="descricao" rows="5" class="form-control"></textarea>
         </div>
         <div class="form-group">
             <label for="nome_cliente">Nome do cliente:</label>
             <input type="text" name="nome_cliente" id="nome_cliente" class="form-control" required>
         </div>
+        <hr>
         <button type="submit" class="btn btn-primary">Salvar</button>
         <a href="../sessoes/index.php" class="btn btn-secondary">Cancelar</a>
     </form>

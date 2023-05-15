@@ -8,7 +8,7 @@
             <label for="nome_categoria">Nome da Categoria:</label>
             <input type="text" name="nome_categoria" id="nome_categoria" class="form-control" required>
         </div>
-        <div></div>
+        <hr>
         <button type="submit" class="btn btn-primary">Salvar</button>
         <a href="index.php" class="btn btn-secondary">Cancelar</a>
     </form>

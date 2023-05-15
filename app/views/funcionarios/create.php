@@ -24,16 +24,34 @@
         </div>
 
         <div class="row">
-            <div class="col-md-4">
+            <div class="col-md-6">
                 <label>Cargo</label>
                 <select name="cargo" id="cargo" class="form-control" required>
-                    <option value="Funcionário Comum">Funcionário Comum</option>
-                    <option value="Funcionário Cozinha">Funcionário Cozinha</option>
-                    <option value="Funcionário Gerente">Funcionário Gerente</option>
-                    <option value="Funcionário Supervisor">Funcionário Supervisor</option>
+                    <?php
+                    if ($_SESSION['empresa']){
+                        echo '
+                            <option value="Funcionário Comum">Funcionário Comum</option>
+                            <option value="Funcionário Cozinha">Funcionário Cozinha</option>
+                            <option value="Funcionário Gerente">Funcionário Gerente</option>
+                            <option value="Funcionário Supervisor">Funcionário Supervisor</option>
+                             ';
+                    }
+                    elseif ($_SESSION['funcionario'] && $_SESSION['funcionario']['cargo'] == 'Funcionário Supervisor'){ 
+                        echo '
+                            <option value="Funcionário Comum">Funcionário Comum</option>
+                            <option value="Funcionário Cozinha">Funcionário Cozinha</option>
+                            <option value="Funcionário Gerente">Funcionário Gerente</option>
+                            ';
+                    } elseif ($_SESSION['funcionario'] && $_SESSION['funcionario']['cargo'] == 'Funcionário Gerente'){
+                        echo '
+                            <option value="Funcionário Comum">Funcionário Comum</option>
+                            <option value="Funcionário Cozinha">Funcionário Cozinha</option>
+                            ';
+                    }
+                    ?>
                 </select>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-6">
                 <label>Email</label>
                 <input type="email" name="email" class="form-control" />
             </div>
@@ -89,7 +107,11 @@
         $usuariosController = new UsuariosController();
         $usuario = $usuariosController->create($_POST);
         $funcionariosController = new FuncionariosController();
-        $endereco = $funcionariosController->create($_POST, $endereco, $usuario);
+        if ($_SESSION['empresa']) {
+            $funcionariosController->create($_POST, $endereco, $usuario, $_SESSION['empresa']['id']);
+        } elseif ($_SESSION['funcionario']){
+            $funcionariosController->create($_POST, $endereco, $usuario, $_SESSION['funcionario']['empresa_id']);
+        }
         header('Location: index.php');
     }
 ?>

@@ -1,44 +1,61 @@
+<?php
+if (!$_SESSION) {
+    header('Location: ../index.php');
+}
+?>
 <ul class="menu-inner py-1">
-    <!-- Dashboard -->
-    <li class="menu-item">
+
+    <li class="menu-item active">
         <a href="../dashboard/bem_vindo.php" class="menu-link">
             <i class="menu-icon tf-icons bx bx-home-circle"></i>
             <div data-i18n="Analytics">Dashboard</div>
         </a>
     </li>
 
-    <!-- Tables -->
     <li class="menu-item">
-        <a href="../sessoes/index.php" class="menu-link">
-            <i class='menu-icon tf-icons bx bx-window'></i>
-            <div>Sessões</div>
+        <a href="javascript:void(0);" class="menu-link menu-toggle">
+            <i class="menu-icon tf-icons bx bx-layout"></i>
+            <div data-i18n="Layouts">Sessões</div>
         </a>
+
+        <ul class="menu-sub">
+            <li class="menu-item">
+                <a href="../sessoes/index.php" class="menu-link">
+                    <div data-i18n="Without menu">Sessões em andamento</div>
+                </a>
+            </li>
+            <li class="menu-item">
+                <a href="../sessoes/index_finalizado.php" class="menu-link">
+                    <div data-i18n="Without navbar">Sessões finalizadas</div>
+                </a>
+            </li>
+        </ul>
     </li>
+
     <li class="menu-item">
         <a href="../produtos/index.php" class="menu-link">
-            <i class='menu-icon tf-icons bx bx-window'></i>
+            <i class='menu-icon tf-icons bx bx-food-menu'></i>
             <div>Produtos</div>
         </a>
     </li>
     <li class="menu-item">
         <a href="../categorias/index.php" class="menu-link">
-            <i class='menu-icon tf-icons bx bx-window'></i>
+            <i class='menu-icon tf-icons bx bx-receipt'></i>
             <div>Categorias</div>
         </a>
     </li>
     <li class="menu-item">
         <a href="../funcionarios/index.php" class="menu-link">
-            <i class='menu-icon tf-icons bx bx-window'></i>
+            <i class='menu-icon tf-icons bx bxs-user-account'></i>
             <div>Funcionários</div>
         </a>
     </li>
 </ul>
 </aside>
-<!-- / Menu -->
 
-<!-- Layout container -->
+
 <div class="layout-page">
-    <!-- Navbar -->
+
 
     <nav class="layout-navbar container-fluid navbar navbar-expand-xl navbar-detached align-items-center bg-navbar-theme"
         id="layout-navbar">
@@ -64,7 +81,7 @@
                 <li class="nav-item navbar-dropdown dropdown-user dropdown">
                     <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
                         <div class="avatar avatar-online">
-                            <img src="../../assets/images/avatars/1.png" alt class="w-px-40 h-auto rounded-circle" />
+                            <i class='bx bxs-user bx-md'></i>
                         </div>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end">
@@ -72,14 +89,29 @@
                             <a class="dropdown-item" href="#">
                                 <div class="d-flex">
                                     <div class="flex-shrink-0 me-3">
-                                        <div class="avatar avatar-online">
-                                            <img src="../../assets/images/avatars/1.png" alt
-                                                class="w-px-40 h-auto rounded-circle" />
+                                        <div class="avatar">
+                                            <i class='bx bxs-user bx-lg'></i>
                                         </div>
                                     </div>
                                     <div class="flex-grow-1">
-                                        <span class="fw-semibold d-block">John Doe</span>
-                                        <small class="text-muted">Admin</small>
+                                        <?php 
+                                        if (isset($_SESSION['empresa'])) {
+                                            require_once('../../controllers/empresas_controller.php');
+                                            $empresasController = new EmpresasController();
+                                            $empresa = $empresasController->show($_SESSION['empresa']['id']);
+                                            echo '<span class="fw-semibold d-block">'. $empresa['nome_empresa'] . '</span>';
+                                            echo '<small class="text-muted">Empresa - Plano Básico</small>';
+                                        } elseif(isset($_SESSION['funcionario'])){
+                                            require_once('../../controllers/usuarios_controller.php');
+                                            $usuariosController = new UsuariosController();
+                                            $funcionario = $usuariosController->show($_SESSION['funcionario']['usuario_id']);
+                                            echo '<span class="fw-semibold d-block">
+                                            '. $funcionario['nome'] .'
+                                            </span>
+                                            ';
+                                            echo '<small class="text-muted">'. $_SESSION['funcionario']['cargo'] .'</small>';
+                                        }
+                                        ?>
                                     </div>
                                 </div>
                             </a>
@@ -88,34 +120,45 @@
                             <div class="dropdown-divider"></div>
                         </li>
                         <li>
-                            <a class="dropdown-item" href="#">
-                                <i class="bx bx-user me-2"></i>
-                                <span class="align-middle">My Profile</span>
-                            </a>
+                            <?php
+                            if (isset($_SESSION['funcionario'] )) {
+                            echo '<a class="dropdown-item"
+                            href="../funcionarios/usuario_update.php?id='.$_SESSION['funcionario']['id'] .'">
+                            <i class="bx bx-user me-2"></i>
+                            <span class="align-middle">Meu Perfil</span>
+                            </a>';
+                            } elseif(isset($_SESSION['empresa'] )){
+                                echo '<a class="dropdown-item"
+                            href="../empresas/edit.php?id='.$_SESSION['empresa']['id'] .'">
+                            <i class="bx bx-user me-2"></i>
+                            <span class="align-middle">Meu Perfil</span>
+                            </a>';
+                            }
+                        
+                        ?>
                         </li>
-                        <li>
-                            <a class="dropdown-item" href="#">
-                                <i class="bx bx-cog me-2"></i>
-                                <span class="align-middle">Settings</span>
-                            </a>
-                        </li>
-                        <li>
+                        <?php
+                        if ( isset($_SESSION['empresa'] )) {
+                        echo ' <li>
                             <a class="dropdown-item" href="#">
                                 <span class="d-flex align-items-center align-middle">
                                     <i class="flex-shrink-0 bx bx-credit-card me-2"></i>
-                                    <span class="flex-grow-1 align-middle">Billing</span>
+                                    <span class="flex-grow-1 align-middle">Meu Plano</span>
                                     <span
-                                        class="flex-shrink-0 badge badge-center rounded-pill bg-danger w-px-20 h-px-20">4</span>
+                                        class="flex-shrink-0 badge badge-center rounded-pill bg-danger w-px-20 h-px-20"></span>
                                 </span>
                             </a>
                         </li>
+                        ';
+                        }
+                        ?>
                         <li>
                             <div class="dropdown-divider"></div>
                         </li>
                         <li>
-                            <a class="dropdown-item" href="/PCC/app/views/logout.php">
+                            <a class="dropdown-item" href="../logout.php">
                                 <i class="bx bx-power-off me-2"></i>
-                                <span class="align-middle">Log Out</span>
+                                <span class="align-middle">Sair</span>
                             </a>
                         </li>
                     </ul>

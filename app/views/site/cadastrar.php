@@ -3,7 +3,7 @@
     require_once '../../controllers/enderecos_controller.php';
     require_once '../../controllers/empresas_controller.php';
     require_once '../../models/database/conexao.php';
-
+    session_start();
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     $db = Conexao::getInstance();
@@ -32,7 +32,20 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $empesaController = new EmpresasController;
     $empresa = $empesaController->create($_POST, $endereco);
 
-    header('Location: ../');
+    $query = "SELECT * FROM `sysfood`.`empresas` WHERE id = :id";
+    $stmt = $db->prepare($query);
+    $stmt->bindParam(':id', $empresa);
+    $stmt->execute();
+    $row = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    if($row) {
+        $_SESSION['empresa'] = [
+            'id' => $row['id'],
+            'nome_empresa' => $row['nome_empresa'],
+            'email' => $row['email']
+        ];
+        header('location: ../dashboard/bem_vindo.php');
+    }
 
 }
 

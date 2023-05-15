@@ -10,16 +10,36 @@ class SessoesController extends ApplicationController
 
     public function index()
     {
-        $stmt = $this->pdo->query('SELECT * FROM sessoes');
+        $stmt = $this->pdo->query('SELECT * FROM sessoes WHERE status_sessao = "em andamento"');
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function index_quantidade() {
+        $stmt = $this->pdo->query('SELECT * FROM sessoes');
+        return $stmt->rowCount();
+    }
+
+    public function index_finalizado()
+    {
+        $stmt = $this->pdo->query('SELECT * FROM sessoes WHERE status_sessao = "finalizada"');
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function finalizar_sessao($id){
+        $stmt = $this->pdo->prepare('UPDATE sessoes SET status_sessao = :status_sessao WHERE id = :id');
+        $stmt->execute(array(
+            ':status_sessao' => 'finalizada',
+            ':id' => $id
+        ));
     }
 
     public function create($data)
     {
-        $stmt = $this->pdo->prepare('INSERT INTO sessoes (nome_sessao, status_sessao) VALUES (:nome_sessao, :status_sessao)');
+        $stmt = $this->pdo->prepare('INSERT INTO sessoes (nome_sessao, hora_inicio, status_sessao) VALUES (:nome_sessao, :hora_inicio, :status_sessao)');
         $stmt->execute(array(
             ':nome_sessao' => $data['nome_sessao'],
-            ':status_sessao' => $data['status_sessao'] = 'Em andamento'
+            ':hora_inicio' => date('H:i:s'),
+            ':status_sessao' => 'Em andamento'
         ));
         return $this->pdo->lastInsertId();
     }
@@ -42,15 +62,6 @@ class SessoesController extends ApplicationController
                 ':status_sessao' => $data['status_sessao'],
                 ':id' => $id
             ));
-
-            if ($stmt->rowCount() > 0) {
-                header("Location: index.php");
-                exit;
-            } else {
-                // Caso contrário, exibe uma mensagem de erro
-                $_SESSION['message'] = 'Erro ao excluir sessão.';
-                $_SESSION['message_type'] = 'error';
-            }
         }
     }
 

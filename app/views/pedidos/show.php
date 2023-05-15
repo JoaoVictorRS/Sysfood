@@ -5,7 +5,18 @@
         <div class="flex-grow-1">
             <h1>Detalhes do Pedido</h1>
         </div>
-        <a href="../pedido_produtos/create.php?id_produto=<?= $_GET['id'] ?>" class="btn btn-primary">Nova Refeição</a>
+        <?php 
+             require_once('../../controllers/produtos_controller.php');
+        
+             $produtosController = new ProdutosController();
+             $produtos_quantidade = $produtosController->index_quantidade();
+            if ($produtos_quantidade > 0){
+                echo '<a href="../pedido_produtos/create.php?id_produto='. $_GET['id']. '" class="btn btn-primary">Nova
+        Refeição</a>';
+            } else {
+                echo '<h6 style="color: red;">Crie pelo menos um produto antes de criar um pedido!</h6>';
+            }
+        ?>
     </div>
     <table class="table">
         <thead>
@@ -22,7 +33,6 @@
                 $pedido_produtosController = new PedidoProdutosController();
                 $pedido_produtos = $pedido_produtosController->index($_GET['id'])
             ?>
-            <?= var_dump($_GET) ?>
             <?php if (!empty($pedido_produtos)) : ?>
             <?php foreach ($pedido_produtos as $pedido_produto) : ?>
             <tr>

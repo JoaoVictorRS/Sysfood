@@ -14,6 +14,11 @@ class CategoriasController extends ApplicationController
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    public function index_quantidade() {
+        $stmt = $this->pdo->query('SELECT * FROM categorias');
+        return $stmt->rowCount();
+    }
+
     public function create($data)
     {
         $stmt = $this->pdo->prepare('INSERT INTO categorias (nome_categoria) VALUES (:nome_categoria)');

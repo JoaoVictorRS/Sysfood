@@ -23,10 +23,10 @@ CREATE TABLE administradores (
 
 CREATE TABLE enderecos (
   id INT NOT NULL AUTO_INCREMENT,
-  rua VARCHAR(50) NOT NULL,
-  bairro VARCHAR(50) NOT NULL,
-  cidade VARCHAR(50) NOT NULL,
-  estado VARCHAR(50) NOT NULL,
+  rua VARCHAR(50),
+  bairro VARCHAR(50),
+  cidade VARCHAR(50),
+  estado VARCHAR(50),
   cep VARCHAR(50),
   complemento VARCHAR(50),
   criado_em DATETIME NOT NULL DEFAULT NOW(),
@@ -90,7 +90,7 @@ CREATE TABLE sessoes (
 CREATE TABLE pedidos (
   id INT NOT NULL AUTO_INCREMENT,
   descricao VARCHAR(50),
-  nome_cliente VARCHAR(50) NOT NULL,
+  nome_cliente VARCHAR(50),
   hora_inicio TIME NOT NULL DEFAULT NOW(),
   hora_fim TIME DEFAULT NOW(),
   valor_total FLOAT,

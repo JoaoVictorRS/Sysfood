@@ -3,9 +3,8 @@
 <div class="container">
     <div class="d-flex justify-content-between align-items-center">
         <div class="flex-grow-1">
-            <h1>Sessões</h1>
+            <h1>Sessões finalizadas</h1>
         </div>
-        <a href="create.php" class="btn btn-primary">Nova Sessão</a>
     </div>
     <table class="table">
         <hr>
@@ -13,7 +12,7 @@
             <?php
         require_once('../../controllers/sessoes_controller.php');
         $sessoesController = new SessoesController();
-        $sessoes = $sessoesController->index();
+        $sessoes = $sessoesController->index_finalizado();
         ?>
             <?php if (!empty($sessoes)) : ?>
             <div class="row mb-6">
@@ -37,12 +36,8 @@
                                         <button type="submit" class="btn btn-sm btn-danger"
                                             onclick="return confirm('Tem certeza que deseja excluir a sessão <?= $sessao['nome_sessao'] ?>?')">Excluir</button>
                                     </form>
-                                    <a href="edit.php?id=<?= $sessao['id'] ?>" class="btn btn-sm btn-info">Editar</a>
                                     <a href="show.php?id=<?= $sessao['id'] ?>"
                                         class="btn btn-sm btn-primary">Pesquisar</a>
-                                    <a href="finalizar_sessao.php?id=<?= $sessao['id']?>"
-                                        class="btn btn-sm btn-warning">Finalizar
-                                        Sessão</a>
                                 </div>
                                 <?php
                                     if ($_SERVER['REQUEST_METHOD'] === 'POST') {

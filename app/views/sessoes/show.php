@@ -1,6 +1,5 @@
 <?php require_once '../../views/layouts/user/header.php'; ?>
 <?php require_once '../../views/layouts/user/left_menu.php'; ?>
-<? session_start(); ?>
 <div class="container">
     <?php
     require_once('../../controllers/sessoes_controller.php');
@@ -42,15 +41,23 @@
                 <td><?= $pedido['status_pedido']; ?></td>
                 <td>
                     <div>
-                        <form action="<?= $pedidosController->delete($pedido['id']) ?>" method="POST">
-                            <input type="hidden" name="_method" value="DELETE">
-                            <button type="submit" class="btn btn-sm btn-danger">Excluir</button>
+                        <form action="" method="POST">
+                            <input type="hidden" name="id" value="<?= $pedido['id'] ?>">
+                            <button type="submit" class="btn btn-sm btn-danger"
+                                onclick="return confirm('Tem certeza que deseja excluir o pedido?')">Excluir</button>
                         </form>
                         <a href="../pedidos/show.php?id=<?= $pedido['id'] ?>"
                             class="btn btn-sm btn-primary">Pesquisar</a>
-                        <a href="../pedidos/edit.php?id=<?= $pedido['id'] ?>" class="btn btn-sm btn-info">Editar</a>
+                        <a href="../pedidos/edit.php?id=<?= $pedido['id'] ?>&pedidos=<?= $_GET['id']?>"
+                            class="btn btn-sm btn-info">Editar</a>
                     </div>
                 </td>
+                <?php
+                    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                        $pedidosController->delete($_POST['id']);
+                        header('Location: show.php?id='.$_GET['id']);
+                    }
+                ?>
             </tr>
             <?php endforeach; ?>
             <?php else : ?>

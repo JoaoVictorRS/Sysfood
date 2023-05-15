@@ -1,12 +1,21 @@
 <?php require_once '../../views/layouts/user/header.php'; ?>
 <?php require_once '../../views/layouts/user/left_menu.php'; ?>
 <div class="container">
-    <? session_start(); ?>
     <div class="d-flex justify-content-between align-items-center">
         <div class="flex-grow-1">
             <h1>Produtos</h1>
         </div>
-        <a href="create.php" class="btn btn-primary">Nova Produto</a>
+        <?php 
+             require_once('../../controllers/categorias_controller.php');
+        
+             $categoriasController = new CategoriasController();
+             $categorias_quantidade = $categoriasController->index_quantidade();
+            if ($categorias_quantidade > 0){
+                echo '<a href="create.php" class="btn btn-primary">Nova Produto</a>';
+            } else {
+                echo '<h6 style="color: red;">Crie pelo menos uma categoria antes de criar um produto!</h6>';
+            }
+        ?>
     </div>
     <table class="table">
         <thead>
@@ -38,7 +47,7 @@
             <?php endforeach; ?>
             <?php else: ?>
             <tr>
-                <td colspan="2" class="text-center">Nenhuma produto encontrada.</td>
+                <td colspan="5" class="text-center">Nenhuma produto encontrada.</td>
             </tr>
             <?php endif; ?>
         </tbody>

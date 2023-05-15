@@ -39,13 +39,12 @@ class EmpresasController extends ApplicationController
     public function update($id, $data)
     {
         $stmt = $this->pdo->prepare('UPDATE empresas SET nome_empresa = :nome_empresa, cnpj = :cnpj, email = :email, senha =
-                                    :senha, endereco_id = :endereco_id WHERE id = :id');
+                                    :senha WHERE id = :id');
         $stmt->execute(array(
             ':nome_empresa' => $data['nome_empresa'],
             ':cnpj' => $data['cnpj'],
             ':email' => $data['email'],
             ':senha' => $data['senha'],
-            ':endereco_id' => $data['endereco_id'],
             ':id' => $id
         ));
     }

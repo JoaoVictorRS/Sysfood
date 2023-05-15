@@ -12,41 +12,33 @@
         $usuariosController = new UsuariosController();
         $usuario_funcionario = $usuariosController->show($funcionario['usuario_id']);
     ?>
-    <h1>Editar Funcionário</h1>
+    <h1>Editar meu cadastro</h1>
     <hr>
     <form action="" method="POST">
         <div class="row">
-            <div class="col-md-3">
+            <div class="col-md-4">
                 <label>Nome</label>
                 <input type="text" name="nome" class="form-control" value="<?= $usuario_funcionario['nome']?>" />
             </div>
-            <div class="col-md-3">
+            <div class="col-md-4">
                 <label>Sobrenome</label>
                 <input type="text" name="sobrenome" class="form-control"
                     value="<?= $usuario_funcionario['sobrenome']?>" />
             </div>
-            <div class="col-md-3">
+            <div class="col-md-4">
                 <label>Data de nascimento</label>
                 <input type="date" name="data_nascimento" class="form-control"
                     value="<?= $usuario_funcionario['data_nascimento']?>" />
             </div>
-            <div class="col-md-3">
-                <label>CPF</label>
-                <input type="text" name="cpf" class="form-control" value="<?= $funcionario['cpf']?>" />
-            </div>
         </div>
 
         <div class="row">
-            <div class="col-md-4">
-                <label>Cargo</label>
-                <select name="cargo" id="cargo" class="form-control" value="<?= $funcionario['cargo']?>" required>
-                    <option value="Funcionário Comum">Funcionário Comum</option>
-                    <option value="Funcionário Cozinha">Funcionário Cozinha</option>
-                    <option value="Funcionário Gerente">Funcionário Gerente</option>
-                    <option value="Funcionário Supervisor">Funcionário Supervisor</option>
-                </select>
+            <input type="hidden" name="cargo" value="<?= $funcionario['cargo']?>" required>
+            <div class="col-md-6">
+                <label>CPF</label>
+                <input type="text" name="cpf" class="form-control" value="<?= $funcionario['cpf']?>" />
             </div>
-            <div class="col-md-4">
+            <div class="col-md-6">
                 <label>Email</label>
                 <input type="email" name="email" class="form-control" value="<?= $usuario_funcionario['email']?>" />
             </div>
