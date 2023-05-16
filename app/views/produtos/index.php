@@ -17,40 +17,32 @@
             }
         ?>
     </div>
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Foto</th>
-                <th>Nome do produto</th>
-                <th>Descrição</th>
-                <th>Categoria</th>
-                <th>Valor</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php
-                require_once('../../controllers/produtos_controller.php');
-                $produtosController = new ProdutosController();
-                $produtos = $produtosController->index();
-            ?>
-            <?php if (!empty($produtos)): ?>
-            <?php foreach ($produtos as $produto): ?>
-            <tr>
-                <td><img src="../../uploads/<?= $produto['imagem']; ?>" alt=""
-                        style="width: 200px; height: 150px; border-radius: 20px;">
-                </td>
-                <td><?= $produto['nome_produto']; ?></td>
-                <td><?= $produto['descricao']; ?></td>
-                <td><?= $produto['categoria_id']; ?></td>
-                <td><?= $produto['valor']; ?></td>
-            </tr>
-            <?php endforeach; ?>
-            <?php else: ?>
-            <tr>
-                <td colspan="5" class="text-center">Nenhuma produto encontrada.</td>
-            </tr>
-            <?php endif; ?>
-        </tbody>
-    </table>
+    <?php
+        require_once('../../controllers/produtos_controller.php');
+        $produtosController = new ProdutosController();
+        $produtos = $produtosController->index();
+    ?>
+    <div class="card-deck">
+        <?php if (!empty($produtos)): ?>
+        <?php foreach ($produtos as $produto): ?>
+        <div class="card mb-4">
+            <div class="row no-gutters">
+                <div class="col-md-4" style="height: 180px;">
+                    <img src="../../uploads/<?= $produto['imagem']; ?>" alt="" class="rounded card-img h-100">
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <h5 class="card-title"><?= $produto['nome_produto']; ?></h5>
+                        <p class="card-text"><?= $produto['descricao']; ?>.</p>
+                        <p class="card-text">Valor: R$<?= $produto['valor']; ?></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <?php endforeach; ?>
+        <?php else: ?>
+        <p>Nenhum produto encontrado.</p>
+        <?php endif; ?>
+    </div>
 </div>
 <?php require_once '../../views/layouts/user/footer.php'; ?>

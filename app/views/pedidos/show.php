@@ -18,36 +18,38 @@
             }
         ?>
     </div>
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Produto</th>
-                <th>Quantidade</th>
-                <th>Valor Total</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php
-                require_once('../../controllers/pedido_produtos_controller.php');
-        
-                $pedido_produtosController = new PedidoProdutosController();
-                $pedido_produtos = $pedido_produtosController->index($_GET['id'])
-            ?>
-            <?php if (!empty($pedido_produtos)) : ?>
-            <?php foreach ($pedido_produtos as $pedido_produto) : ?>
-            <tr>
-                <td><?= $pedido_produto['produto_id']; ?></td>
-                <td><?= $pedido_produto['quantidade']; ?></td>
-                <td><?= $pedido_produto['valor_total']; ?></td>
-            </tr>
-            <?php endforeach; ?>
-            <?php else : ?>
-            <tr>
-                <td colspan="6" class="text-center">Nenhuma refeição encontrado.</td>
-            </tr>
-            <?php endif; ?>
-        </tbody>
-    </table>
+    <?php
+        require_once('../../controllers/pedido_produtos_controller.php');
+        require_once('../../controllers/produtos_controller.php');
+        $produtos_Controller = new ProdutosController();
+        $pedido_produtosController = new PedidoProdutosController();
+        $pedido_produtos = $pedido_produtosController->index($_GET['id'])
+    ?>
+
+    <div class="card-deck">
+        <?php if (!empty($pedido_produtos)) : ?>
+        <?php foreach ($pedido_produtos as $pedido_produto) : ?>
+        <?php $produto = $produtos_Controller->show($pedido_produto['produto_id'])?>
+        <div class="card mb-4">
+            <div class="row no-gutters">
+                <div class="col-md-4" style="height: 180px;">
+                    <img src="../../uploads/<?= $produto['imagem']; ?>" alt="" class="rounded card-img h-100">
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <h5 class="card-title"><?= $produto['nome_produto'] ?></h5>
+                        <p class="card-text"><?= $produto['descricao'] ?>.</p>
+                        <p class="card-text"><?= $pedido_produto['quantidade'] ?> Refeições</p>
+                        <p class="card-text">Valor total: R$<?= $pedido_produto['valor_total'] ?></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <?php endforeach; ?>
+        <?php else: ?>
+        <p>Nenhum produto encontrado.</p>
+        <?php endif; ?>
+    </div>
     <a class="btn btn-secondary" href="../sessoes/show.php?id=<?= $_GET['id'] ?>">Voltar</a>
 </div>
 <?php require_once '../../views/layouts/user/footer.php'; ?>

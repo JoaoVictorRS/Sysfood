@@ -1,5 +1,5 @@
 <?php
-class PedidoLista extends Application {
+class PedidoProdutos extends Application {
     private $id;
     private $produto_id;
     private $pedido_id;

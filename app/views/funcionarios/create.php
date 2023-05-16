@@ -56,40 +56,6 @@
                 <input type="email" name="email" class="form-control" />
             </div>
         </div>
-        <label for="">Endereço</label>
-        <hr>
-        <div class="row">
-            <div class="col-md-6">
-                <label>Rua</label>
-                <input type="text" name="rua" class="form-control" />
-            </div>
-
-            <div class="col-md-6">
-                <label>Bairro</label>
-                <input type="text" name="bairro" class="form-control" />
-            </div>
-
-            <div class="col-md-6">
-                <label>Cidade</label>
-                <input type="text" name="cidade" class="form-control" />
-            </div>
-
-            <div class="col-md-6">
-                <label>Estado</label>
-                <input type="text" name="estado" class="form-control" />
-            </div>
-
-            <div class="col-md-6">
-                <label>CEP</label>
-                <input type="text" name="cep" class="form-control" />
-            </div>
-
-            <div class="col-md-6">
-                <label>Complemento</label>
-                <input type="text" name="complemento" class="form-control" />
-            </div>
-        </div>
-
         <div class="card-footer">
             <button type="submit" class="btn btn-primary">Salvar</button>
             <a href="index.php" class="btn btn-secondary">Cancelar</a>

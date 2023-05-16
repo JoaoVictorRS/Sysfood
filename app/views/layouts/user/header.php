@@ -25,6 +25,13 @@
     <link rel="stylesheet" href="../../assets/libs/perfect-scrollbar/perfect-scrollbar.css" />
     <script src="../../assets/js/helpers.js"></script>
     <script src="../../assets/js/config.js"></script>
+    <style>
+    .card-img {
+        max-width: 100%;
+        max-height: 100%;
+        object-fit: cover;
+    }
+    </style>
 </head>
 
 <body>

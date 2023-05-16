@@ -1748,13 +1748,16 @@ a.btn_red {
 }
 
 .one_half {
-  width: 50%;
+  width: 45%;
   display: block;
   float: left;
 }
 
 .one_half.last {
+  width: 45%;
   margin-left: 5%;
+  display: block;
+  float: right;
 }
 /* Popup Styles*/
 

@@ -26,9 +26,10 @@ class SessoesController extends ApplicationController
     }
 
     public function finalizar_sessao($id){
-        $stmt = $this->pdo->prepare('UPDATE sessoes SET status_sessao = :status_sessao WHERE id = :id');
+        $stmt = $this->pdo->prepare('UPDATE sessoes SET status_sessao = :status_sessao, hora_fim = :hora_fim WHERE id = :id');
         $stmt->execute(array(
             ':status_sessao' => 'finalizada',
+            ':hora_fim' => date('H:i:s'),
             ':id' => $id
         ));
     }
@@ -67,6 +68,13 @@ class SessoesController extends ApplicationController
 
     public function delete($id)
     {   
+        $pedidos = $this->pdo->prepare('SELECT id FROM pedidos WHERE sessao_id = :id');
+        $pedidos->execute(array(':id' => $id));
+        $pedidos_total = $pedidos->fetchAll(PDO::FETCH_ASSOC);
+        foreach($pedidos_total as $pedido_cada) :
+            $deletar_pedidos = $this->pdo->prepare('DELETE FROM pedido_produtos WHERE pedido_id = :id');
+            $deletar_pedidos->execute(array(':id' => $pedido_cada['id']));
+        endforeach;
         $pedido = $this->pdo->prepare('DELETE FROM pedidos WHERE sessao_id = :id');
         $pedido->execute(array(':id' => $id));
         $stmt = $this->pdo->prepare('DELETE FROM sessoes WHERE id = :id');

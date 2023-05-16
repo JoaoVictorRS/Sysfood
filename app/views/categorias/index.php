@@ -23,13 +23,26 @@
             <?php if (!empty($categorias)): ?>
             <?php foreach ($categorias as $categoria): ?>
             <tr>
-                <td><?= $categoria['nome_categoria']; ?></td>
-                <td style="width: 700px;">
-                    <a href="edit.php?id=<?= $categoria['id'] ?>" class="btn btn-sm btn-info">Editar</a>
-                    <a href="show.php?id=<?= $categoria['id'] ?>" class="btn btn-sm btn-primary">Pesquisar</a>
-
+                <td><?= $categoria['nome_categoria'] ?></td>
+                <td>
+                    <div>
+                        <form action="" method="POST" class="d-inline">
+                            <input type="hidden" name="id_categoria" value="<?= $categoria['id'] ?>">
+                            <button type="submit" class="btn btn-sm btn-danger"
+                                onclick="return confirm('Tem certeza que deseja excluir a categoria <?= $categoria['nome_categoria'] ?>?')">Excluir</button>
+                        </form>
+                        <a href="edit.php?id=<?= $categoria['id'] ?>" class="btn btn-sm btn-info">Editar</a>
+                        <a href="show.php?id=<?= $categoria['id'] ?>" class="btn btn-sm btn-primary">Pesquisar</a>
+                    </div>
                 </td>
             </tr>
+            <?php
+                if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                    
+                    $categoriasController->delete($_POST['id_categoria']);
+                    header("Location: index.php");
+                }
+            ?>
             <?php endforeach; ?>
             <?php else: ?>
             <tr>

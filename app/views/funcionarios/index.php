@@ -38,15 +38,17 @@
                 <td><?= $funcionario['cargo']; ?></td>
                 <td><?= $usuario['email']; ?></td>
                 <td>
-                    <form action="" method="POST">
-                        <input type="hidden" name="id_funcionario" value="<?= $funcionario['id'] ?>">
-                        <button type="submit" class="btn btn-sm btn-danger"
-                            onclick="return confirm('Tem certeza que deseja o funcionário <?= $usuario['nome'] ?>?')">Excluir</button>
-                    </form>
-                    <a href="../funcionarios/show.php?id=<?= $funcionario['id'] ?>"
-                        class="btn btn-sm btn-primary">Pesquisar</a>
-                    <a href="../funcionarios/edit.php?id=<?= $funcionario['id'] ?>"
-                        class="btn btn-sm btn-info">Editar</a>
+                    <div>
+                        <form action="" method="POST" class="d-inline">
+                            <input type="hidden" name="id_funcionario" value="<?= $funcionario['id'] ?>">
+                            <button type="submit" class="btn btn-sm btn-danger"
+                                onclick="return confirm('Tem certeza que deseja o funcionário <?= $usuario['nome'] ?>?')">Excluir</button>
+                        </form>
+                        <a href="../funcionarios/show.php?id=<?= $funcionario['id'] ?>"
+                            class="btn btn-sm btn-primary">Pesquisar</a>
+                        <a href="../funcionarios/edit.php?id=<?= $funcionario['id'] ?>"
+                            class="btn btn-sm btn-info">Editar</a>
+                    </div>
                 </td>
             </tr>
             <?php

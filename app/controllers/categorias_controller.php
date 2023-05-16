@@ -45,7 +45,9 @@ class CategoriasController extends ApplicationController
     }
 
     public function delete($id)
-    {
+    {   
+        $produtos = $this->pdo->prepare('DELETE FROM produtos WHERE categoria_id = :id');
+        $produtos->execute(array(':id' => $id));
         $stmt = $this->pdo->prepare('DELETE FROM categorias WHERE id = :id');
         $stmt->execute(array(':id' => $id));
     }
