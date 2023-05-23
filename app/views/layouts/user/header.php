@@ -41,7 +41,7 @@
             <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
                 <div class="app-brand demo" style="margin: 20px;">
                     <span class="" style="padding: 20px;">
-                        <a href="index.php" class="logo">
+                        <a href="../dashboard/bem_vindo.php" class="logo">
                             <img src="../../assets/images/sysfood_logo.png" alt="Sysfood"
                                 style="width: 90px; height: 90px;">
                         </a>
