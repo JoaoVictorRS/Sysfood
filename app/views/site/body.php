@@ -90,11 +90,13 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <label style="color: #0d6efd">Nome da Empresa</label>
-                                        <input type="text" name="nome_empresa" class="form-control" required />
+                                        <input type="text" name="nome_empresa" id="nome_empresa_cad" class="form-control" required />
+                                        <span class="form-control-span">O nome da empresa deve ter mais de 3 letras</span>
                                     </div>
                                     <div class="col-md-6">
                                         <label style="color: #0d6efd">CNPJ</label>
-                                        <input type="text" name="cnpj" class="form-control" required />
+                                        <input type="text" name="cnpj" id="cnpj_cadastro" class="form-control" required />
+                                        <span class="form-control-span">Ex: xx.xxx.xxx/xxxx-xx</span>
                                     </div>
                                 </div>
 
