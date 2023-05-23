@@ -1,1 +1,0 @@
-Swal.fire("Welticome");

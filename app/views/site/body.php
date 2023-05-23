@@ -168,8 +168,8 @@
                                 data-wow-delay="1s">
                                 <div class="row">
                                     <div class="col-lg-12">
-                                        <h2 style="font-family: Marker Felt, fantasy">Sysfood</h2>
-                                        <p style=" font-family: Marker Felt, fantasy">O sistema de gerenciamento de
+                                        <h2 style="font-family: 'Roboto', sans-serif;font-size:4em;">Sysfood</h2>
+                                        <p style=" font-family: 'Roboto', sans-serif;font-size:1.4em;">O sistema de gerenciamento de
                                             pedidos Sysfood é um solução ideal para
                                             pequenos restaurantes que buscam se destacar no mercado altamente
                                             competitivo da gastronomia.
@@ -194,11 +194,11 @@
             <div class="row">
                 <div class="col-lg-8 offset-lg-2">
                     <div class="section-heading  wow fadeInDown" data-wow-duration="1s" data-wow-delay="0.5s">
-                        <h4 style="font-family: Marker Felt, fantasy">Quais serviços <em
-                                style="font-family: Marker Felt, fantasy">Sysfood</em> tem a oferecer?
+                        <h4 style="font-family: 'Roboto', sans-serif; font-size:2.1em;">Quais serviços <em
+                                style="font-family: 'Roboto', sans-serif">Sysfood</em> tem a oferecer?
                         </h4>
                         <img src=" ../assets/images/heading-line-dec.png" alt="">
-                        <p style="font-family: Marker Felt, fantasy">O Sysfood disponibiliza várias ferramentas e
+                        <p style="font-family: 'Roboto', sans-serif; font-size:1.4em;">O Sysfood disponibiliza várias ferramentas e
                             funcionalidades, desde o
                             gerenciamento de pedidos até a emissão de relatórios financeiros. Os cards
                             abaixo detalham de forma mais precisa os serviços oferecidos.
@@ -256,9 +256,9 @@
             <div class="row">
                 <div class="col-lg-8 offset-lg-2">
                     <div class="section-heading">
-                        <h4>Preços <em>elaborados</em> para <em>ajudar</em> novos empresarios</h4>
+                        <h4 style="font-size:2em;">Preços <em>elaborados</em> para <em>ajudar</em> novos empresarios</h4>
                         <img src="../assets/images/heading-line-dec.png" alt="">
-                        <p>A seguir, os valores dos planos disponíveis, especialmente
+                        <p style="font-size:1.4em;">A seguir, os valores dos planos disponíveis, especialmente
                             elaborados para quem está iniciando no ramo.</p>
                     </div>
                 </div>
