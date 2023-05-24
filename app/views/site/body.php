@@ -86,28 +86,30 @@
                         </div>
 
                         <div class="user_register box">
-                            <form method="post" action="site/cadastrar.php">
+                            <form id="cadastro_form" method="post" action="site/cadastrar.php">
                                 <div class="row">
                                     <div class="col-md-6">
                                         <label style="color: #0d6efd">Nome da Empresa</label>
-                                        <input type="text" name="nome_empresa" id="nome_empresa_cad" class="form-control" required />
-                                        <span class="form-control-span">O nome da empresa deve ter mais de 3 letras</span>
+                                        <input type="text" name="nome_empresa" class="form-control cadastro-input" required />
+                                        <span class="cadastro-span">O nome da empresa deve ter mais de 3 letras</span>
                                     </div>
                                     <div class="col-md-6">
                                         <label style="color: #0d6efd">CNPJ</label>
-                                        <input type="text" name="cnpj" id="cnpj_cadastro" class="form-control" required />
-                                        <span class="form-control-span">Ex: xx.xxx.xxx/xxxx-xx</span>
+                                        <input type="text" name="cnpj" class="form-control cadastro-input" required />
+                                        <span class="cadastro-span">Ex: xx.xxx.xxx/xxxx-xx</span>
                                     </div>
                                 </div>
 
                                 <div class="row">
                                     <div class="col-md-6">
                                         <label style="color: #0d6efd">Email</label>
-                                        <input type="email" name="email" class="form-control" required />
+                                        <input type="email" name="email" class="form-control cadastro-input" required />
+                                        <span class="cadastro-span">Ex:email@gmail.com</span>
                                     </div>
                                     <div class="col-md-6">
                                         <label style="color: #0d6efd">Senha</label>
-                                        <input type="password" name="senha" class="form-control" required />
+                                        <input type="password" name="senha" class="form-control cadastro-input" required />
+                                        <span class="cadastro-span">A senha deve possuir ao menos 8 caracteres</span>
                                     </div>
                                 </div>
                                 <label for="">Endereço</label>
@@ -115,27 +117,28 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <label style="color: #0d6efd">Rua</label>
-                                        <input type="text" name="rua" class="form-control" required />
+                                        <input type="text" name="rua" class="form-control cadastro-input" required />
                                     </div>
 
                                     <div class="col-md-6">
                                         <label style="color: #0d6efd">Bairro</label>
-                                        <input type="text" name="bairro" class="form-control" required />
+                                        <input type="text" name="bairro" class="form-control cadastro-input" required />
                                     </div>
 
                                     <div class="col-md-6">
                                         <label style="color: #0d6efd">Cidade</label>
-                                        <input type="text" name="cidade" class="form-control" required />
+                                        <input type="text" name="cidade" class="form-control cadastro-input" required />
                                     </div>
 
                                     <div class="col-md-6">
                                         <label style="color: #0d6efd">Estado</label>
-                                        <input type="text" name="estado" class="form-control" required />
+                                        <input type="text" name="estado" class="form-control cadastro-input" required />
                                     </div>
 
                                     <div class="col-md-6">
                                         <label style="color: #0d6efd">CEP</label>
-                                        <input type="text" name="cep" class="form-control" required />
+                                        <input type="text" name="cep" class="form-control cadastro-input" required />
+                                        <span class="cadastro-span">Ex: xxxxx-xxx</span>
                                     </div>
 
                                     <div class="col-md-6">

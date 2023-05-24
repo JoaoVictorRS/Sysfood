@@ -1,21 +1,38 @@
-
 //Tratamento de cadastro
-const nome_empresa_cad = document.getElementById('nome_empresa_cad');
+const form = document.getElementById('cadastro_form');
+const campos = document.querySelectorAll('.cadastro-input');
+const spans = document.querySelectorAll('.cadastro_span');
 
+function setError(index) {
+  campos[index].style.border = '2px solid #e63636';
+}
 
-if (nome_empresa_cad.value.length < 3) {
-    
+function setSuccess(index) {
+  campos[index].style.border = '2px solid green';
+}
+
+//Campo Nome da empresa
+
+//Verifica o tamanho do nome
+campos[0].addEventListener('input', en_tamanho);
+
+function en_tamanho() {
+  let tamanho = campos[0].value.length;
+  
+  if(tamanho < 3){
+    setError(0);
+  }else
+    setSuccess(0);
 }
 
 
 //Campo CNPJ
-const cnpj_cadastro = document.getElementById('cnpj_cadastro');
 
 //Adiciona Formatação de cnpj
-cnpj_cadastro.addEventListener('input', formatCNPJ,);
+campos[1].addEventListener('input', formatCNPJ,);
 
 function formatCNPJ() {
-  let value = cnpj_cadastro.value.replace(/\D/g, '');
+  let value = campos[1].value.replace(/\D/g, '');
   
   if (value.length > 2) {
     value = value.substring(0, 2) + '.' + value.substring(2);
@@ -30,17 +47,17 @@ function formatCNPJ() {
     value = value.substring(0, 15) + '-' + value.substring(15);
   }
   
-  cnpj_cadastro.value = value;
+  campos[1].value = value;
 }
 
 //Verifica o tamanho da entrada de cnpj
-cnpj_cadastro.addEventListener('input', tamanhoCNPJ);
+campos[1].addEventListener('input', tamanhoCNPJ);
 
 function tamanhoCNPJ() {
-    if(cnpj_cadastro.value.length != 18 ){
-        cnpj_cadastro.style.border = '2px solid #e63636'
+    if(campos[1].value.length != 18 ){
+        campos[1].style.border = '2px solid #e63636'
     }
     else{
-        cnpj_cadastro.style.border = '2px solid green'
+        campos[1].style.border = '2px solid green'
     }
 }
