@@ -79,8 +79,8 @@
                                     <div class="one_half"><a href="#" class="btn back_btn"><i
                                                 class="fa fa-angle-double-left"></i>
                                             Voltar</a></div>
-                                    <div class="one_half last"><a href="#"><input class="btn btn_red" type="submit"
-                                                value="Acessar"></a></div>
+                                    <input class="one_half last btn btn_red" type="submit"
+                                                value="Acessar">
                                 </div>
                             </form>
                         </div>
@@ -152,8 +152,8 @@
                                     <div class="one_half"><a href="#" class="btn back_btn"><i
                                                 class="fa fa-angle-double-left"></i>
                                             Voltar</a></div>
-                                    <div class="one_half last"><a href="#"><input class="btn btn_red" type="submit"
-                                                value="Registrar"></a></div>
+                                   <input class="one_half last btn btn_red" type="submit"
+                                                value="Registrar">
                                 </div>
                             </form>
                         </div>
