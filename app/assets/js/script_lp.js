@@ -1,14 +1,18 @@
 //Tratamento de cadastro
 const form = document.getElementById('cadastro_form');
 const campos = document.querySelectorAll('.cadastro-input');
-const spans = document.querySelectorAll('.cadastro_span');
+const spans = document.querySelectorAll('.cadastro-span');
+
+
 
 function setError(index) {
   campos[index].style.border = '2px solid #e63636';
+  spans[index].style.display = 'block';
 }
 
 function setSuccess(index) {
   campos[index].style.border = '2px solid green';
+  spans[index].style.display = 'none';
 }
 
 //Campo Nome da empresa
@@ -29,7 +33,7 @@ function en_tamanho() {
 //Campo CNPJ
 
 //Adiciona Formatação de cnpj
-campos[1].addEventListener('input', formatCNPJ,);
+campos[1].addEventListener('input', formatCNPJ);
 
 function formatCNPJ() {
   let value = campos[1].value.replace(/\D/g, '');
@@ -55,9 +59,72 @@ campos[1].addEventListener('input', tamanhoCNPJ);
 
 function tamanhoCNPJ() {
     if(campos[1].value.length != 18 ){
-        campos[1].style.border = '2px solid #e63636'
+        setError(1);
     }
     else{
-        campos[1].style.border = '2px solid green'
+        setSuccess(1);
     }
+}
+
+//Campo E-mail
+
+//Verifica se e um email de formato valido
+campos[2].addEventListener('input', validEmail);
+
+function validEmail() {
+
+  let emailRegex = /^[\w\.-]+@[\w\.-]+\.\w+$/;
+
+  if (!emailRegex.test(campos[2].value)) {
+    setError(2);
+  }else{
+    setSuccess(2); 
+  }
+  
+}
+
+//Campo Senha
+
+//Verifica se e a senha cumpre com os requisitos
+campos[3].addEventListener('input', validSenha);
+
+function validSenha() {
+
+  let senhaRegex = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,}$/;
+
+  if (!senhaRegex.test(campos[3].value)) {
+    setError(3);
+  }else{
+    setSuccess(3); 
+  }
+  
+}
+
+//Campo CEP
+
+//Formata o input de CEP
+
+campos[8].addEventListener('input', formatCEP);
+
+function formatCEP() {
+  let value = campos[8].value.replace(/\D/g, '');
+  
+  if (value.length > 5) {
+    value = value.substring(0, 5) + '-' + value.substring(5);
+  }
+  
+  campos[8].value = value;
+}
+
+//Valida o tamanho do cep
+
+campos[8].addEventListener('input', cepTamanho);
+
+function cepTamanho() {
+  let tamanho = campos[8].value.length;
+  
+  if(tamanho < 9){
+    setError(8);
+  }else
+    setSuccess(8);
 }

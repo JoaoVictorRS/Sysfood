@@ -95,7 +95,7 @@
                                     </div>
                                     <div class="col-md-6">
                                         <label style="color: #0d6efd">CNPJ</label>
-                                        <input type="text" name="cnpj" class="form-control cadastro-input" required />
+                                        <input type="text" name="cnpj" class="form-control cadastro-input" maxlength="18" required />
                                         <span class="cadastro-span">Ex: xx.xxx.xxx/xxxx-xx</span>
                                     </div>
                                 </div>
@@ -109,7 +109,7 @@
                                     <div class="col-md-6">
                                         <label style="color: #0d6efd">Senha</label>
                                         <input type="password" name="senha" class="form-control cadastro-input" required />
-                                        <span class="cadastro-span">A senha deve possuir ao menos 8 caracteres</span>
+                                        <span class="cadastro-span">A senha deve possuir ao menos 8 caracteres<br>Com:<br> 1 especial<br>1 numerico</span>
                                     </div>
                                 </div>
                                 <label for="">Endereço</label>
@@ -137,13 +137,13 @@
 
                                     <div class="col-md-6">
                                         <label style="color: #0d6efd">CEP</label>
-                                        <input type="text" name="cep" class="form-control cadastro-input" required />
+                                        <input type="text" name="cep" class="form-control cadastro-input" maxlength="9" required />
                                         <span class="cadastro-span">Ex: xxxxx-xxx</span>
                                     </div>
 
                                     <div class="col-md-6">
                                         <label style="color: #0d6efd">Complemento</label>
-                                        <input type="text" name="complemento" class="form-control" required />
+                                        <input type="text" name="complemento" class="form-control" />
                                     </div>
                                 </div>
                                 <div style="margin-bottom: 20px;"></div>
@@ -175,7 +175,7 @@
                                     <div class="col-lg-12">
                                         <h2 style="font-family: 'Roboto', sans-serif;font-size:4em;">Sysfood</h2>
                                         <p style=" font-family: 'Roboto', sans-serif;font-size:1.4em;">O sistema de gerenciamento de
-                                            pedidos Sysfood é um solução ideal para
+                                            pedidos Sysfood é a solução ideal para
                                             pequenos restaurantes que buscam se destacar no mercado altamente
                                             competitivo da gastronomia.
                                         </p>
