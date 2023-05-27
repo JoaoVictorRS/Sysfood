@@ -116,6 +116,12 @@
                                 <hr>
                                 <div class="row">
                                     <div class="col-md-6">
+                                        <label style="color: #0d6efd">CEP</label>
+                                        <input type="text" name="cep" class="form-control cadastro-input" maxlength="9" required />
+                                        <span class="cadastro-span">Ex: xxxxx-xxx</span>
+                                    </div>
+
+                                    <div class="col-md-6">
                                         <label style="color: #0d6efd">Rua</label>
                                         <input type="text" name="rua" class="form-control cadastro-input" required />
                                     </div>
@@ -133,12 +139,6 @@
                                     <div class="col-md-6">
                                         <label style="color: #0d6efd">Estado</label>
                                         <input type="text" name="estado" class="form-control cadastro-input" required />
-                                    </div>
-
-                                    <div class="col-md-6">
-                                        <label style="color: #0d6efd">CEP</label>
-                                        <input type="text" name="cep" class="form-control cadastro-input" maxlength="9" required />
-                                        <span class="cadastro-span">Ex: xxxxx-xxx</span>
                                     </div>
 
                                     <div class="col-md-6">
