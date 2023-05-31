@@ -51,7 +51,7 @@
                         <div class="social_login">
                             <div class="action_btns">
                                 <div class="one_half"><a href="#" id="login_form" class="btn">Acessar</a></div>
-                                <div class="one_half last"><a href="" id="register_form" class="btn">Registrar</a>
+                                <div class="one_half last"><a href="" id="register_form" class="btn">Registrar-se</a>
                                 </div>
                             </div>
                         </div>
