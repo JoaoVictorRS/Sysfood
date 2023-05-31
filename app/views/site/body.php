@@ -153,7 +153,7 @@
                                                 class="fa fa-angle-double-left"></i>
                                             Voltar</a></div>
                                    <input class="one_half last btn btn_red" type="submit"
-                                                value="Registrar">
+                                                value="Registrar-se">
                                 </div>
                             </form>
                         </div>
