@@ -7,19 +7,19 @@
         <div class="row">
             <div class="col-md-3">
                 <label>Nome</label>
-                <input type="text" name="nome" class="form-control" />
+                <input type="text" name="nome" class="form-control f_create_edit" />
             </div>
             <div class="col-md-3">
                 <label>Sobrenome</label>
-                <input type="text" name="sobrenome" class="form-control" />
+                <input type="text" name="sobrenome" class="form-control f_create_edit" />
             </div>
             <div class="col-md-3">
                 <label>Data de nascimento</label>
-                <input type="date" name="data_nascimento" class="form-control" />
+                <input type="date" name="data_nascimento" class="form-control f_create_edit" />
             </div>
             <div class="col-md-3">
                 <label>CPF</label>
-                <input type="text" name="cpf" class="form-control" />
+                <input type="text" name="cpf" class="form-control f_create_edit" maxlength="14" />
             </div>
         </div>
 
@@ -53,7 +53,7 @@
             </div>
             <div class="col-md-6">
                 <label>Email</label>
-                <input type="email" name="email" class="form-control" />
+                <input type="email" name="email" class="form-control f_create" />
             </div>
         </div>
         <div class="card-footer">

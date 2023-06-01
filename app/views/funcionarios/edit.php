@@ -18,21 +18,21 @@
         <div class="row">
             <div class="col-md-3">
                 <label>Nome</label>
-                <input type="text" name="nome" class="form-control" value="<?= $usuario_funcionario['nome']?>" />
+                <input type="text" name="nome" class="form-control f_create_edit" value="<?= $usuario_funcionario['nome']?>" />
             </div>
             <div class="col-md-3">
                 <label>Sobrenome</label>
-                <input type="text" name="sobrenome" class="form-control"
+                <input type="text" name="sobrenome" class="form-control f_create_edit"
                     value="<?= $usuario_funcionario['sobrenome']?>" />
             </div>
             <div class="col-md-3">
                 <label>Data de nascimento</label>
-                <input type="date" name="data_nascimento" class="form-control"
+                <input type="date" name="data_nascimento" class="form-control f_create_edit"
                     value="<?= $usuario_funcionario['data_nascimento']?>" />
             </div>
             <div class="col-md-3">
                 <label>CPF</label>
-                <input type="text" name="cpf" class="form-control" value="<?= $funcionario['cpf']?>" />
+                <input type="text" name="cpf" class="form-control f_create_edit" value="<?= $funcionario['cpf']?>" maxlength="14" />
             </div>
         </div>
 
@@ -48,40 +48,40 @@
             </div>
             <div class="col-md-4">
                 <label>Email</label>
-                <input type="email" name="email" class="form-control" value="<?= $usuario_funcionario['email']?>" />
+                <input type="email" name="email" class="form-control f_create_edit" value="<?= $usuario_funcionario['email']?>" />
             </div>
         </div>
         <label for="">Endereço</label>
         <hr>
         <div class="row">
             <div class="col-md-6">
+                    <label>CEP</label>
+                    <input type="text" name="cep" class="form-control f_create_edit" value="<?= $endereco_funcionario['cep']?>" maxlength="9" />
+            </div>
+
+            <div class="col-md-6">
                 <label>Rua</label>
-                <input type="text" name="rua" class="form-control" value="<?= $endereco_funcionario['rua']?>" />
+                <input type="text" name="rua" class="form-control f_create_edit" value="<?= $endereco_funcionario['rua']?>" />
             </div>
 
             <div class="col-md-6">
                 <label>Bairro</label>
-                <input type="text" name="bairro" class="form-control" value="<?= $endereco_funcionario['bairro']?>" />
+                <input type="text" name="bairro" class="form-control f_create_edit" value="<?= $endereco_funcionario['bairro']?>" />
             </div>
 
             <div class="col-md-6">
                 <label>Cidade</label>
-                <input type="text" name="cidade" class="form-control" value="<?= $endereco_funcionario['cidade']?>" />
+                <input type="text" name="cidade" class="form-control f_create_edit" value="<?= $endereco_funcionario['cidade']?>" />
             </div>
 
             <div class="col-md-6">
                 <label>Estado</label>
-                <input type="text" name="estado" class="form-control" value="<?= $endereco_funcionario['estado']?>" />
-            </div>
-
-            <div class="col-md-6">
-                <label>CEP</label>
-                <input type="text" name="cep" class="form-control" value="<?= $endereco_funcionario['cep']?>" />
+                <input type="text" name="estado" class="form-control f_create_edit" value="<?= $endereco_funcionario['estado']?>" />
             </div>
 
             <div class="col-md-6">
                 <label>Complemento</label>
-                <input type="text" name="complemento" class="form-control"
+                <input type="text" name="complemento" class="form-control f_create_edit"
                     value="<?= $endereco_funcionario['complemento']?>" />
             </div>
         </div>
