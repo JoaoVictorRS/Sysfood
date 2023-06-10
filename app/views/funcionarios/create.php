@@ -7,7 +7,7 @@
         <div class="row">
             <div class="col-md-3">
                 <label>Nome</label>
-                <input type="text" name="nome" class="form-control f_create_edit" />
+                <input type="text" name="nome" class="form-control f_create_edit" required />
             </div>
             <div class="col-md-3">
                 <label>Sobrenome</label>
@@ -19,7 +19,7 @@
             </div>
             <div class="col-md-3">
                 <label>CPF</label>
-                <input type="text" name="cpf" class="form-control f_create_edit" maxlength="14" />
+                <input type="text" name="cpf" class="form-control f_create_edit" maxlength="14" required />
             </div>
         </div>
 
@@ -78,7 +78,7 @@
         } elseif ($_SESSION['funcionario']){
             $funcionariosController->create($_POST, $endereco, $usuario, $_SESSION['funcionario']['empresa_id']);
         }
-        header('Location: index.php');
+        header('Location: index.php?funcionario_criado');
     }
 ?>
 <?php require_once '../../views/layouts/user/footer.php'; ?>

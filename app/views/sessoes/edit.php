@@ -21,5 +21,10 @@
         <a href="index.php" class="btn btn-secondary">Cancelar</a>
     </form>
 </div>
-<?php $sessoesController->update($sessao['id'], $_POST); ?>
+<?php
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $sessoesController->update($sessao['id'], $_POST);
+    header('Location: index.php?sessao_editada');
+}
+?>
 <?php require_once '../../views/layouts/user/footer.php'; ?>

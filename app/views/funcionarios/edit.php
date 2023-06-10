@@ -96,7 +96,7 @@
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         
         $test = $funcionariosController->update($_GET['id'], $_POST, $endereco_funcionario['id'], $usuario_funcionario['id']);
-        header('Location: index.php');
+        header('Location: index.php?funcionario_editado');
     }
 ?>
 <?php require_once '../../views/layouts/user/footer.php'; ?>
