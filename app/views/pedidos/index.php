@@ -1,3 +1,6 @@
+<?php require_once '../../views/layouts/user/header.php'; ?>
+<?php require_once '../../views/layouts/user/left_menu.php'; ?>
+
 <?php
 require_once('../../controllers/sessoes_controller.php');
 require_once('../../controllers/pedidos_controller.php');
@@ -57,3 +60,5 @@ $pedidosController = new PedidosController();
         <?php endif; ?>
     </tbody>
 </table>
+
+<?php require_once '../../views/layouts/user/footer.php'; ?>

@@ -50,6 +50,17 @@ if (!$_SESSION) {
             <div>Funcionários</div>
         </a>
     </li>
+    <?php
+    if (isset($_SESSION['funcionario']['sessao_id'])) {
+        echo '<li class="menu-item">
+        <a href="../pedidos/index.php" class="menu-link">';
+        echo '<i class="' . 'menu-icon tf-icons bx bxs-user-account' . '"></i>';
+        echo '<div>Pedidos</div>
+        </a>
+    </li>';
+    }
+    ?>
+
 </ul>
 </aside>
 
@@ -94,22 +105,22 @@ if (!$_SESSION) {
                                         </div>
                                     </div>
                                     <div class="flex-grow-1">
-                                        <?php 
+                                        <?php
                                         if (isset($_SESSION['empresa'])) {
                                             require_once('../../controllers/empresas_controller.php');
                                             $empresasController = new EmpresasController();
                                             $empresa = $empresasController->show($_SESSION['empresa']['id']);
-                                            echo '<span class="fw-semibold d-block">'. $empresa['nome_empresa'] . '</span>';
+                                            echo '<span class="fw-semibold d-block">' . $empresa['nome_empresa'] . '</span>';
                                             echo '<small class="text-muted">Empresa - Plano Básico</small>';
-                                        } elseif(isset($_SESSION['funcionario'])){
+                                        } elseif (isset($_SESSION['funcionario'])) {
                                             require_once('../../controllers/usuarios_controller.php');
                                             $usuariosController = new UsuariosController();
                                             $funcionario = $usuariosController->show($_SESSION['funcionario']['usuario_id']);
                                             echo '<span class="fw-semibold d-block">
-                                            '. $funcionario['nome'] .'
+                                            ' . $funcionario['nome'] . '
                                             </span>
                                             ';
-                                            echo '<small class="text-muted">'. $_SESSION['funcionario']['cargo'] .'</small>';
+                                            echo '<small class="text-muted">' . $_SESSION['funcionario']['cargo'] . '</small>';
                                         }
                                         ?>
                                     </div>
@@ -121,25 +132,25 @@ if (!$_SESSION) {
                         </li>
                         <li>
                             <?php
-                            if (isset($_SESSION['funcionario'] )) {
-                            echo '<a class="dropdown-item"
-                            href="../funcionarios/usuario_update.php?id='.$_SESSION['funcionario']['id'] .'">
+                            if (isset($_SESSION['funcionario'])) {
+                                echo '<a class="dropdown-item"
+                            href="../funcionarios/usuario_update.php?id=' . $_SESSION['funcionario']['id'] . '">
                             <i class="bx bx-user me-2"></i>
                             <span class="align-middle">Meu Perfil</span>
                             </a>';
-                            } elseif(isset($_SESSION['empresa'] )){
+                            } elseif (isset($_SESSION['empresa'])) {
                                 echo '<a class="dropdown-item"
-                            href="../empresas/edit.php?id='.$_SESSION['empresa']['id'] .'">
+                            href="../empresas/edit.php?id=' . $_SESSION['empresa']['id'] . '">
                             <i class="bx bx-user me-2"></i>
                             <span class="align-middle">Meu Perfil</span>
                             </a>';
                             }
-                        
-                        ?>
+
+                            ?>
                         </li>
                         <?php
-                        if ( isset($_SESSION['empresa'] )) {
-                        echo ' <li>
+                        if (isset($_SESSION['empresa'])) {
+                            echo ' <li>
                             <a class="dropdown-item" href="#">
                                 <span class="d-flex align-items-center align-middle">
                                     <i class="flex-shrink-0 bx bx-credit-card me-2"></i>
