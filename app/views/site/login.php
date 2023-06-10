@@ -35,7 +35,7 @@
                 'nome_empresa' => $row['nome_empresa'],
                 'email' => $row['email']
             ];
-            header('location: ../dashboard/bem_vindo.php');
+            header('location: ../dashboard/bem_vindo.php?login_sucesso');
         } elseif($row_usuario) {
             $query_funcionario = "SELECT * FROM `sysfood`.`funcionarios` WHERE usuario_id = :id";
             $stmt_funcionario = $dbh->prepare($query_funcionario);
@@ -61,20 +61,3 @@
 
     }
 ?>
-<!--POP LOGIN-->
-<div class="overlay"></div>
-<div class="modal">
-
-    <div class="div_login">
-        <form action="index.php" method="post">
-            <h1>Login</h1><br>
-            <input type="text" name="nome" placeholder="Nome" class="input" required autofocus>
-            <br><br>
-            <input type="password" name="password" placeholder="Senha" class="input" required>
-            <br><br>
-            <button class="button">Enviar</button>
-        </form>
-    </div>
-
-</div>
-<!--FIM POP LOGIN-->

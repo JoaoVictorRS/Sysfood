@@ -18,7 +18,7 @@
     $categoriasController = new CategoriasController();
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $categoriasController->create($_POST);
-        header('Location: index.php');
+        header('Location: index.php?categoria_criada');
         exit;
     }
 ?>

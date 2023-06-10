@@ -44,75 +44,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             'nome_empresa' => $row['nome_empresa'],
             'email' => $row['email']
         ];
-        header('location: ../dashboard/bem_vindo.php');
+        header('location: ../dashboard/bem_vindo.php?registro_sucesso');
     }
 
 }
 
 
 ?>
-
-<!--Modal Registrar
-<div class="user_register box">
-    <form method="post" action="">
-        <div class="row">
-            <div class="col-md-6">
-                <label>Nome da Empresa</label>
-                <input type="text" id="nome_empresa" class="form-control" />
-            </div>
-            <div class="col-md-6">
-                <label>CNPJ</label>
-                <input type="text" id="cnpj" class="form-control" />
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-md-6">
-                <label>Email</label>
-                <input type="email" id="email" class="form-control" />
-            </div>
-            <div class="col-md-6">
-                <label>Senha</label>
-                <input type="password" id="senha" class="form-control" />
-            </div>
-        </div>
-        <label for="">Endereço</label>
-        <hr>
-        <div class="row">
-            <div class="col-md-6">
-                <label>Rua</label>
-                <input type="text" id="rua" class="form-control" />
-            </div>
-
-            <div class="col-md-6">
-                <label>Bairro</label>
-                <input type="text" id="bairro" class="form-control" />
-            </div>
-
-            <div class="col-md-6">
-                <label>Cidade</label>
-                <input type="text" id="cidade" class="form-control" />
-            </div>
-
-            <div class="col-md-6">
-                <label>Estado</label>
-                <input type="text" id="estado" class="form-control" />
-            </div>
-
-            <div class="col-md-6">
-                <label>CEP</label>
-                <input type="text" id="cep" class="form-control" />
-            </div>
-
-            <div class="col-md-6">
-                <label>Complemento</label>
-                <input type="text" id="complemento" class="form-control" />
-            </div>
-        </div>
-        <div style="margin-bottom: 20px;"></div>
-
-        <input type="submit" value="enviar">
-        </div>
-    </form>
-</div>
--->
