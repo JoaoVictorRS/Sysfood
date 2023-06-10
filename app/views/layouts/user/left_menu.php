@@ -5,7 +5,7 @@ if (!$_SESSION) {
 ?>
 <ul class="menu-inner py-1">
 
-    <li class="menu-item active">
+    <li class="menu-item">
         <a href="../dashboard/bem_vindo.php" class="menu-link">
             <i class="menu-icon tf-icons bx bx-home-circle"></i>
             <div data-i18n="Analytics">Dashboard</div>

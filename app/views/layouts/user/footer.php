@@ -21,6 +21,7 @@
 <script async defer src="https://buttons.github.io/buttons.js"></script>
 
 <script src="../../assets/js/mascaras_dash.js"></script>
+<script src="../../assets/js/dash_left_menu.js"></script>
 </body>
 
 </html>
