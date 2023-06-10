@@ -14,13 +14,14 @@ class ProdutosController extends ApplicationController
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function index_quantidade() {
+    public function index_quantidade()
+    {
         $stmt = $this->pdo->query('SELECT * FROM produtos');
         return $stmt->rowCount();
     }
 
     public function create($data)
-    {   
+    {
         if (isset($_FILES['imagem'])) {
             // Define o diretório onde a imagem será salva
             $uploadDir = '../../uploads/';
@@ -33,6 +34,13 @@ class ProdutosController extends ApplicationController
             $uploadPath = $uploadDir . $fileName;
             // Move a imagem do diretório temporário para o diretório definitivo
             move_uploaded_file($_FILES['imagem']['tmp_name'], $uploadPath);
+            // Redimensiona a imagem para 400x400 pixels
+            $image = imagecreatefromjpeg($uploadPath);
+            $resizedImage = imagescale($image, 400, 400);
+            $resizedImagePath = $uploadDir . 'resized_' . $fileName;
+            imagejpeg($resizedImage, $resizedImagePath);
+            imagedestroy($image);
+            imagedestroy($resizedImage);
             // Define o caminho relativo da imagem
             $relativePath = $fileName;
         } else {

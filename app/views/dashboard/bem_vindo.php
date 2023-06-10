@@ -53,8 +53,9 @@
     <?php
     if (isset($_SESSION['empresa']) || $_SESSION['funcionario']['cargo'] == 'Funcionário Gerente' || $_SESSION['funcionario']['cargo'] == 'Funcionário Supervisor') {
         require_once('dados_gerais.php');
-    } elseif (isset($_SESSION['funcionario']) && $_SESSION['funcionario']["cargo"] == "Funcionário Comum" && isset($_SESSION['funcionario']['sessao_id'])) {
-        require_once('../pedidos/index.php');
+    } elseif ($_SESSION['funcionario']['sessao_id']) {
+        $sessao = $sessoesController->show($_SESSION['funcionario']['sessao_id']);
+        echo '<h1>Você está atualmente na sessão ' . $sessao['nome_sessao'] . '!</h1>';
     } else {
         echo '<h1>Escolha uma Sessão!</h1>';
     }
