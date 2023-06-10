@@ -19,8 +19,9 @@ require_once('../../controllers/sessoes_controller.php');
 $sessoesController = new SessoesController();
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    
     $sessoesController->create($_POST);
-    header('Location: index.php');
+    header('Location: index.php?nova_sessao_criada');
     exit();
 }
 ?>

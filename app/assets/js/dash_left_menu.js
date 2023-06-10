@@ -42,5 +42,3 @@ if (window.location.href == "http://localhost/Sysfood/app/views/funcionarios/ind
 }else{
     opcoes[6].classList.remove('active')
 }
-
-//SUB-PAGINAS DAS PAGINAS PRINCIPAIS (isso aq parece ser uma pessima forma de se fazer isso mas é o unico jeito q funciona XGH)
