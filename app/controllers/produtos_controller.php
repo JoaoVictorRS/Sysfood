@@ -29,18 +29,11 @@ class ProdutosController extends ApplicationController
                 mkdir($uploadDir, 0777, true); // Cria o diretório caso não exista
             }
             // Cria um nome único para a imagem usando o timestamp
-            $fileName = time() . '_' . $_FILES['imagem']['name'];
+            $fileName = time() . $_FILES['imagem']['name'];
             // Define o caminho completo onde a imagem será salva
             $uploadPath = $uploadDir . $fileName;
             // Move a imagem do diretório temporário para o diretório definitivo
             move_uploaded_file($_FILES['imagem']['tmp_name'], $uploadPath);
-            // Redimensiona a imagem para 400x400 pixels
-            $image = imagecreatefromjpeg($uploadPath);
-            $resizedImage = imagescale($image, 300, 300);
-            $resizedImagePath = $uploadDir . 'resized_' . $fileName;
-            imagejpeg($resizedImage, $resizedImagePath);
-            imagedestroy($image);
-            imagedestroy($resizedImage);
             // Define o caminho relativo da imagem
             $relativePath = $fileName;
         } else {
@@ -67,15 +60,40 @@ class ProdutosController extends ApplicationController
 
     public function update($id, $data)
     {
-        $stmt = $this->pdo->prepare('UPDATE produtos SET nome_produto = :nome_produto, descricao = :descricao, valor = :valor, imagem = :imagem, categoria_id = :categoria_id WHERE id = :id');
-        $stmt->execute(array(
-            ':nome_produto' => $data['nome_produto'],
-            ':descricao' => $data['descricao'],
-            ':valor' => $data['valor'],
-            ':imagem' => $data['imagem'],
-            ':categoria_id' => $data['categoria_id'],
-            ':id' => $id
-        ));
+        if (!empty($_FILES['imagem']['name'])) {
+            // Define o diretório onde a imagem será salva
+            $uploadDir = '../../uploads/';
+            if (!file_exists($uploadDir)) {
+                mkdir($uploadDir, 0777, true); // Cria o diretório caso não exista
+            }
+            // Cria um nome único para a imagem usando o timestamp
+            $fileName = time() . $_FILES['imagem']['name'];
+            // Define o caminho completo onde a imagem será salva
+            $uploadPath = $uploadDir . $fileName;
+            // Move a imagem do diretório temporário para o diretório definitivo
+            move_uploaded_file($_FILES['imagem']['tmp_name'], $uploadPath);
+            // Define o caminho relativo da imagem
+            $relativePath = $fileName;
+            $stmt = $this->pdo->prepare('UPDATE produtos SET nome_produto = :nome_produto, descricao = :descricao, valor = :valor, imagem = :imagem, categoria_id = :categoria_id WHERE id = :id');
+            $stmt->execute(array(
+                ':nome_produto' => $data['nome_produto'],
+                ':descricao' => $data['descricao'],
+                ':valor' => $data['valor'],
+                ':imagem' => $relativePath,
+                ':categoria_id' => $data['categoria_id'],
+                ':id' => $id
+            ));
+        } else {
+            $stmt = $this->pdo->prepare('UPDATE produtos SET nome_produto = :nome_produto, descricao = :descricao, valor = :valor, categoria_id = :categoria_id WHERE id = :id');
+            $stmt->execute(array(
+                ':nome_produto' => $data['nome_produto'],
+                ':descricao' => $data['descricao'],
+                ':valor' => $data['valor'],
+                ':categoria_id' => $data['categoria_id'],
+                ':id' => $id
+            ));
+        }
+
     }
 
     public function delete($id)
