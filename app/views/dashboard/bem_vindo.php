@@ -18,12 +18,6 @@
         <button type="submit" class="btn btn-primary" style="margin-left: 20px;">Selecionar</button>
         </form>
     </div>';
-    } elseif (empty($sessoes) && isset($_SESSION['funcionario']) && $_SESSION['funcionario']["cargo"]) {
-        echo '
-    <div style="display: flex; justify-content:right">
-        <p style="color: red">Não existe uma Sessão em andamento no momento</p>
-    </div>
-    ';
     }
     ?>
     <?php
@@ -53,9 +47,11 @@
     <?php
     if (isset($_SESSION['empresa']) || $_SESSION['funcionario']['cargo'] == 'Funcionário Gerente' || $_SESSION['funcionario']['cargo'] == 'Funcionário Supervisor') {
         require_once('dados_gerais.php');
-    } elseif ($_SESSION['funcionario']['sessao_id']) {
+    } elseif (isset($_SESSION['funcionario']['sessao_id'])) {
         $sessao = $sessoesController->show($_SESSION['funcionario']['sessao_id']);
         echo '<h1>Você está atualmente na sessão ' . $sessao['nome_sessao'] . '!</h1>';
+    } elseif (empty($sessoes)) {
+        echo '<h2 style="color: red" class="text-center">Não existe uma Sessão em andamento no momento!</h2>';
     } else {
         echo '<h1>Escolha uma Sessão!</h1>';
     }

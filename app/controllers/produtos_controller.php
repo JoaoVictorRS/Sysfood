@@ -36,7 +36,7 @@ class ProdutosController extends ApplicationController
             move_uploaded_file($_FILES['imagem']['tmp_name'], $uploadPath);
             // Redimensiona a imagem para 400x400 pixels
             $image = imagecreatefromjpeg($uploadPath);
-            $resizedImage = imagescale($image, 400, 400);
+            $resizedImage = imagescale($image, 300, 300);
             $resizedImagePath = $uploadDir . 'resized_' . $fileName;
             imagejpeg($resizedImage, $resizedImagePath);
             imagedestroy($image);
