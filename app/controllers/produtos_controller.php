@@ -35,12 +35,6 @@ class ProdutosController extends ApplicationController
             // Move a imagem do diretório temporário para o diretório definitivo
             move_uploaded_file($_FILES['imagem']['tmp_name'], $uploadPath);
             // Redimensiona a imagem para 400x400 pixels
-            $image = imagecreatefromjpeg($uploadPath);
-            $resizedImage = imagescale($image, 300, 300);
-            $resizedImagePath = $uploadDir . 'resized_' . $fileName;
-            imagejpeg($resizedImage, $resizedImagePath);
-            imagedestroy($image);
-            imagedestroy($resizedImage);
             // Define o caminho relativo da imagem
             $relativePath = $fileName;
         } else {

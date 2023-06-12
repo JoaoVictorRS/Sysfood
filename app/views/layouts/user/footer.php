@@ -23,6 +23,7 @@
 <script src="../../assets/js/mascaras_dash.js"></script>
 <script src="../../assets/js/dash_left_menu.js"></script>
 <script src="../../assets/js/alertas.js"></script>
+<script src="../../assets/js/mascara_prod.js"></script>
 </body>
 
 </html>

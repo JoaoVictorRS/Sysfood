@@ -22,7 +22,7 @@
         </div>
         <div class="form-group">
             <label for="valor">Preço do Produto:</label>
-            <input type="text" name="valor" id="valor" class="form-control" value="<?= $produto['valor'] ?>" required>
+            <input type="text" name="valor" id="valor" class="form-control preco_class" value="<?= $produto['valor'] ?>" required>
         </div>
         <div class="form-group">
             <label for="imagem">Foto do produto:</label>

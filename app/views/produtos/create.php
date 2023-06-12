@@ -15,7 +15,7 @@
         <div class="row justify-content-center align-items-center">
             <div class="col-md-2 text-center">
                 <label for="valor">Preço do Produto:</label>
-                <input type="text" name="valor" id="valor" class="form-control" required>
+                <input type="text" name="valor" id="valor" class="form-control preco_class" maxlength="8" required>
             </div>
             <div class="col-md-2 text-center">
                 <?php
@@ -50,6 +50,10 @@ require_once('../../controllers/produtos_controller.php');
 $produtosController = new ProdutosController();
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    
+    $_POST["valor"] = str_replace("R$", "", $_POST["valor"]);
+    $_POST["valor"] = str_replace(",", ".", $_POST["valor"]);
+
     $produtosController->create($_POST);
     header('Location: index.php');
     exit();
