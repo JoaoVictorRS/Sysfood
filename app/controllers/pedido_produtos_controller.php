@@ -45,14 +45,24 @@ class PedidoProdutosController extends ApplicationController
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
-    public function update($id, $data)
-    {
+    public function update($id, $data, $pedido)
+    {   
+        $produtosController = new ProdutosController();
+        $pedido_dados = $produtosController->show($data['produto_id']);
+        $total = $data['quantidade'] * $pedido_dados['valor'];
         $stmt = $this->pdo->prepare('UPDATE pedido_produtos SET produto_id = :produto_id, quantidade = :quantidade, valor_total = :valor_total WHERE id = :id');
         $stmt->execute(array(
             ':produto_id' => $data['produto_id'],
             ':quantidade' => $data['quantidade'],
-            ':valor_total' => $data['valor_total'],
+            ':valor_total' => $total,
             ':id' => $id
+        ));
+        $pedidosController = new PedidosController();
+        $pedido_valor = $pedidosController->show($pedido);
+        $stmt = $this->pdo->prepare('UPDATE pedidos SET valor_total = :valor_total WHERE id = :id');
+        $stmt->execute(array(
+            ':valor_total' => $total + $pedido_valor['valor_total'],
+            ':id' => $pedido
         ));
     }
 

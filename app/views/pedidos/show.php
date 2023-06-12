@@ -21,7 +21,7 @@
             echo '<a href="../pedido_produtos/create.php?id_produto=' . $_GET['id'] . '" class="btn btn-primary">Nova
         Refeição</a>';
         } else {
-            echo '<h6 style="color: red;">Crie pelo menos um produto antes de criar um pedido!</h6>';
+            echo '<h6 style="color: red;">Crie pelo menos um produto!</h6>';
         }
         ?>
     </div>
@@ -60,14 +60,29 @@
                 <p class="card-text text-center"><?= $pedido_produto['quantidade'] ?> Refeições</p>
                 <p class="card-text text-center">Total: R$<?= $pedido_produto['valor_total'] ?></p>
             </div>
+            <div class="text-center" style="margin-bottom: 20px;">
+                <form method="POST" class="d-inline-block">
+                    <input type="hidden" name="id" value="<?= $pedido_produto['id'] ?>">
+                    <button type="submit" class="btn btn-sm btn-danger"
+                        onclick="return confirm('Tem certeza que deseja excluir o produto <?= $produto['nome_produto'] ?> do pedido?')">Excluir</button>
+                </form>
+                <a href="../pedido_produtos/edit.php?id=<?= $pedido_produto['id'] ?>&pedido_id=<?= $_GET['id'] ?>" class="btn btn-sm btn-info ml-2">Editar</a>
+            </div>
         </div>
         <?php endforeach; ?>
         <?php else : ?>
         <p>Nenhum Refeição encontrado.</p>
+        <?php
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+            $pedido_produtosController->delete($_POST['id']);
+            header("Location: show.php?id=".$_GET['id']);
+        }
+        ?>
         <?php endif; ?>
     </div>
     <div class="text-center">
-        <a class="btn btn-secondary" href="../sessoes/show.php?id=<?= $_GET['id'] ?>">Voltar</a>
+        <a class="btn btn-secondary" href="../pedidos/show.php?id=<?= $_GET['id'] ?>">Voltar</a>
     </div>
 </div>
 <?php require_once '../../views/layouts/user/footer.php'; ?>

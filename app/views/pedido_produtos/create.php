@@ -1,7 +1,7 @@
 <?php require_once '../../views/layouts/user/header.php'; ?>
 <?php require_once '../../views/layouts/user/left_menu.php'; ?>
 <div class="container mt-5">
-    <h1>Criar Pedido</h1>
+    <h1>Adicionar Refeição</h1>
     <hr>
     <form action="" method="post">
         <div class="form-group">
