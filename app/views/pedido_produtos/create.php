@@ -36,5 +36,5 @@
         $pedido_produtosController->create($_POST, $_GET['id_produto']);
         header('Location: ../pedidos/show.php?id='.$_GET['id_produto']);
     }
-    ?><div></div>
+    ?>
 <?php require_once '../../views/layouts/user/footer.php'; ?>
