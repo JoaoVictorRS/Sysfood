@@ -10,14 +10,13 @@ $pedidosController = new PedidosController();
         <div class="flex-grow-1">
             <h1>Pedidos</h1>
         </div>
-        <a href="../pedidos/create.php?id_sessao=<?= $_SESSION['funcionario']['sessao_id'] ?>"
-            class="btn btn-primary">Novo
+        <a href="../pedidos/create.php?id_sessao=<?= $_GET['id'] ?>" class="btn btn-primary">Novo
             pedido</a>
     </div>
     <?php
         require_once('../../controllers/pedidos_controller.php');
         $pedidosController = new PedidosController();
-        $pedidos = $pedidosController->show_pedidos($_SESSION['funcionario']['sessao_id']);
+        $pedidos = $pedidosController->show_pedidos($_GET['id']);
     ?>
     <div class="row">
         <?php foreach ($pedidos as $pedido) : ?>

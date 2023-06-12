@@ -39,7 +39,7 @@
                                     </form>
                                     <a href="edit.php?id=<?= $sessao['id'] ?>" class="btn btn-sm btn-info">Editar</a>
                                     <a href="show.php?id=<?= $sessao['id'] ?>"
-                                        class="btn btn-sm btn-primary">Pesquisar</a>
+                                        class="btn btn-sm btn-primary">Pedidos</a>
                                     <a href="finalizar_sessao.php?id=<?= $sessao['id']?>"
                                         class="btn btn-sm btn-warning">Finalizar
                                         Sessão</a>

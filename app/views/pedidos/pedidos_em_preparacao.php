@@ -11,9 +11,6 @@ $pedidosController = new PedidosController();
         <div class="flex-grow-1">
             <h1>Pedidos em preparação</h1>
         </div>
-        <a href="../pedidos/create.php?id_sessao=<?= $_SESSION['funcionario']['sessao_id'] ?>"
-            class="btn btn-primary">Novo
-            pedido</a>
     </div>
     <?php
         require_once('../../controllers/pedidos_controller.php');
