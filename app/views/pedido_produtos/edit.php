@@ -40,5 +40,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' ) {
     $pedidoProdutosController->update($_GET['id'], $_POST, $_GET['pedido_id']);
     header("Location: ../pedidos/show.php?id=".$_GET['pedido_id']);
 }
-?>
+?><div></div>
 <?php require_once '../../views/layouts/user/footer.php'; ?>
