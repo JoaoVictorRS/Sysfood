@@ -23,14 +23,14 @@
         <hr>
         <div class="text-center">
             <button type="submit" class="btn btn-primary">Salvar</button>
-            <a href="../sessoes/show.php?id=<?= $_GET['pedidos'] ?>" class="btn btn-secondary">Cancelar</a>
+            <a href="index.php" class="btn btn-secondary">Cancelar</a>
         </div>
     </form>
 </div>
 <?php
 if ($_SERVER['REQUEST_METHOD'] === 'POST' ) { 
     $pedidosController->update($_GET['id'], $_POST);
-    header("Location: ../sessoes/show.php?id=".$_GET['pedidos']);
+    header("Location: index.php");
 }
 require_once '../../views/layouts/user/footer.php';
 ?>
