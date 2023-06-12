@@ -37,7 +37,7 @@
                 <img src="../../uploads/<?= $produto['imagem']; ?>" alt="" class="card-img-top" style="height: 300px;">
                 <div class="card-body">
                     <h5 class="card-title text-center"><?= $produto['nome_produto']; ?></h5>
-                    <p class="card-text"><?= $produto['descricao']; ?>.</p>
+                    <p class="card-text text-center"><?= $produto['descricao']; ?>.</p>
                     <p class="card-text text-center">Valor: R$<?= $produto['valor']; ?></p>
                 </div>
                 <div class="d-flex justify-content-center text-center" style="gap: 0.5rem; margin-bottom: 20px;">
@@ -58,6 +58,12 @@
         </div>
         <?php endif; ?>
     </div>
+    <?php
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
+            $produtosController->delete($_POST['id']);
+            header("Location: index.php");
+        }
+        ?>
 </div>
 <?php require_once '../../views/layouts/user/footer.php'; ?>

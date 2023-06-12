@@ -92,12 +92,14 @@ CREATE TABLE pedidos (
   descricao VARCHAR(50),
   nome_cliente VARCHAR(50),
   hora_inicio TIME NOT NULL DEFAULT NOW(),
-  hora_fim TIME DEFAULT NOW(),
+  hora_fim TIME,
   valor_total FLOAT,
   status_pedido VARCHAR(50) NOT NULL,
   sessao_id INT NOT NULL,
+  funcionario_id INT,
   PRIMARY KEY (id),
-  FOREIGN KEY (sessao_id) REFERENCES sessoes(id)
+  FOREIGN KEY (sessao_id) REFERENCES sessoes(id),
+  FOREIGN KEY (funcionario_id) REFERENCES funcionarios(id)
 );
 
 CREATE TABLE pedido_produtos (

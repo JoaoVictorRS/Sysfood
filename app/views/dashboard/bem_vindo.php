@@ -6,7 +6,7 @@
     require_once('../../controllers/sessoes_controller.php');
     $sessoesController = new SessoesController();
     $sessoes = $sessoesController->index();
-    if (isset($_SESSION['funcionario']) && $_SESSION['funcionario']["cargo"] == "Funcionário Comum" && !empty($sessoes)) {
+    if (isset($_SESSION['funcionario']) && isset($_SESSION['funcionario']['cargo']) && ($_SESSION['funcionario']['cargo'] == "Funcionário Comum" || $_SESSION['funcionario']['cargo'] == "Funcionário Cozinha") && !empty($sessoes)) {
         echo '<div style="display: flex; justify-content: flex-end; align-items: center; margin-top: 20px;">
         <label style="margin-right: 20px">Selecione uma Sessão:</label>
             <form action="" method="post" style="display: flex;">
@@ -42,6 +42,7 @@
     }
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $_SESSION['funcionario']['sessao_id'] = $_POST['sessao'];
+        header('Location: ../pedidos/index.php');
     }
     ?>
     <?php

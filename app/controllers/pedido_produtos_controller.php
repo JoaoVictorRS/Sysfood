@@ -1,5 +1,6 @@
 <?php
 require_once('application_controller.php');
+require_once('pedidos_controller.php');
 class PedidoProdutosController extends ApplicationController
 {
 
@@ -28,7 +29,13 @@ class PedidoProdutosController extends ApplicationController
             ':valor_total' => $total,
             ':criado_em' => date('Y-m-d H:i:s')
         ));
-        return $this->pdo->lastInsertId();
+        $pedidosController = new PedidosController();
+        $pedido_valor = $pedidosController->show($pedido);
+        $stmt = $this->pdo->prepare('UPDATE pedidos SET valor_total = :valor_total WHERE id = :id');
+        $stmt->execute(array(
+            ':valor_total' => $pedido_valor['valor_total'] + $total,
+            ':id' => $pedido
+        ));
     }
 
     public function show($id)

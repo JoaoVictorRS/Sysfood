@@ -14,7 +14,7 @@
         <div class="form-group">
             <label for="nome_sessao">Nome da Sessão:</label>
             <input type="text" name="nome_sessao" id="nome_sessao" class="form-control"
-                value="<?php echo $sessao['nome_sessao'] ?>" required>
+                value="<?= $sessao['nome_sessao'] ?>" required>
         </div>
         <hr>
         <button type="submit" class="btn btn-primary">Salvar</button>

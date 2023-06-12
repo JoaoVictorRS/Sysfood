@@ -53,10 +53,33 @@ if (!$_SESSION) {
     <?php
     if (isset($_SESSION['funcionario']['sessao_id'])) {
         echo '<li class="menu-item">
-        <a href="../pedidos/index.php" class="menu-link">';
-        echo '<i class="' . 'menu-icon tf-icons bx bxs-user-account' . '"></i>';
-        echo '<div>Pedidos</div>
+        <a href="javascript:void(0);" class="menu-link menu-toggle">';
+            echo '<i class="' . 'menu-icon tf-icons bx bxs-user-account' . '"></i>';
+            echo '<div data-i18n="Layouts">Pedidos</div>
         </a>
+
+        <ul class="menu-sub">
+            <li class="menu-item">
+                <a href="../pedidos/index.php" class="menu-link">
+                    <div data-i18n="Without menu">Pedidos</div>
+                </a>
+            </li>
+            <li class="menu-item">
+                <a href="../pedidos/pedidos_na_fila.php" class="menu-link">
+                    <div data-i18n="Without menu">Pedidos na fila</div>
+                </a>
+            </li>
+            <li class="menu-item">
+                <a href="../pedidos/pedidos_em_preparacao.php" class="menu-link">
+                    <div data-i18n="Without navbar">Pedidos em andamento</div>
+                </a>
+            </li>
+            <li class="menu-item">
+                <a href="../pedidos/pedidos_finalizados.php" class="menu-link">
+                    <div data-i18n="Without navbar">Pedidos finalizados</div>
+                </a>
+            </li>
+        </ul>
     </li>';
     }
     ?>

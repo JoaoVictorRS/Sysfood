@@ -98,6 +98,8 @@ class ProdutosController extends ApplicationController
 
     public function delete($id)
     {
+        $deletar_pedidos = $this->pdo->prepare('DELETE FROM pedido_produtos WHERE produto_id = :id');
+        $deletar_pedidos->execute(array(':id' => $id));
         $stmt = $this->pdo->prepare('DELETE FROM produtos WHERE id = :id');
         $stmt->execute(array(':id' => $id));
     }

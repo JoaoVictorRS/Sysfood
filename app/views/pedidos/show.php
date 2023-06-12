@@ -25,6 +25,21 @@
         }
         ?>
     </div>
+    <hr>
+    <div>
+        <?php
+        require_once('../../controllers/pedidos_controller.php');
+        $pedidosController = new PedidosController();
+        $pedido = $pedidosController->show($_GET['id'])
+        ?>
+        <div class="d-flex justify-content-around">
+            <h5 for="">Nome do cliente: <?= $pedido['nome_cliente']?> </h5>
+            <h5 for="">Status do pedido: <?= $pedido['status_pedido']?></h5>
+            <h5 for="">Valor total: <label for="" style="color:green">R$ <?= $pedido['valor_total']?></label>
+                <h5 for="">Hora do pedido: <?= $pedido['hora_inicio']?></h5>
+            </h5>
+        </div>
+    </div>
     <?php
     require_once('../../controllers/pedido_produtos_controller.php');
     require_once('../../controllers/produtos_controller.php');
@@ -40,10 +55,10 @@
         <div class="card mb-8" style="width: 300px; margin-bottom: 20px;">
             <img src="../../uploads/<?= $produto['imagem']; ?>" alt="" class="card-img-top h-100">
             <div class="card-body">
-                <h5 class="card-title"><?= $produto['nome_produto'] ?></h5>
-                <p class="card-text"><?= $produto['descricao'] ?>.</p>
-                <p class="card-text"><?= $pedido_produto['quantidade'] ?> Refeições</p>
-                <p class="card-text">Valor total: R$<?= $pedido_produto['valor_total'] ?></p>
+                <h5 class="card-title text-center"><?= $produto['nome_produto'] ?></h5>
+                <p class="card-text text-center"><?= $produto['descricao'] ?>.</p>
+                <p class="card-text text-center"><?= $pedido_produto['quantidade'] ?> Refeições</p>
+                <p class="card-text text-center">Total: R$<?= $pedido_produto['valor_total'] ?></p>
             </div>
         </div>
         <?php endforeach; ?>
@@ -51,6 +66,8 @@
         <p>Nenhum Refeição encontrado.</p>
         <?php endif; ?>
     </div>
-    <a class="btn btn-secondary" href="../sessoes/show.php?id=<?= $_GET['id'] ?>">Voltar</a>
+    <div class="text-center">
+        <a class="btn btn-secondary" href="../sessoes/show.php?id=<?= $_GET['id'] ?>">Voltar</a>
+    </div>
 </div>
 <?php require_once '../../views/layouts/user/footer.php'; ?>

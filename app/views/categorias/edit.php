@@ -22,7 +22,6 @@
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $categoriasController->update($categoria['id'], $_POST);
     header("Location: index.php?categoria_editada");
-    exit;
 }
 ?>
 <?php require_once '../../views/layouts/user/footer.php'; ?>

@@ -9,7 +9,7 @@ $pedidosController = new PedidosController();
 <div class="container">
     <div class="d-flex justify-content-between align-items-center">
         <div class="flex-grow-1">
-            <h1>Pedidos</h1>
+            <h1>Pedidos em preparação</h1>
         </div>
         <a href="../pedidos/create.php?id_sessao=<?= $_SESSION['funcionario']['sessao_id'] ?>"
             class="btn btn-primary">Novo
@@ -18,7 +18,7 @@ $pedidosController = new PedidosController();
     <?php
         require_once('../../controllers/pedidos_controller.php');
         $pedidosController = new PedidosController();
-        $pedidos = $pedidosController->show_pedidos($_SESSION['funcionario']['sessao_id']);
+        $pedidos = $pedidosController->pedidos_em_preparacao($_SESSION['funcionario']['sessao_id'], $_SESSION['funcionario']['id']);
     ?>
     <div class="row">
         <?php foreach ($pedidos as $pedido) : ?>
@@ -54,7 +54,7 @@ $pedidosController = new PedidosController();
                         </form>
                         <a href="show.php?id=<?= $pedido['id'] ?>" class="btn btn-primary ml-2">Refeições</a>
                         <a href="edit.php?id=<?= $pedido['id'] ?>" class="btn btn-info ml-2">Editar</a>
-                        <a href="em_preparacao.php?id=<?= $sessao['id']?>" class="btn  btn-warning">Finalizar
+                        <a href="finalizar_pedido.php?id=<?= $pedido['id']?>" class="btn btn-warning">Finalizar
                             Pedido</a>
                     </div>
                 </div>
@@ -75,6 +75,6 @@ $pedidosController = new PedidosController();
             $pedidosController->delete($_POST['id']);
             header("Location: index.php");
         }
-        ?>
+    ?>
 </div>
 <?php require_once '../../views/layouts/user/footer.php'; ?>

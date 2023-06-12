@@ -11,18 +11,20 @@
     ?>
     <form action="" method="POST">
         <div class="form-group">
-            <label for="descricao">Descrição do pedido:</label>
-            <input type="text" name="descricao" id="descricao" class="form-control" value="<?= $pedido['descricao'] ?>"
-                required>
-        </div>
-        <div class="form-group">
             <label for="nome_cliente">Nome do cliente:</label>
             <input type="text" name="nome_cliente" id="nome_cliente" class="form-control"
                 value="<?= $pedido['nome_cliente'] ?>" required>
         </div>
+        <div class="form-group">
+            <label for="descricao">Descrição do pedido:</label>
+            <textarea name="descricao" id="descricao" class="form-control" cols="10"
+                rows="5"><?= $pedido['descricao'] ?></textarea>
+        </div>
         <hr>
-        <button type="submit" class="btn btn-primary">Salvar</button>
-        <a href="../sessoes/show.php?id=<?= $_GET['pedidos'] ?>" class="btn btn-secondary">Cancelar</a>
+        <div class="text-center">
+            <button type="submit" class="btn btn-primary">Salvar</button>
+            <a href="../sessoes/show.php?id=<?= $_GET['pedidos'] ?>" class="btn btn-secondary">Cancelar</a>
+        </div>
     </form>
 </div>
 <?php

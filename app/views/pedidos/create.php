@@ -24,7 +24,7 @@
     
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $pedidosController->create($_POST, $_GET['id_sessao']);
-        header('Location: ../sessoes/show.php?id='.$_GET['id_sessao']);
+        header('Location: index.php');
     exit();
     }
     ?>

@@ -10,7 +10,7 @@ class SessoesController extends ApplicationController
 
     public function index()
     {
-        $stmt = $this->pdo->query('SELECT * FROM sessoes WHERE status_sessao = "em andamento"');
+        $stmt = $this->pdo->query('SELECT * FROM sessoes WHERE status_sessao = "Em andamento"');
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
@@ -21,14 +21,14 @@ class SessoesController extends ApplicationController
 
     public function index_finalizado()
     {
-        $stmt = $this->pdo->query('SELECT * FROM sessoes WHERE status_sessao = "finalizada"');
+        $stmt = $this->pdo->query('SELECT * FROM sessoes WHERE status_sessao = "Finalizada"');
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
     public function finalizar_sessao($id){
         $stmt = $this->pdo->prepare('UPDATE sessoes SET status_sessao = :status_sessao, hora_fim = :hora_fim WHERE id = :id');
         $stmt->execute(array(
-            ':status_sessao' => 'finalizada',
+            ':status_sessao' => 'Finalizada',
             ':hora_fim' => date('H:i:s'),
             ':id' => $id
         ));
@@ -54,16 +54,11 @@ class SessoesController extends ApplicationController
 
     public function update($id, $data)
     {
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $stmt = $this->pdo->prepare('UPDATE sessoes SET nome_sessao = :nome_sessao, hora_inicio = :hora_inicio, hora_fim = :hora_fim, status_sessao = :status_sessao WHERE id = :id');
+            $stmt = $this->pdo->prepare('UPDATE sessoes SET nome_sessao = :nome_sessao WHERE id = :id');
             $stmt->execute(array(
                 ':nome_sessao' => $data['nome_sessao'],
-                ':hora_inicio' => $data['hora_inicio'],
-                ':hora_fim' => $data['hora_fim'],
-                ':status_sessao' => $data['status_sessao'],
                 ':id' => $id
             ));
-        }
     }
 
     public function delete($id)
