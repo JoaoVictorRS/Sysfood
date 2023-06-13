@@ -13,6 +13,20 @@ if (!$_SESSION) {
     </li>
 
     <li class="menu-item">
+        <a href="../empresas/index.php" class="menu-link">
+            <i class="menu-icon tf-icons bx bx-home-circle"></i>
+            <div data-i18n="Analytics">Empresas</div>
+        </a>
+    </li>
+
+    <li class="menu-item">
+        <a href="../administradores/index.php" class="menu-link">
+            <i class="menu-icon tf-icons bx bx-home-circle"></i>
+            <div data-i18n="Analytics">Administradores</div>
+        </a>
+    </li>
+
+    <li class="menu-item">
         <a href="javascript:void(0);" class="menu-link menu-toggle">
             <i class="menu-icon tf-icons bx bx-layout"></i>
             <div data-i18n="Layouts">Sessões</div>
@@ -54,8 +68,8 @@ if (!$_SESSION) {
     if (isset($_SESSION['funcionario']['sessao_id'])) {
         echo '<li class="menu-item">
         <a href="javascript:void(0);" class="menu-link menu-toggle">';
-            echo '<i class="' . 'menu-icon tf-icons bx bxs-user-account' . '"></i>';
-            echo '<div data-i18n="Layouts">Pedidos</div>
+        echo '<i class="' . 'menu-icon tf-icons bx bxs-user-account' . '"></i>';
+        echo '<div data-i18n="Layouts">Pedidos</div>
         </a>
 
         <ul class="menu-sub">

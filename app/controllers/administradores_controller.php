@@ -14,11 +14,11 @@ class AdministradoresController extends ApplicationController
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function create($data)
+    public function create($usuario)
     {
         $stmt = $this->pdo->prepare('INSERT INTO administradores (usuario_id, criado_em) VALUES (:usuario_id, :criado_em)');
         $stmt->execute(array(
-            ':usuario_id' => $data['usuario_id'],
+            ':usuario_id' => $usuario,
             ':criado_em' => date('Y-m-d H:i:s')
         ));
         return $this->pdo->lastInsertId();
@@ -41,8 +41,12 @@ class AdministradoresController extends ApplicationController
     }
 
     public function delete($id)
-    {
+    {   
+        $adiministradoresController = new AdministradoresController();
+        $administrador = $adiministradoresController->show($id);
         $stmt = $this->pdo->prepare('DELETE FROM administradores WHERE id = :id');
         $stmt->execute(array(':id' => $id));
+        $stmt = $this->pdo->prepare('DELETE FROM usuarios WHERE id = :id');
+        $stmt->execute(array(':id' => $administrador['id']));
     }
 }

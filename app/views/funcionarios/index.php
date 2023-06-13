@@ -5,64 +5,56 @@
         <div class="flex-grow-1">
             <h1>Funcionários</h1>
         </div>
-        <a href="create.php" class="btn btn-primary">Nova funcionário</a>
+        <a href="create.php" class="btn btn-primary">Novo funcionário</a>
     </div>
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Nome</th>
-                <th>CPF</th>
-                <th>Cargo</th>
-                <th>Email</th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php
-                require_once('../../controllers/funcionarios_controller.php');
-                require_once('../../controllers/usuarios_controller.php');
-                $usuariosController = new UsuariosController();
-                $funcionariosController = new FuncionariosController();
-                if (isset($_SESSION['empresa'])) {
-                    $funcionarios = $funcionariosController->index($_SESSION['empresa']['id']);
-                } else {
-                    $funcionarios = $funcionariosController->index($_SESSION['funcionario']['empresa_id']);
-                }
-            ?>
-            <?php if (!empty($funcionarios)) : ?>
-            <?php foreach ($funcionarios as $funcionario) : ?>
-            <?php $usuario = $usuariosController->show($funcionario['usuario_id']) ?>
-            <tr>
-                <td><?= $usuario['nome']; ?></td>
-                <td><?= $funcionario['cpf']; ?></td>
-                <td><?= $funcionario['cargo']; ?></td>
-                <td><?= $usuario['email']; ?></td>
-                <td>
+    <?php
+        require_once('../../controllers/funcionarios_controller.php');
+        require_once('../../controllers/usuarios_controller.php');
+        $usuariosController = new UsuariosController();
+        $funcionariosController = new FuncionariosController();
+        if (isset($_SESSION['empresa'])) {
+            $funcionarios = $funcionariosController->index($_SESSION['empresa']['id']);
+        } else {
+            $funcionarios = $funcionariosController->index($_SESSION['funcionario']['empresa_id']);
+        }
+    ?>
+    <?php if (!empty($funcionarios)) : ?>
+    <div class="row">
+        <?php foreach ($funcionarios as $funcionario) : ?>
+        <?php $usuario = $usuariosController->show($funcionario['usuario_id']) ?>
+        <div class="col-sm-6 col-md-6 col-lg-3 mb-4">
+            <div class="card">
+                <div class=" card-body text-center">
+                    <h5 class="card-title">Nome: <?= $usuario['nome'] ?></h5>
+                    <p>Email: <?= $usuario['email'] ?></p>
+                    <p>Cargo: <?= $funcionario['cargo'] ?></p>
+                    <p>CPF: <?= $funcionario['cpf'] ?></p>
                     <div>
                         <form action="" method="POST" class="d-inline">
                             <input type="hidden" name="id_funcionario" value="<?= $funcionario['id'] ?>">
                             <button type="submit" class="btn btn-sm btn-danger"
-                                onclick="return confirm('Tem certeza que deseja o funcionário <?= $usuario['nome'] ?>?')">Excluir</button>
+                                onclick="return confirm('Tem certeza que deseja excluir o funcionário <?= $usuario['nome'] ?>?')">Excluir</button>
                         </form>
                         <a href="../funcionarios/show.php?id=<?= $funcionario['id'] ?>"
                             class="btn btn-sm btn-primary">Pesquisar</a>
                         <a href="../funcionarios/edit.php?id=<?= $funcionario['id'] ?>"
                             class="btn btn-sm btn-info">Editar</a>
                     </div>
-                </td>
-            </tr>
-            <?php
-                if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-                    $funcionariosController->delete($_POST['id_funcionario']);
-                }
-            ?>
-            <?php endforeach; ?>
-            <?php else : ?>
-            <tr>
-                <td colspan="6" class="text-center">Nenhuma funcionário encontrado.</td>
-            </tr>
-            <?php endif; ?>
-        </tbody>
-    </table>
+                </div>
+            </div>
+        </div>
+        <?php
+            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                $funcionariosController->delete($_POST['id_funcionario']);
+                header("Location: index.php");
+            }
+        ?>
+        <?php endforeach; ?>
+        <?php else : ?>
+        <div>
+            <h5 colspan="6" class="text-center">Nenhum funcionário encontrado.</h5>
+        </div>
+        <?php endif; ?>
+    </div>
 </div>
 <?php require_once '../../views/layouts/user/footer.php'; ?>

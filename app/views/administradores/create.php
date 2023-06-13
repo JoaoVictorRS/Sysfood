@@ -3,33 +3,25 @@
 <div class="container">
     <h1>Cadastrar Adiministrador</h1>
     <hr>
-    <?php
-        require_once('../../controllers/usuarios_controller.php');
-        $usuariosController = new UsuariosController();
-        $usuario = $usuariosController->show($_GET['id']);
-    ?>
     <form action="" method="POST">
         <div class="row">
             <div class="col-md-6">
                 <label>Nome</label>
-                <input type="text" name="nome" value="<?= $usuario['nome']?>" class="form-control f_create_edit"
-                    required />
+                <input type="text" name="nome" class="form-control f_create_edit" required />
             </div>
             <div class="col-md-6">
                 <label>Sobrenome</label>
-                <input type="text" name="sobrenome" value="<?= $usuario['sobrenome']?>"
-                    class="form-control f_create_edit" />
+                <input type="text" name="sobrenome" class="form-control f_create_edit" />
             </div>
         </div>
         <div class="row">
             <div class="col-md-5">
                 <label>Email</label>
-                <input type="email" name="email" value="<?= $usuario['email']?>" class="form-control f_create" />
+                <input type="email" name="email" class="form-control f_create" />
             </div>
             <div class="col-md-4">
                 <label>Data de nascimento</label>
-                <input type="date" name="data_nascimento" value="<?= $usuario['data_nascimento']?>"
-                    class="form-control f_create_edit" />
+                <input type="date" name="data_nascimento" class="form-control f_create_edit" />
             </div>
         </div>
         <div style="margin-top: 20px;">
@@ -41,9 +33,12 @@
 <?php
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         require_once('../../controllers/usuarios_controller.php');
+        require_once('../../controllers/administradores_controller.php');
         
         $usuariosController = new UsuariosController();
-        $usuario = $usuariosController->update($_GET['id'], $_POST);
+        $usuario = $usuariosController->create($_POST);
+        $administradorController = new AdministradoresController();
+        $administradorController->create($usuario);
 
         header('Location: index.php?administrador_criado');
     }

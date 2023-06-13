@@ -43,9 +43,17 @@ class CategoriasController extends ApplicationController
             ':id' => $id
         ));
     }
+    
 
     public function delete($id)
     {   
+        $stmt = $this->pdo->prepare('SELECT * FROM produtos WHERE categoria_id = :id');
+        $stmt->execute(array(':id' => $id));
+        $produtos = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        foreach ($produtos as $produto) :
+            $stmt = $this->pdo->prepare('DELETE FROM pedido_produtos WHERE produto_id = :id');
+            $stmt->execute(array(':id' => $produto['id']));
+        endforeach;
         $produtos = $this->pdo->prepare('DELETE FROM produtos WHERE categoria_id = :id');
         $produtos->execute(array(':id' => $id));
         $stmt = $this->pdo->prepare('DELETE FROM categorias WHERE id = :id');

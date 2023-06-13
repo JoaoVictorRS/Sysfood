@@ -14,7 +14,7 @@
         </div>
         <hr>
         <button type="submit" class="btn btn-primary">Salvar</button>
-        <a href="../sessoes/index.php" class="btn btn-secondary">Cancelar</a>
+        <a href="index.php" class="btn btn-secondary">Cancelar</a>
     </form>
 </div>
 <?php

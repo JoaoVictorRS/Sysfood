@@ -66,7 +66,8 @@
                     <button type="submit" class="btn btn-sm btn-danger"
                         onclick="return confirm('Tem certeza que deseja excluir o produto <?= $produto['nome_produto'] ?> do pedido?')">Excluir</button>
                 </form>
-                <a href="../pedido_produtos/edit.php?id=<?= $pedido_produto['id'] ?>&pedido_id=<?= $_GET['id'] ?>" class="btn btn-sm btn-info ml-2">Editar</a>
+                <a href="../pedido_produtos/edit.php?id=<?= $pedido_produto['id'] ?>&pedido_id=<?= $_GET['id'] ?>"
+                    class="btn btn-sm btn-info ml-2">Editar</a>
             </div>
         </div>
         <?php endforeach; ?>
@@ -82,7 +83,7 @@
         <?php endif; ?>
     </div>
     <div class="text-center">
-        <a class="btn btn-secondary" href="../pedidos/show.php?id=<?= $_GET['id'] ?>">Voltar</a>
+        <a class="btn btn-secondary" href="show.php?id=<?= $_GET['id'] ?>">Voltar</a>
     </div>
 </div>
 <?php require_once '../../views/layouts/user/footer.php'; ?>

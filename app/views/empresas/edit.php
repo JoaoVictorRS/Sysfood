@@ -64,8 +64,7 @@
 
             <div class="col-md-6">
                 <label>Complemento</label>
-                <input type="text" name="complemento" class="form-control" value="<?= $endereco['complemento']?>"
-                    required />
+                <input type="text" name="complemento" class="form-control" value="<?= $endereco['complemento']?>" />
             </div>
         </div>
 
@@ -79,7 +78,7 @@
         
         $enderecosController->update($endereco['id'], $_POST);
         $empresasController->update($empresa['id'], $_POST);
-        header('Location: ../dashboard/bem_vindo.php');
+        header('Location: index.php');
     }
 ?>
 </div>
