@@ -2,7 +2,7 @@
 <?php require_once '../../views/layouts/user/left_menu.php'; ?>
 <div class="container">
     <?php
-    if (strcmp($_SESSION['funcionario']['cargo'], 'Funcionário Gerente') == 0 || strcmp($_SESSION['funcionario']['cargo'], 'Funcionário Supervisor') == 0) {
+    if (strcmp(isset($_SESSION['funcionario']['cargo']), 'Funcionário Gerente') == 0 || strcmp(isset($_SESSION['funcionario']['cargo']), 'Funcionário Supervisor') == 0) {
         echo '<div class="d-flex justify-content-between align-items-center">
             <div class="flex-grow-1">
                 <h1>Categorias</h1>

@@ -69,15 +69,15 @@ if (!$_SESSION) {
     }
     ?>
     <?php
-    if (isset($_SESSION['funcionario']) && isset($_SESSION['funcionario']['cargo']) == 'Funcionário Comum' || isset($_SESSION['funcionario']['cargo']) == 'Funcionário Cozinha') {
+    if (isset($_SESSION['funcionario']) && strcmp($_SESSION['funcionario']['cargo'], 'Funcionário Comum') == 0 || strcmp($_SESSION['funcionario']['cargo'], 'Funcionário Cozinha') == 0) {
 
-        echo '<li class="menu-item">
+        echo '<li class="menu-item" id="prod_func">
         <a href="../produtos/index.php" class="menu-link">';
         echo '<i class="' . 'menu-icon tf-icons bx bx-food-menu' . '"></i>';
         echo '<div>Produtos</div>
             </a>
         </li>';
-        echo '<li class="menu-item">
+        echo '<li class="menu-item menu-func" id="cat_func">
         <a href="../categorias/index.php" class="menu-link">';
         echo '<i class="' . 'menu-icon tf-icons bx bx-receipt' . '"></i>';
         echo '<div>Categorias</div>
