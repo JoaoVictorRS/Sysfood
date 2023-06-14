@@ -34,7 +34,7 @@
         $sessoes_quantidade = $sessoesController->index_quantidade();
         $produtos_quantidade = $produtosController->index_quantidade();
         $categorias_quantidade = $categoriasController->index_quantidade();
-    } else {
+    } elseif (isset($_SESSION['funcionario'])) {
         $funcionarios_quantidade = $funcionariosController->index_quantidade($_SESSION['funcionario']['empresa_id']);
         $sessoes_quantidade = $sessoesController->index_quantidade();
         $produtos_quantidade = $produtosController->index_quantidade();
@@ -46,13 +46,15 @@
     }
     ?>
     <?php
-    if (isset($_SESSION['empresa']) || $_SESSION['funcionario']['cargo'] == 'Funcionário Gerente' || $_SESSION['funcionario']['cargo'] == 'Funcionário Supervisor') {
+    if (isset($_SESSION['empresa']) || strcmp($_SESSION['funcionario']['cargo'], 'Funcionário Gerente') == 0 || strcmp($_SESSION['funcionario']['cargo'], 'Funcionário Supervisor') == 0) {
         require_once('dados_gerais.php');
     } elseif (isset($_SESSION['funcionario']['sessao_id'])) {
         $sessao = $sessoesController->show($_SESSION['funcionario']['sessao_id']);
         echo '<h1>Você está atualmente na sessão ' . $sessao['nome_sessao'] . '!</h1>';
     } elseif (empty($sessoes)) {
         echo '<h2 style="color: red" class="text-center">Não existe uma Sessão em andamento no momento!</h2>';
+    } elseif (isset($_SESSION['administrador'])) {
+        echo '<h1>Área administrativa!</h1>';
     } else {
         echo '<h1>Escolha uma Sessão!</h1>';
     }

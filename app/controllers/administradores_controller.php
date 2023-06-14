@@ -2,7 +2,7 @@
 require_once('application_controller.php');
 class AdministradoresController extends ApplicationController
 {
-    
+
     public function __construct()
     {
         parent::__construct();
@@ -41,12 +41,12 @@ class AdministradoresController extends ApplicationController
     }
 
     public function delete($id)
-    {   
+    {
         $adiministradoresController = new AdministradoresController();
         $administrador = $adiministradoresController->show($id);
         $stmt = $this->pdo->prepare('DELETE FROM administradores WHERE id = :id');
         $stmt->execute(array(':id' => $id));
         $stmt = $this->pdo->prepare('DELETE FROM usuarios WHERE id = :id');
-        $stmt->execute(array(':id' => $administrador['id']));
+        $stmt->execute(array(':id' => $administrador['usuario_id']));
     }
 }

@@ -31,17 +31,17 @@
     </form>
 </div>
 <?php
-    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        require_once('../../controllers/usuarios_controller.php');
-        require_once('../../controllers/administradores_controller.php');
-        
-        $usuariosController = new UsuariosController();
-        $usuario = $usuariosController->create($_POST);
-        $administradorController = new AdministradoresController();
-        $administradorController->create($usuario);
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    require_once('../../controllers/usuarios_controller.php');
+    require_once('../../controllers/administradores_controller.php');
 
-        header('Location: index.php?administrador_criado');
-    }
+    $usuariosController = new UsuariosController();
+    $usuario = $usuariosController->create_admin($_POST);
+    $administradorController = new AdministradoresController();
+    $administradorController->create($usuario);
+
+    header('Location: index.php?administrador_criado');
+}
 ?>
 </div>
 <?php require_once '../../views/layouts/user/footer.php'; ?>

@@ -28,6 +28,19 @@ class UsuariosController extends ApplicationController
         return $this->pdo->lastInsertId();
     }
 
+    public function create_admin($data)
+    {
+        $stmt = $this->pdo->prepare('INSERT INTO usuarios (nome, sobrenome, data_nascimento, email, senha) VALUES (:nome, :sobrenome, :data_nascimento, :email, :senha)');
+        $stmt->execute(array(
+            ':nome' => $data['nome'],
+            ':sobrenome' => $data['sobrenome'],
+            ':data_nascimento' => $data['data_nascimento'],
+            ':email' => $data['email'],
+            ':senha' => md5('123456')
+        ));
+        return $this->pdo->lastInsertId();
+    }
+
     public function show($id)
     {
         $stmt = $this->pdo->prepare('SELECT * FROM usuarios WHERE id = :id');
@@ -45,6 +58,29 @@ class UsuariosController extends ApplicationController
             ':email' => $data['email'],
             ':id' => $id
         ));
+    }
+
+    public function update_admin($id, $data)
+    {   if (empty($data['senha'])){
+            $stmt = $this->pdo->prepare('UPDATE usuarios SET nome = :nome, sobrenome = :sobrenome, data_nascimento = :data_nascimento, email = :email WHERE id = :id');
+            $stmt->execute(array(
+                ':nome' => $data['nome'],
+                ':sobrenome' => $data['sobrenome'],
+                ':data_nascimento' => $data['data_nascimento'],
+                ':email' => $data['email'],
+                ':id' => $id
+            ));
+        } else {
+            $stmt = $this->pdo->prepare('UPDATE usuarios SET nome = :nome, sobrenome = :sobrenome, data_nascimento = :data_nascimento, email = :email, senha = :senha WHERE id = :id');
+            $stmt->execute(array(
+                ':nome' => $data['nome'],
+                ':sobrenome' => $data['sobrenome'],
+                ':data_nascimento' => $data['data_nascimento'],
+                ':email' => $data['email'],
+                ':senha' => md5($data['senha']),
+                ':id' => $id
+            ));
+        }
     }
 
     public function delete($id)

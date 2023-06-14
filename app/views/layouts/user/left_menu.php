@@ -4,66 +4,87 @@ if (!$_SESSION) {
 }
 ?>
 <ul class="menu-inner py-1">
-
     <li class="menu-item">
         <a href="../dashboard/bem_vindo.php" class="menu-link">
             <i class="menu-icon tf-icons bx bx-home-circle"></i>
             <div data-i18n="Analytics">Dashboard</div>
         </a>
     </li>
-
-    <li class="menu-item">
-        <a href="../empresas/index.php" class="menu-link">
-            <i class="menu-icon tf-icons bx bx-home-circle"></i>
-            <div data-i18n="Analytics">Empresas</div>
-        </a>
-    </li>
-
-    <li class="menu-item">
+    <?php
+    if (isset($_SESSION['administrador'])) {
+        echo '<li class="menu-item">
         <a href="../administradores/index.php" class="menu-link">
             <i class="menu-icon tf-icons bx bx-home-circle"></i>
             <div data-i18n="Analytics">Administradores</div>
         </a>
-    </li>
-
-    <li class="menu-item">
-        <a href="javascript:void(0);" class="menu-link menu-toggle">
-            <i class="menu-icon tf-icons bx bx-layout"></i>
-            <div data-i18n="Layouts">Sessões</div>
+    </li>';
+        echo '<li class="menu-item">
+        <a href="../empresas/index.php" class="menu-link">
+            <i class="menu-icon tf-icons bx bx-home-circle"></i>
+            <div data-i18n="Analytics">Empresas</div>
         </a>
+    </li>';
+    }
+    ?>
 
-        <ul class="menu-sub">
-            <li class="menu-item">
-                <a href="../sessoes/index.php" class="menu-link">
-                    <div data-i18n="Without menu">Sessões em andamento</div>
+    <?php
+    if (isset($_SESSION['empresa']) || strcmp($_SESSION['funcionario']['cargo'], 'Funcionário Gerente') == 0 || strcmp($_SESSION['funcionario']['cargo'], 'Funcionário Supervisor') == 0) {
+        echo '<li class="menu-item">
+                <a href="javascript:void(0);" class="menu-link menu-toggle">
+                    <i class="menu-icon tf-icons bx bx-layout"></i>
+                    <div data-i18n="Layouts">Sessões</div>
                 </a>
-            </li>
-            <li class="menu-item">
-                <a href="../sessoes/index_finalizado.php" class="menu-link">
-                    <div data-i18n="Without navbar">Sessões finalizadas</div>
-                </a>
-            </li>
-        </ul>
-    </li>
 
-    <li class="menu-item">
-        <a href="../produtos/index.php" class="menu-link">
-            <i class='menu-icon tf-icons bx bx-food-menu'></i>
-            <div>Produtos</div>
-        </a>
-    </li>
-    <li class="menu-item">
-        <a href="../categorias/index.php" class="menu-link">
-            <i class='menu-icon tf-icons bx bx-receipt'></i>
-            <div>Categorias</div>
-        </a>
-    </li>
-    <li class="menu-item">
-        <a href="../funcionarios/index.php" class="menu-link">
-            <i class='menu-icon tf-icons bx bxs-user-account'></i>
-            <div>Funcionários</div>
-        </a>
-    </li>
+                    <ul class="menu-sub">
+                        <li class="menu-item">
+                            <a href="../sessoes/index.php" class="menu-link">
+                                <div data-i18n="Without menu">Sessões em andamento</div>
+                            </a>
+                        </li>
+                        <li class="menu-item">
+                            <a href="../sessoes/index_finalizado.php" class="menu-link">
+                                <div data-i18n="Without navbar">Sessões finalizadas</div>
+                            </a>
+                        </li>
+                    </ul>
+                </li>';
+        echo '<li class="menu-item">
+        <a href="../funcionarios/index.php" class="menu-link">';
+        echo '<i class="' . 'menu-icon tf-icons bx bxs-user-account' . '"></i>';
+        echo '<div>Funcionários</div>
+                </a>
+            </li>';
+        echo '<li class="menu-item">
+        <a href="../produtos/index.php" class="menu-link">';
+        echo '<i class="' . 'menu-icon tf-icons bx bx-food-menu' . '"></i>';
+        echo '<div>Produtos</div>
+            </a>
+        </li>';
+        echo '<li class="menu-item">
+        <a href="../categorias/index.php" class="menu-link">';
+        echo '<i class="' . 'menu-icon tf-icons bx bx-receipt' . '"></i>';
+        echo '<div>Categorias</div>
+            </a>
+        </li>';
+    }
+    ?>
+    <?php
+    if (isset($_SESSION['funcionario']) && isset($_SESSION['funcionario']['cargo']) == 'Funcionário Comum' || isset($_SESSION['funcionario']['cargo']) == 'Funcionário Cozinha') {
+
+        echo '<li class="menu-item">
+        <a href="../produtos/index.php" class="menu-link">';
+        echo '<i class="' . 'menu-icon tf-icons bx bx-food-menu' . '"></i>';
+        echo '<div>Produtos</div>
+            </a>
+        </li>';
+        echo '<li class="menu-item">
+        <a href="../categorias/index.php" class="menu-link">';
+        echo '<i class="' . 'menu-icon tf-icons bx bx-receipt' . '"></i>';
+        echo '<div>Categorias</div>
+            </a>
+        </li>';
+    }
+    ?>
     <?php
     if (isset($_SESSION['funcionario']['sessao_id'])) {
         echo '<li class="menu-item">
@@ -143,6 +164,7 @@ if (!$_SESSION) {
                                     </div>
                                     <div class="flex-grow-1">
                                         <?php
+                                        require_once('../../controllers/usuarios_controller.php');
                                         if (isset($_SESSION['empresa'])) {
                                             require_once('../../controllers/empresas_controller.php');
                                             $empresasController = new EmpresasController();
@@ -150,7 +172,6 @@ if (!$_SESSION) {
                                             echo '<span class="fw-semibold d-block">' . $empresa['nome_empresa'] . '</span>';
                                             echo '<small class="text-muted">Empresa - Plano Básico</small>';
                                         } elseif (isset($_SESSION['funcionario'])) {
-                                            require_once('../../controllers/usuarios_controller.php');
                                             $usuariosController = new UsuariosController();
                                             $funcionario = $usuariosController->show($_SESSION['funcionario']['usuario_id']);
                                             echo '<span class="fw-semibold d-block">
@@ -158,6 +179,14 @@ if (!$_SESSION) {
                                             </span>
                                             ';
                                             echo '<small class="text-muted">' . $_SESSION['funcionario']['cargo'] . '</small>';
+                                        } elseif (isset($_SESSION['administrador'])) {
+                                            $usuariosController = new UsuariosController();
+                                            $administrador = $usuariosController->show($_SESSION['administrador']['usuario_id']);
+                                            echo '<span class="fw-semibold d-block">
+                                            ' . $administrador['nome'] . '
+                                            </span>
+                                            ';
+                                            echo '<small class="text-muted">Administrador</small>';
                                         }
                                         ?>
                                     </div>
@@ -178,6 +207,12 @@ if (!$_SESSION) {
                             } elseif (isset($_SESSION['empresa'])) {
                                 echo '<a class="dropdown-item"
                             href="../empresas/edit.php?id=' . $_SESSION['empresa']['id'] . '">
+                            <i class="bx bx-user me-2"></i>
+                            <span class="align-middle">Meu Perfil</span>
+                            </a>';
+                            } elseif (isset($_SESSION['administrador'])) {
+                                echo '<a class="dropdown-item"
+                            href="../administradores/edit.php?id=' . $_SESSION['administrador']['usuario_id'] . '">
                             <i class="bx bx-user me-2"></i>
                             <span class="align-middle">Meu Perfil</span>
                             </a>';

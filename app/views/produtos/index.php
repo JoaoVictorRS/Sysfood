@@ -1,5 +1,6 @@
 <?php require_once '../../views/layouts/user/header.php'; ?>
 <?php require_once '../../views/layouts/user/left_menu.php'; ?>
+
 <style>
 .card-container {
     display: flex;
@@ -8,13 +9,13 @@
 }
 </style>
 <div class="container">
-    <div class="d-flex justify-content-between align-items-center">
+    <?php
+    if (strcmp($_SESSION['funcionario']['cargo'], 'Funcionário Gerente') == 0 || strcmp($_SESSION['funcionario']['cargo'], 'Funcionário Supervisor') == 0) {
+        echo '<div class="d-flex justify-content-between align-items-center">
         <div class="flex-grow-1">
             <h1>Produtos</h1>
-        </div>
-        <?php
+        </div>';
         require_once('../../controllers/categorias_controller.php');
-
         $categoriasController = new CategoriasController();
         $categorias_quantidade = $categoriasController->index_quantidade();
         if ($categorias_quantidade > 0) {
@@ -22,8 +23,13 @@
         } else {
             echo '<h6 style="color: red;">Crie pelo menos uma categoria antes de criar um produto!</h6>';
         }
-        ?>
-    </div>
+        echo '</div>';
+    } else {
+        echo '<div class="flex-grow-1">
+                <h1>Produtos</h1>
+            </div>';
+    }
+    ?>
     <?php
     require_once('../../controllers/produtos_controller.php');
     $produtosController = new ProdutosController();
@@ -59,11 +65,11 @@
         <?php endif; ?>
     </div>
     <?php
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-            $produtosController->delete($_POST['id']);
-            header("Location: index.php");
-        }
-        ?>
+        $produtosController->delete($_POST['id']);
+        header("Location: index.php");
+    }
+    ?>
 </div>
 <?php require_once '../../views/layouts/user/footer.php'; ?>
