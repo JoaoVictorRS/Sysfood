@@ -2,14 +2,16 @@
 <?php require_once '../../views/layouts/user/left_menu.php'; ?>
 <div class="container">
     <?php
-    if (strcmp(isset($_SESSION['funcionario']['cargo']), 'Funcionário Gerente') == 0 || strcmp(isset($_SESSION['funcionario']['cargo']), 'Funcionário Supervisor') == 0) {
-        echo '<div class="d-flex justify-content-between align-items-center">
-            <div class="flex-grow-1">
-                <h1>Categorias</h1>
-            </div>
-            <a href="create.php" class="btn btn-primary">Nova Categoria</a>
-            </div>';
-    } else {
+    if(isset($_SESSION['funcionario'])){
+        if (strcmp($_SESSION['funcionario']['cargo'], 'Funcionário Gerente') == 0 || strcmp($_SESSION['funcionario']['cargo'], 'Funcionário Supervisor') == 0) {
+            echo '<div class="d-flex justify-content-between align-items-center">
+                <div class="flex-grow-1">
+                    <h1>Categorias</h1>
+                </div>
+                <a href="create.php" class="btn btn-primary">Nova Categoria</a>
+                </div>';
+        }
+    }else{
         echo '<div >
         <h1>Categorias</h1>
         </div>';

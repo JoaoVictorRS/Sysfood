@@ -4,13 +4,13 @@
 const opcoes = document.querySelectorAll('.menu-item');
 
 //PAGINAS PRINCIPAIS
-if (window.location.href == "http://localhost/Sysfood/app/views/dashboard/bem_vindo.php") {
+if (window.location.href == "http://localhost/Sysfood/app/views/dashboard/bem_vindo.php" || window.location.href == "http://localhost/Sysfood/app/views/dashboard/bem_vindo.php?login_sucesso" || window.location.href == "http://localhost/Sysfood/app/views/dashboard/bem_vindo.php?registro_sucesso") {
     opcoes[0].classList.add('active')
 }else{
     opcoes[0].classList.remove('active')
 }
 
-if (window.location.href == "http://localhost/Sysfood/app/views/sessoes/index.php" || window.location.href == "http://localhost/Sysfood/app/views/sessoes/index_finalizado.php" || window.location.href == "http://localhost/Sysfood/app/views/sessoes/create.php") {
+if (window.location.href == "http://localhost/Sysfood/app/views/sessoes/index.php" || window.location.href == "http://localhost/Sysfood/app/views/sessoes/index_finalizado.php" || window.location.href == "http://localhost/Sysfood/app/views/sessoes/create.php" || window.location.href == "http://localhost/Sysfood/app/views/sessoes/index.php?nova_sessao_criada" || window.location.href == "http://localhost/Sysfood/app/views/sessoes/index.php?sessao_finalizada" || window.location.href == "http://localhost/Sysfood/app/views/sessoes/index.php?sessao_editada") {
     opcoes[2].classList.add('active')
     opcoes[1].classList.add('active')
 }else{
@@ -25,7 +25,7 @@ if (window.location.href == "http://localhost/Sysfood/app/views/sessoes/index_fi
     opcoes[3].classList.remove('active')
 }
 
-if (window.location.href == "http://localhost/Sysfood/app/views/funcionarios/index.php" || window.location.href == "http://localhost/Sysfood/app/views/funcionarios/create.php" || window.location.href == "http://localhost/Sysfood/app/views/funcionarios/edit.php?id=") {
+if (window.location.href == "http://localhost/Sysfood/app/views/funcionarios/index.php" || window.location.href == "http://localhost/Sysfood/app/views/funcionarios/create.php" || window.location.href == "http://localhost/Sysfood/app/views/funcionarios/index.php?funcionario_editado") {
     opcoes[4].classList.add('active')
 }else{
     opcoes[4].classList.remove('active')

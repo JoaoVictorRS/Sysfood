@@ -10,21 +10,23 @@
 </style>
 <div class="container">
     <?php
-    if (strcmp(isset($_SESSION['funcionario']['cargo']), 'Funcionário Gerente') == 0 || strcmp(isset($_SESSION['funcionario']['cargo']), 'Funcionário Supervisor') == 0) {
-        echo '<div class="d-flex justify-content-between align-items-center">
-        <div class="flex-grow-1">
-            <h1>Produtos</h1>
-        </div>';
-        require_once('../../controllers/categorias_controller.php');
-        $categoriasController = new CategoriasController();
-        $categorias_quantidade = $categoriasController->index_quantidade();
-        if ($categorias_quantidade > 0) {
-            echo '<a href="create.php" class="btn btn-primary">Nova Produto</a>';
-        } else {
-            echo '<h6 style="color: red;">Crie pelo menos uma categoria antes de criar um produto!</h6>';
+    if(isset($_SESSION['funcionario'])){
+        if (strcmp($_SESSION['funcionario']['cargo'], 'Funcionário Gerente') == 0 || strcmp($_SESSION['funcionario']['cargo'], 'Funcionário Supervisor') == 0) {
+            echo '<div class="d-flex justify-content-between align-items-center">
+            <div class="flex-grow-1">
+                <h1>Produtos</h1>
+            </div>';
+            require_once('../../controllers/categorias_controller.php');
+            $categoriasController = new CategoriasController();
+            $categorias_quantidade = $categoriasController->index_quantidade();
+            if ($categorias_quantidade > 0) {
+                echo '<a href="create.php" class="btn btn-primary">Nova Produto</a>';
+            } else {
+                echo '<h6 style="color: red;">Crie pelo menos uma categoria antes de criar um produto!</h6>';
+            }
+            echo '</div>';
         }
-        echo '</div>';
-    } else {
+    }else {
         echo '<div class="flex-grow-1">
                 <h1>Produtos</h1>
             </div>';
