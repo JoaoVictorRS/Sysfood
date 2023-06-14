@@ -70,7 +70,7 @@
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         $produtosController->delete($_POST['id']);
-        header("Location: index.php");
+        header("Location: index.php?produto_deletado");
     }
     ?>
 </div>

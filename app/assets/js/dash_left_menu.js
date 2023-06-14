@@ -10,7 +10,7 @@ if (window.location.href == "http://localhost/Sysfood/app/views/dashboard/bem_vi
     opcoes[0].classList.remove('active')
 }
 
-if (window.location.href == "http://localhost/Sysfood/app/views/sessoes/index.php" || window.location.href == "http://localhost/Sysfood/app/views/sessoes/index_finalizado.php" || window.location.href == "http://localhost/Sysfood/app/views/sessoes/create.php" || window.location.href == "http://localhost/Sysfood/app/views/sessoes/index.php?nova_sessao_criada" || window.location.href == "http://localhost/Sysfood/app/views/sessoes/index.php?sessao_finalizada" || window.location.href == "http://localhost/Sysfood/app/views/sessoes/index.php?sessao_editada") {
+if (window.location.href == "http://localhost/Sysfood/app/views/sessoes/index.php" || window.location.href == "http://localhost/Sysfood/app/views/sessoes/index_finalizado.php" || window.location.href == "http://localhost/Sysfood/app/views/sessoes/create.php" || window.location.href == "http://localhost/Sysfood/app/views/sessoes/index.php?nova_sessao_criada" || window.location.href == "http://localhost/Sysfood/app/views/sessoes/index.php?sessao_finalizada" || window.location.href == "http://localhost/Sysfood/app/views/sessoes/index.php?sessao_editada" || window.location.href == "http://localhost/Sysfood/app/views/sessoes/index.php?sessao_deletada") {
     opcoes[2].classList.add('active')
     opcoes[1].classList.add('active')
 }else{
@@ -25,19 +25,19 @@ if (window.location.href == "http://localhost/Sysfood/app/views/sessoes/index_fi
     opcoes[3].classList.remove('active')
 }
 
-if (window.location.href == "http://localhost/Sysfood/app/views/funcionarios/index.php" || window.location.href == "http://localhost/Sysfood/app/views/funcionarios/create.php" || window.location.href == "http://localhost/Sysfood/app/views/funcionarios/index.php?funcionario_editado") {
+if (window.location.href == "http://localhost/Sysfood/app/views/funcionarios/index.php" || window.location.href == "http://localhost/Sysfood/app/views/funcionarios/create.php" || window.location.href == "http://localhost/Sysfood/app/views/funcionarios/index.php?funcionario_editado" || window.location.href == "http://localhost/Sysfood/app/views/funcionarios/index.php?funcionario_deletado") {
     opcoes[4].classList.add('active')
 }else{
     opcoes[4].classList.remove('active')
 }
 
-if (window.location.href == "http://localhost/Sysfood/app/views/produtos/index.php" || window.location.href == "http://localhost/Sysfood/app/views/produtos/create.php") {
+if (window.location.href == "http://localhost/Sysfood/app/views/produtos/index.php" || window.location.href == "http://localhost/Sysfood/app/views/produtos/create.php" || window.location.href == "http://localhost/Sysfood/app/views/produtos/index.php?produto_deletado") {
     opcoes[5].classList.add('active')
 }else{
     opcoes[5].classList.remove('active')
 }
 
-if (window.location.href == "http://localhost/Sysfood/app/views/categorias/index.php" || window.location.href == "http://localhost/Sysfood/app/views/categorias/create.php") {
+if (window.location.href == "http://localhost/Sysfood/app/views/categorias/index.php" || window.location.href == "http://localhost/Sysfood/app/views/categorias/create.php" || window.location.href == "http://localhost/Sysfood/app/views/categorias/index.php?categoria_editada" || window.location.href == "http://localhost/Sysfood/app/views/categorias/index.php?categoria_deletada") {
     opcoes[6].classList.add('active')
 }else{
     opcoes[6].classList.remove('active')

@@ -44,7 +44,7 @@
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             $categoriasController->delete($_POST['id_categoria']);
-            header("Location: index.php");
+            header("Location: index.php?categoria_deletada");
         }
         ?>
     </div>

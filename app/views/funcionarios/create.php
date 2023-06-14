@@ -67,6 +67,9 @@
         require_once('../../controllers/enderecos_controller.php');
         require_once('../../controllers/usuarios_controller.php');
         require_once('../../controllers/funcionarios_controller.php');
+
+        $_POST["cpf"] = str_replace(".","", $_POST["cpf"]);
+        $_POST["cpf"] = str_replace("-","", $_POST["cpf"]);
         
         $enderecosController = new EnderecosController();
         $endereco = $enderecosController->create($_POST);

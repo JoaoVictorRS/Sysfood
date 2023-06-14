@@ -48,6 +48,7 @@
                                     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                         
                                         $sessoesController->delete($_POST['id_sessao']);
+                                        header("location: index.php?sessao_deletada");
                                     }
                                 ?>
                             </div>

@@ -46,7 +46,7 @@
         <?php
             if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $funcionariosController->delete($_POST['id_funcionario']);
-                header("Location: index.php");
+                header("Location: index.php?funcionario_deletado");
             }
         ?>
         <?php endforeach; ?>
