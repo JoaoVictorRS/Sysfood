@@ -28,7 +28,7 @@ if (!$_SESSION) {
     ?>
 
     <?php
-    if (isset($_SESSION['empresa']) || strcmp($_SESSION['funcionario']['cargo'], 'Funcionário Gerente') == 0 || strcmp($_SESSION['funcionario']['cargo'], 'Funcionário Supervisor') == 0) {
+    if (isset($_SESSION['empresa']) || strcmp(isset($_SESSION['funcionario']['cargo']), 'Funcionário Gerente') == 0 || strcmp(isset($_SESSION['funcionario']['cargo']), 'Funcionário Supervisor') == 0) {
         echo '<li class="menu-item">
                 <a href="javascript:void(0);" class="menu-link menu-toggle">
                     <i class="menu-icon tf-icons bx bx-layout"></i>
@@ -69,7 +69,7 @@ if (!$_SESSION) {
     }
     ?>
     <?php
-    if (isset($_SESSION['funcionario']) && strcmp($_SESSION['funcionario']['cargo'], 'Funcionário Comum') == 0 || strcmp($_SESSION['funcionario']['cargo'], 'Funcionário Cozinha') == 0) {
+    if (isset($_SESSION['funcionario']) && strcmp(isset($_SESSION['funcionario']['cargo']), 'Funcionário Comum') == 0 || strcmp(isset($_SESSION['funcionario']['cargo']), 'Funcionário Cozinha') == 0) {
 
         echo '<li class="menu-item" id="prod_func">
         <a href="../produtos/index.php" class="menu-link">';

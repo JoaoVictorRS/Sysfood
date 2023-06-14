@@ -1,5 +1,6 @@
 <?php
 require_once('application_controller.php');
+require_once('empresas_controller.php');
 class EmpresasController extends ApplicationController
 {
 
@@ -38,8 +39,7 @@ class EmpresasController extends ApplicationController
 
     public function update($id, $data)
     {
-        $stmt = $this->pdo->prepare('UPDATE empresas SET nome_empresa = :nome_empresa, cnpj = :cnpj, email = :email, senha =
-                                    :senha WHERE id = :id');
+        $stmt = $this->pdo->prepare('UPDATE empresas SET nome_empresa = :nome_empresa, cnpj = :cnpj, email = :email, senha = :senha WHERE id = :id');
         $stmt->execute(array(
             ':nome_empresa' => $data['nome_empresa'],
             ':cnpj' => $data['cnpj'],
@@ -50,7 +50,34 @@ class EmpresasController extends ApplicationController
     }
 
     public function delete($id)
-    {
+    {   
+        $stmt = $this->pdo->prepare('SELECT * FROM funcionarios WHERE empresa_id = :id');
+        $stmt->execute(array(':id' => $id));
+        $funcionarios = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $empresa = new EmpresasController();
+        $empresa = $empresa->show($id);
+        foreach ($funcionarios as $funcionario) {
+            $stmt = $this->pdo->prepare('DELETE FROM pedidos WHERE id = :id');
+            $stmt->execute(array(':id' => $funcionario['id']));
+            
+            $stmt = $this->pdo->prepare('DELETE FROM enderecos WHERE id = :id');
+            $stmt->execute(array(':id' => $funcionario['endereco_id']));
+            $stmt = $this->pdo->prepare('DELETE FROM funcionarios WHERE id = :id');
+            $stmt->execute(array(':id' => $funcionario['id']));
+            $stmt = $this->pdo->prepare('DELETE FROM usuarios WHERE id = :id');
+            $stmt->execute(array(':id' => $funcionario['usuario_id']));
+        }
+        foreach ($funcionarios as $funcionario) {
+            $stmt = $this->pdo->prepare('SELECT * FROM pedidos WHERE funcionario_id = :id');
+            $stmt->execute(array(':id' => $funcionario['id']));
+            $sessoes = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            foreach ($sessoes as $sessao) {
+                $stmt = $this->pdo->prepare('DELETE FROM sessoes WHERE id = :id');
+                $stmt->execute(array(':id' => $sessao['sessao_id']));
+            }
+        }
+        $stmt = $this->pdo->prepare('DELETE FROM enderecos WHERE id = :id');
+        $stmt->execute(array(':id' => $empresa['endereco_id']));
         $stmt = $this->pdo->prepare('DELETE FROM empresas WHERE id = :id');
         $stmt->execute(array(':id' => $id));
     }

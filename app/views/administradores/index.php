@@ -12,7 +12,8 @@
         require_once('../../controllers/administradores_controller.php');
         $usuariosController = new UsuariosController();
         $administradoresController = new AdministradoresController();
-        $administradores = $administradoresController->index();
+        
+        $administradores = $administradoresController->index(isset($_SESSION['administrador']));
     ?>
     <?php if (!empty($administradores)) : ?>
     <div class="row" style="margin-top: 20px;">
