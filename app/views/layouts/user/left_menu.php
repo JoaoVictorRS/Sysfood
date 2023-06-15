@@ -69,8 +69,8 @@ if (!$_SESSION) {
     }
     ?>
     <?php
-    if (isset($_SESSION['funcionario'])){
-        if(strcmp($_SESSION['funcionario']['cargo'], 'Funcionário Comum') == 0 || strcmp($_SESSION['funcionario']['cargo'], 'Funcionário Cozinha') == 0){
+    if (isset($_SESSION['funcionario'])) {
+        if (strcmp($_SESSION['funcionario']['cargo'], 'Funcionário Comum') == 0 || strcmp($_SESSION['funcionario']['cargo'], 'Funcionário Cozinha') == 0) {
             echo '<li class="menu-item" id="prod_func">
             <a href="../produtos/index.php" class="menu-link">';
             echo '<i class="' . 'menu-icon tf-icons bx bx-food-menu' . '"></i>';
@@ -95,11 +95,6 @@ if (!$_SESSION) {
         </a>
 
         <ul class="menu-sub">
-            <li class="menu-item">
-                <a href="../pedidos/index.php" class="menu-link">
-                    <div data-i18n="Without menu">Pedidos</div>
-                </a>
-            </li>
             <li class="menu-item">
                 <a href="../pedidos/pedidos_na_fila.php" class="menu-link">
                     <div data-i18n="Without menu">Pedidos na fila</div>

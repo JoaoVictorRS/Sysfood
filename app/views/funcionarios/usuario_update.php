@@ -12,7 +12,7 @@
         $usuariosController = new UsuariosController();
         $usuario_funcionario = $usuariosController->show($funcionario['usuario_id']);
     ?>
-    <h1>Editar meu cadastro</h1>
+    <h1>Editar meus dados</h1>
     <hr>
     <form action="" method="POST">
         <div class="row">

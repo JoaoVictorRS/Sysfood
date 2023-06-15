@@ -2,7 +2,7 @@
 <?php require_once '../../views/layouts/user/left_menu.php'; ?>
 <div class="container">
     <?php
-    if(isset($_SESSION['funcionario'])){
+    if (isset($_SESSION['funcionario'])) {
         if (strcmp($_SESSION['funcionario']['cargo'], 'Funcionário Gerente') == 0 || strcmp($_SESSION['funcionario']['cargo'], 'Funcionário Supervisor') == 0) {
             echo '<div class="d-flex justify-content-between align-items-center">
                 <div class="flex-grow-1">
@@ -10,8 +10,12 @@
                 </div>
                 <a href="create.php" class="btn btn-primary">Nova Categoria</a>
                 </div>';
+        } else {
+            echo '<div >
+            <h1>Categorias</h1>
+            </div>';
         }
-    }else{
+    } else {
         echo '<div >
         <h1>Categorias</h1>
         </div>';
@@ -28,14 +32,20 @@
             <div class="card">
                 <div class=" card-body text-center">
                     <h5 class="card-title"><?= $categoria['nome_categoria'] ?></h5>
-                    <div>
-                        <form action="" method="POST" class="d-inline">
-                            <input type="hidden" name="id_categoria" value="<?= $categoria['id'] ?>">
-                            <button type="submit" class="btn btn-sm btn-danger"
-                                onclick="return confirm('Tem certeza que deseja excluir a categoria <?= $categoria['nome_categoria'] ?>?')">Excluir</button>
-                        </form>
-                        <a href="edit.php?id=<?= $categoria['id'] ?>" class="btn btn-sm btn-info">Editar</a>
-                    </div>
+                    <?php
+                        if (isset($_SESSION['funcionario'])) {
+                            if (strcmp($_SESSION['funcionario']['cargo'], 'Funcionário Gerente') == 0 || strcmp($_SESSION['funcionario']['cargo'], 'Funcionário Supervisor') == 0) {
+                                echo '<div>
+                                <form action="" method="POST" class="d-inline">
+                                    <input type="hidden" name="id_categoria" value=' . $categoria["id"] . '>
+                            <button type="submit" class="btn btn-sm btn-danger"';
+                                echo 'onclick="return confirm(' . 'Tem certeza que deseja excluir a categoria' . $categoria["nome_categoria"] . '?)">Excluir</button>';
+                                echo '</form>
+                            <a href="edit.php?id=' . $categoria["id"] . '" class="btn btn-sm btn-info">Editar</a>
+                        </div>';
+                            }
+                        }
+                        ?>
                 </div>
             </div>
         </div>

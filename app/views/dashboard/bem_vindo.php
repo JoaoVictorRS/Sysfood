@@ -42,16 +42,16 @@
     }
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $_SESSION['funcionario']['sessao_id'] = $_POST['sessao'];
-        header('Location: ../pedidos/index.php');
+        header('Location: ../pedidos/pedidos_na_fila.php');
     }
     ?>
     <?php
-    if (isset($_SESSION['empresa']) || strcmp(isset($_SESSION['funcionario']['cargo']), 'Funcionário Gerente') == 0 || strcmp(isset($_SESSION['funcionario']['cargo']), 'Funcionário Supervisor') == 0) {
+    if (isset($_SESSION['empresa']) || strcmp($_SESSION['funcionario']['cargo'], 'Funcionário Gerente') == 0 || strcmp($_SESSION['funcionario']['cargo'], 'Funcionário Supervisor') == 0) {
         require_once('dados_gerais.php');
     } elseif (isset($_SESSION['funcionario']['sessao_id'])) {
         $sessao = $sessoesController->show($_SESSION['funcionario']['sessao_id']);
         echo '<h1>Você está atualmente na sessão ' . $sessao['nome_sessao'] . '!</h1>';
-    } elseif (empty($sessoes) && !isset($_SESSION['administrador'])) {
+    } elseif (empty($sessoes) && !isset($_SESSION['administrador']) ) {
         echo '<h2 style="color: red" class="text-center">Não existe uma Sessão em andamento no momento!</h2>';
     } elseif (isset($_SESSION['administrador'])) {
         echo '<h1>Área administrativa!</h1>';

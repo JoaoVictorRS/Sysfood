@@ -21,7 +21,7 @@
             echo '<a href="../pedido_produtos/create.php?id_produto=' . $_GET['id'] . '" class="btn btn-primary">Nova
         Refeição</a>';
         } else {
-            echo '<h6 style="color: red;">Crie pelo menos um produto!</h6>';
+            echo '<h6 style="color: red;">Não existe nenhum produto cadastrado!</h6>';
         }
         ?>
     </div>

@@ -22,13 +22,17 @@
     <div class="row">
         <?php foreach ($funcionarios as $funcionario) : ?>
         <?php $usuario = $usuariosController->show($funcionario['usuario_id']) ?>
+        <?php
+        $cpf = $funcionario['cpf'];
+        $cpf = $cpf_formatado = substr($cpf, 0, 3) . '.' . substr($cpf, 3, 3) . '.' . substr($cpf, 6, 3) . '-' . substr($cpf, 9, 2);
+        ?>
         <div class="col-sm-6 col-md-6 col-lg-3 mb-4">
             <div class="card">
                 <div class=" card-body text-center">
                     <h5 class="card-title">Nome: <?= $usuario['nome'] ?></h5>
                     <p>Email: <?= $usuario['email'] ?></p>
                     <p>Cargo: <?= $funcionario['cargo'] ?></p>
-                    <p>CPF: <?= $funcionario['cpf'] ?></p>
+                    <p>CPF: <?= $cpf ?></p>
                     <div>
                         <form action="" method="POST" class="d-inline">
                             <input type="hidden" name="id_funcionario" value="<?= $funcionario['id'] ?>">

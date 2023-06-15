@@ -11,11 +11,11 @@
             </div>
             <div class="col-md-3">
                 <label>Sobrenome</label>
-                <input type="text" name="sobrenome" class="form-control f_create_edit" />
+                <input type="text" name="sobrenome" class="form-control f_create_edit" required />
             </div>
             <div class="col-md-3">
                 <label>Data de nascimento</label>
-                <input type="date" name="data_nascimento" class="form-control f_create_edit" />
+                <input type="date" name="data_nascimento" class="form-control f_create_edit" required />
             </div>
             <div class="col-md-3">
                 <label>CPF</label>
@@ -28,21 +28,20 @@
                 <label>Cargo</label>
                 <select name="cargo" id="cargo" class="form-control" required>
                     <?php
-                    if ($_SESSION['empresa']){
+                    if ($_SESSION['empresa']) {
                         echo '
                             <option value="Funcionário Comum">Funcionário Comum</option>
                             <option value="Funcionário Cozinha">Funcionário Cozinha</option>
                             <option value="Funcionário Gerente">Funcionário Gerente</option>
                             <option value="Funcionário Supervisor">Funcionário Supervisor</option>
                              ';
-                    }
-                    elseif ($_SESSION['funcionario'] && $_SESSION['funcionario']['cargo'] == 'Funcionário Supervisor'){ 
+                    } elseif ($_SESSION['funcionario'] && $_SESSION['funcionario']['cargo'] == 'Funcionário Supervisor') {
                         echo '
                             <option value="Funcionário Comum">Funcionário Comum</option>
                             <option value="Funcionário Cozinha">Funcionário Cozinha</option>
                             <option value="Funcionário Gerente">Funcionário Gerente</option>
                             ';
-                    } elseif ($_SESSION['funcionario'] && $_SESSION['funcionario']['cargo'] == 'Funcionário Gerente'){
+                    } elseif ($_SESSION['funcionario'] && $_SESSION['funcionario']['cargo'] == 'Funcionário Gerente') {
                         echo '
                             <option value="Funcionário Comum">Funcionário Comum</option>
                             <option value="Funcionário Cozinha">Funcionário Cozinha</option>
@@ -53,7 +52,7 @@
             </div>
             <div class="col-md-6">
                 <label>Email</label>
-                <input type="email" name="email" class="form-control f_create" />
+                <input type="email" name="email" class="form-control f_create" required />
             </div>
         </div>
         <div class="card-footer">
@@ -63,25 +62,25 @@
 </div>
 </form>
 <?php
-    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        require_once('../../controllers/enderecos_controller.php');
-        require_once('../../controllers/usuarios_controller.php');
-        require_once('../../controllers/funcionarios_controller.php');
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    require_once('../../controllers/enderecos_controller.php');
+    require_once('../../controllers/usuarios_controller.php');
+    require_once('../../controllers/funcionarios_controller.php');
 
-        $_POST["cpf"] = str_replace(".","", $_POST["cpf"]);
-        $_POST["cpf"] = str_replace("-","", $_POST["cpf"]);
-        
-        $enderecosController = new EnderecosController();
-        $endereco = $enderecosController->create($_POST);
-        $usuariosController = new UsuariosController();
-        $usuario = $usuariosController->create($_POST);
-        $funcionariosController = new FuncionariosController();
-        if ($_SESSION['empresa']) {
-            $funcionariosController->create($_POST, $endereco, $usuario, $_SESSION['empresa']['id']);
-        } elseif ($_SESSION['funcionario']){
-            $funcionariosController->create($_POST, $endereco, $usuario, $_SESSION['funcionario']['empresa_id']);
-        }
-        header('Location: index.php?funcionario_criado');
+    $_POST["cpf"] = str_replace(".", "", $_POST["cpf"]);
+    $_POST["cpf"] = str_replace("-", "", $_POST["cpf"]);
+
+    $enderecosController = new EnderecosController();
+    $endereco = $enderecosController->create($_POST);
+    $usuariosController = new UsuariosController();
+    $usuario = $usuariosController->create($_POST);
+    $funcionariosController = new FuncionariosController();
+    if ($_SESSION['empresa']) {
+        $funcionariosController->create($_POST, $endereco, $usuario, $_SESSION['empresa']['id']);
+    } elseif ($_SESSION['funcionario']) {
+        $funcionariosController->create($_POST, $endereco, $usuario, $_SESSION['funcionario']['empresa_id']);
     }
+    header('Location: index.php?funcionario_criado');
+}
 ?>
 <?php require_once '../../views/layouts/user/footer.php'; ?>

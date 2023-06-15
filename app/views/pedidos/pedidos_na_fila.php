@@ -16,9 +16,9 @@ $pedidosController = new PedidosController();
             pedido</a>
     </div>
     <?php
-        require_once('../../controllers/pedidos_controller.php');
-        $pedidosController = new PedidosController();
-        $pedidos = $pedidosController->pedidos_na_fila($_SESSION['funcionario']['sessao_id']);
+    require_once('../../controllers/pedidos_controller.php');
+    $pedidosController = new PedidosController();
+    $pedidos = $pedidosController->pedidos_na_fila($_SESSION['funcionario']['sessao_id']);
     ?>
     <div class="row">
         <?php foreach ($pedidos as $pedido) : ?>
@@ -54,7 +54,15 @@ $pedidosController = new PedidosController();
                         </form>
                         <a href="show.php?id=<?= $pedido['id'] ?>" class="btn btn-primary ml-2">Refeições</a>
                         <a href="edit.php?id=<?= $pedido['id'] ?>" class="btn btn-info ml-2">Editar</a>
-                        <a href="em_preparacao.php?id=<?= $pedido['id'] ?>" class="btn btn-warning">Atender pedido</a>
+                        <?php
+                        if (isset($_SESSION['funcionario'])){ 
+                            if (strcmp($_SESSION['funcionario']['cargo'], 'Funcionário Gerente') == 0 ) {
+                                    echo '<a href="em_preparacao.php?id=' . $pedido['id'] . '" class="btn btn-warning">Atender
+                                pedido</a>';
+                            }
+                        }
+                            ?>
+
                     </div>
                 </div>
             </div>
@@ -69,11 +77,11 @@ $pedidosController = new PedidosController();
     <?php endif; ?>
 
     <?php
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-            $pedidosController->delete($_POST['id']);
-            header("Location: index.php");
-        }
+        $pedidosController->delete($_POST['id']);
+        header("Location: index.php");
+    }
     ?>
 </div>
 <?php require_once '../../views/layouts/user/footer.php'; ?>

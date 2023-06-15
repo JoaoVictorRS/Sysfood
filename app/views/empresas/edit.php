@@ -31,7 +31,7 @@
             </div>
             <div class="col-md-6">
                 <label>Senha</label>
-                <input type="password" name="senha" class="form-control" value="<?= $empresa['senha']?>" required />
+                <input type="password" name="senha" class="form-control" required />
             </div>
         </div>
         <label for="">Endereço</label>
