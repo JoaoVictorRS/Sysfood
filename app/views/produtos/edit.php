@@ -24,7 +24,7 @@
         <div class="row justify-content-center align-items-center">
             <div class="col-md-2 text-center">
                 <label for="valor">Preço do Produto:</label>
-                <input type="text" name="valor" id="valor" class="form-control preco_class" value="<?= $produto['valor'] ?>"
+                <input maxlength="8" type="text" name="valor" id="valor" class="form-control preco_class" value="<?= $produto['valor'] ?>"
                     required>
             </div>
             <div class="col-md-2 text-center">
@@ -57,6 +57,10 @@
 </div>
 <?php
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+    $_POST["valor"] = str_replace("R$", "", $_POST["valor"]);
+    $_POST["valor"] = str_replace(",", ".", $_POST["valor"]);
+    
     $produtosController->update($produto['id'], $_POST);
     header('Location: index.php');
 }

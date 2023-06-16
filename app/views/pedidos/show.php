@@ -16,7 +16,7 @@
         require_once('../../controllers/produtos_controller.php');
 
         $produtosController = new ProdutosController();
-        $produtos_quantidade = $produtosController->index_quantidade();
+        $produtos_quantidade = $produtosController->index_quantidade($_GET['id']);
         if ($produtos_quantidade > 0) {
             echo '<a href="../pedido_produtos/create.php?id_produto=' . $_GET['id'] . '" class="btn btn-primary">Nova
         Refeição</a>';

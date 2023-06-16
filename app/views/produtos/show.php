@@ -22,6 +22,6 @@
             <td><?= $produto['categoria_id'] ?></td>
         </tr>
     </table>
-    <a class="btn btn-secondary" href="../sessoes/show.php?id=<?= $pedido['sessao_id'] ?>">Voltar</a>
+    <a class="btn btn-secondary" href="../produtos/index.php">Voltar</a>
 </div>
 <?php require_once '../../views/layouts/user/footer.php'; ?>
