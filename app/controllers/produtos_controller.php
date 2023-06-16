@@ -16,7 +16,7 @@ class ProdutosController extends ApplicationController
 
     public function index_quantidade($id)
     {
-        $stmt = $this->pdo->prepare('SELECT * FROM produtos WHERE empresa_id');
+        $stmt = $this->pdo->prepare('SELECT * FROM produtos WHERE empresa_id = :id');
         $stmt->execute(array(':id' => $id));
         return $stmt->rowCount();
     }
