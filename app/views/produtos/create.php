@@ -53,10 +53,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     
     $_POST["valor"] = str_replace("R$", "", $_POST["valor"]);
     $_POST["valor"] = str_replace(",", ".", $_POST["valor"]);
-
-    $produtosController->create($_POST);
+    if (isset($_SESSION['empresa'])){
+        $produtosController->create($_POST, $_SESSION['empresa']['id']);
+    } elseif ((isset($_SESSION['funcionario']))){
+        $produtosController->create($_POST, $_SESSION['funcionario']['empresa_id']);
+    }
     header('Location: index.php');
-    exit();
 }
 ?>
 <?php require_once '../../views/layouts/user/footer.php'; ?>

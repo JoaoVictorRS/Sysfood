@@ -3,7 +3,7 @@
 <div class="container">
     <?php
     if (isset($_SESSION['funcionario'])) {
-        if (strcmp($_SESSION['funcionario']['cargo'], 'Funcionário Gerente') == 0 || strcmp($_SESSION['funcionario']['cargo'], 'Funcionário Supervisor') == 0) {
+        if (strcmp($_SESSION['funcionario']['cargo'], 'Funcionário Gerente') == 0 || strcmp($_SESSION['funcionario']['cargo'], 'Funcionário Supervisor') == 0 || isset($_SESSION['empresa'])) {
             echo '<div class="d-flex justify-content-between align-items-center">
                 <div class="flex-grow-1">
                     <h1>Categorias</h1>

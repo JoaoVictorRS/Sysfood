@@ -14,8 +14,10 @@ class SessoesController extends ApplicationController
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function index_quantidade() {
-        $stmt = $this->pdo->query('SELECT * FROM sessoes');
+    public function index_quantidade($id)
+    {
+        $stmt = $this->pdo->prepare('SELECT * FROM sessoes WHERE empresa_id = :id');
+        $stmt->execute(array(':id' => $id));
         return $stmt->rowCount();
     }
 
@@ -25,7 +27,8 @@ class SessoesController extends ApplicationController
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function finalizar_sessao($id){
+    public function finalizar_sessao($id)
+    {
         $stmt = $this->pdo->prepare('UPDATE sessoes SET status_sessao = :status_sessao, hora_fim = :hora_fim WHERE id = :id');
         $stmt->execute(array(
             ':status_sessao' => 'Finalizada',
@@ -34,12 +37,13 @@ class SessoesController extends ApplicationController
         ));
     }
 
-    public function create($data)
+    public function create($data, $empresa)
     {
-        $stmt = $this->pdo->prepare('INSERT INTO sessoes (nome_sessao, hora_inicio, status_sessao) VALUES (:nome_sessao, :hora_inicio, :status_sessao)');
+        $stmt = $this->pdo->prepare('INSERT INTO sessoes (nome_sessao, hora_inicio, empresa_id,status_sessao) VALUES (:nome_sessao, :hora_inicio, :empresa_id, :status_sessao)');
         $stmt->execute(array(
             ':nome_sessao' => $data['nome_sessao'],
             ':hora_inicio' => date('H:i:s'),
+            ':empresa_id' => $empresa,
             ':status_sessao' => 'Em andamento'
         ));
         return $this->pdo->lastInsertId();
@@ -54,19 +58,19 @@ class SessoesController extends ApplicationController
 
     public function update($id, $data)
     {
-            $stmt = $this->pdo->prepare('UPDATE sessoes SET nome_sessao = :nome_sessao WHERE id = :id');
-            $stmt->execute(array(
-                ':nome_sessao' => $data['nome_sessao'],
-                ':id' => $id
-            ));
+        $stmt = $this->pdo->prepare('UPDATE sessoes SET nome_sessao = :nome_sessao WHERE id = :id');
+        $stmt->execute(array(
+            ':nome_sessao' => $data['nome_sessao'],
+            ':id' => $id
+        ));
     }
 
     public function delete($id)
-    {   
+    {
         $pedidos = $this->pdo->prepare('SELECT id FROM pedidos WHERE sessao_id = :id');
         $pedidos->execute(array(':id' => $id));
         $pedidos_total = $pedidos->fetchAll(PDO::FETCH_ASSOC);
-        foreach($pedidos_total as $pedido_cada) :
+        foreach ($pedidos_total as $pedido_cada) :
             $deletar_pedidos = $this->pdo->prepare('DELETE FROM pedido_produtos WHERE pedido_id = :id');
             $deletar_pedidos->execute(array(':id' => $pedido_cada['id']));
         endforeach;

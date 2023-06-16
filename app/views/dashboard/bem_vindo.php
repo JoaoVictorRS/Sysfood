@@ -31,14 +31,14 @@
     $sessoes = $sessoesController->index();
     if (isset($_SESSION['empresa'])) {
         $funcionarios_quantidade = $funcionariosController->index_quantidade($_SESSION['empresa']['id']);
-        $sessoes_quantidade = $sessoesController->index_quantidade();
-        $produtos_quantidade = $produtosController->index_quantidade();
-        $categorias_quantidade = $categoriasController->index_quantidade();
+        $sessoes_quantidade = $sessoesController->index_quantidade($_SESSION['empresa']['id']);
+        $produtos_quantidade = $produtosController->index_quantidade($_SESSION['empresa']['id']);
+        $categorias_quantidade = $categoriasController->index_quantidade($_SESSION['empresa']['id']);
     } elseif (isset($_SESSION['funcionario'])) {
         $funcionarios_quantidade = $funcionariosController->index_quantidade($_SESSION['funcionario']['empresa_id']);
-        $sessoes_quantidade = $sessoesController->index_quantidade();
-        $produtos_quantidade = $produtosController->index_quantidade();
-        $categorias_quantidade = $categoriasController->index_quantidade();
+        $sessoes_quantidade = $sessoesController->index_quantidade($_SESSION['funcionario']['empresa_id']);
+        $produtos_quantidade = $produtosController->index_quantidade($_SESSION['funcionario']['empresa_id']);
+        $categorias_quantidade = $categoriasController->index_quantidade($_SESSION['funcionario']['empresa_id']);
     }
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $_SESSION['funcionario']['sessao_id'] = $_POST['sessao'];
@@ -51,7 +51,7 @@
     } elseif (isset($_SESSION['funcionario']['sessao_id'])) {
         $sessao = $sessoesController->show($_SESSION['funcionario']['sessao_id']);
         echo '<h1>Você está atualmente na sessão ' . $sessao['nome_sessao'] . '!</h1>';
-    } elseif (empty($sessoes) && !isset($_SESSION['administrador']) ) {
+    } elseif (empty($sessoes) && !isset($_SESSION['administrador'])) {
         echo '<h2 style="color: red" class="text-center">Não existe uma Sessão em andamento no momento!</h2>';
     } elseif (isset($_SESSION['administrador'])) {
         echo '<h1>Área administrativa!</h1>';

@@ -14,16 +14,19 @@ class CategoriasController extends ApplicationController
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function index_quantidade() {
-        $stmt = $this->pdo->query('SELECT * FROM categorias');
+    public function index_quantidade($id)
+    {
+        $stmt = $this->pdo->prepare('SELECT * FROM categorias WHERE empresa_id = :id');
+        $stmt->execute(array(':id' => $id));
         return $stmt->rowCount();
     }
 
-    public function create($data)
+    public function create($data, $empresa)
     {
-        $stmt = $this->pdo->prepare('INSERT INTO categorias (nome_categoria) VALUES (:nome_categoria)');
+        $stmt = $this->pdo->prepare('INSERT INTO categorias (nome_categoria, empresa_id) VALUES (:nome_categoria, :empresa_id)');
         $stmt->execute(array(
-            ':nome_categoria' => $data['nome_categoria']
+            ':nome_categoria' => $data['nome_categoria'],
+            ':empresa_id' => $empresa
         ));
         return $this->pdo->lastInsertId();
     }
@@ -43,10 +46,10 @@ class CategoriasController extends ApplicationController
             ':id' => $id
         ));
     }
-    
+
 
     public function delete($id)
-    {   
+    {
         $stmt = $this->pdo->prepare('SELECT * FROM produtos WHERE categoria_id = :id');
         $stmt->execute(array(':id' => $id));
         $produtos = $stmt->fetchAll(PDO::FETCH_ASSOC);

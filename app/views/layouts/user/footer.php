@@ -7,7 +7,7 @@
 
 <div class="layout-overlay layout-menu-toggle"></div>
 </div>
-
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="../../assets/js/jquery.js"></script>
 <script src="../../assets/js/popper.js"></script>
 <script src="../../assets/js/bootstrap.js"></script>

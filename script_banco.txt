@@ -62,8 +62,10 @@ CREATE TABLE funcionarios (
 CREATE TABLE categorias (
   id INT NOT NULL AUTO_INCREMENT,
   nome_categoria VARCHAR(50) NOT NULL,
+  empresa_id INT NOT NULL,
   criado_em DATETIME NOT NULL DEFAULT NOW(),
-  PRIMARY KEY (id)
+  PRIMARY KEY (id),
+  FOREIGN KEY (empresa_id) REFERENCES empresas(id)
 );
 
 CREATE TABLE produtos (
@@ -74,8 +76,10 @@ CREATE TABLE produtos (
   imagem VARCHAR(255) NOT NULL,
   categoria_id INT NOT NULL,
   criado_em DATETIME NOT NULL DEFAULT NOW(),
+  empresa_id INT NOT NULL,
   PRIMARY KEY (id),
-  FOREIGN KEY (categoria_id) REFERENCES categorias(id)
+  FOREIGN KEY (categoria_id) REFERENCES categorias(id),
+  FOREIGN KEY (empresa_id) REFERENCES empresas(id)
 );
 
 CREATE TABLE sessoes (
@@ -84,7 +88,9 @@ CREATE TABLE sessoes (
   hora_inicio TIME NOT NULL DEFAULT NOW(),
   hora_fim TIME DEFAULT NOW(),
   status_sessao VARCHAR(50) NOT NULL,
-  PRIMARY KEY (id)
+  empresa_id INT NOT NULL,
+  PRIMARY KEY (id),
+  FOREIGN KEY (empresa_id) REFERENCES empresas(id)
 );
 
 CREATE TABLE pedidos (

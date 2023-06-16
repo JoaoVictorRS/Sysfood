@@ -14,12 +14,15 @@
     </form>
 </div>
 <?php
-    require_once ('../../controllers/categorias_controller.php');
-    $categoriasController = new CategoriasController();
-    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        $categoriasController->create($_POST);
-        header('Location: index.php?categoria_criada');
-        exit;
+require_once('../../controllers/categorias_controller.php');
+$categoriasController = new CategoriasController();
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    if (isset($_SESSION['empresa'])) {
+        $categoriasController->create($_POST, $_SESSION['empresa']['id']);
+    } elseif (isset($_SESSION['funcionario'])) {
+        $categoriasController->create($_POST, $_SESSION['funcionario']['empresa_id']);
     }
+    header('Location: index.php?categoria_criada');
+}
 ?>
 <?php require_once '../../views/layouts/user/footer.php'; ?>

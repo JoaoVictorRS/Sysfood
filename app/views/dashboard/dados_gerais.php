@@ -1,41 +1,51 @@
 <hr>
 <div class="row">
-    <div class="col-sm-3">
+    <div class="col-sm-12">
         <div class="card">
             <div class="card-body">
-                <h5 class="card-title text-center">Total de sessões</h5>
-                <p class="card-text text-center" style="font-size: 24px;"><?= $sessoes_quantidade ?></p>
-            </div>
-        </div>
-    </div>
-    <div class="col-sm-3">
-        <div class="card">
-            <div class="card-body">
-                <h5 class="card-title text-center">Quantidade de funcionários</h5>
-                <p class="card-text text-center" style="font-size: 24px;">
-                    <?= $funcionarios_quantidade ?>
-                </p>
-            </div>
-        </div>
-    </div>
-    <div class="col-sm-3">
-        <div class="card">
-            <div class="card-body">
-                <h5 class="card-title text-center">Quantidade de produtos</h5>
-                <p class="card-text text-center" style="font-size: 24px;">
-                    <?= $produtos_quantidade ?>
-                </p>
-            </div>
-        </div>
-    </div>
-    <div class="col-sm-3">
-        <div class="card">
-            <div class="card-body">
-                <h5 class="card-title text-center">Quantidade de categorias</h5>
-                <p class="card-text text-center" style="font-size: 24px;">
-                    <?= $categorias_quantidade ?>
-                </p>
+                <h5 class="card-title text-center">Dados Gerais</h5>
+                <canvas id="dashboardChart"></canvas>
             </div>
         </div>
     </div>
 </div>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+const sessoesQuantidade = <?= $sessoes_quantidade ?>;
+const funcionariosQuantidade = <?= $funcionarios_quantidade ?>;
+const produtosQuantidade = <?= $produtos_quantidade ?>;
+const categoriasQuantidade = <?= $categorias_quantidade ?>;
+
+
+const dashboardChart = document.getElementById('dashboardChart');
+new Chart(dashboardChart, {
+    type: 'bar',
+    data: {
+        labels: ['Sessões', 'Funcionários', 'Produtos', 'Categorias'],
+        datasets: [{
+            label: 'Todos',
+            data: [sessoesQuantidade, funcionariosQuantidade, produtosQuantidade, categoriasQuantidade],
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(255, 159, 64, 0.2)',
+                'rgba(255, 205, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)'
+            ],
+            borderColor: [
+                'rgb(255, 99, 132)',
+                'rgb(255, 159, 64)',
+                'rgb(255, 205, 86)',
+                'rgb(75, 192, 192)'
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            y: {
+                beginAtZero: true
+            }
+        }
+    }
+});
+</script>

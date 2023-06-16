@@ -14,13 +14,14 @@ class ProdutosController extends ApplicationController
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function index_quantidade()
+    public function index_quantidade($id)
     {
-        $stmt = $this->pdo->query('SELECT * FROM produtos');
+        $stmt = $this->pdo->prepare('SELECT * FROM produtos WHERE empresa_id');
+        $stmt->execute(array(':id' => $id));
         return $stmt->rowCount();
     }
 
-    public function create($data)
+    public function create($data, $empresa)
     {
         if (isset($_FILES['imagem'])) {
             // Define o diretório onde a imagem será salva
@@ -39,12 +40,13 @@ class ProdutosController extends ApplicationController
         } else {
             $relativePath = '';
         }
-        $stmt = $this->pdo->prepare('INSERT INTO produtos (nome_produto, descricao, valor, imagem, categoria_id, criado_em) VALUES (:nome_produto, :descricao, :valor, :imagem, :categoria_id, :criado_em)');
+        $stmt = $this->pdo->prepare('INSERT INTO produtos (nome_produto, descricao, valor, imagem, empresa_id, categoria_id, criado_em) VALUES (:nome_produto, :descricao, :valor, :imagem, :empresa_id, :categoria_id, :criado_em)');
         $stmt->execute(array(
             ':nome_produto' => $data['nome_produto'],
             ':descricao' => $data['descricao'],
             ':valor' => $data['valor'],
             ':imagem' => $relativePath,
+            ':empresa_id' => $empresa,
             ':categoria_id' => $data['categoria_id'],
             ':criado_em' => date('Y-m-d H:i:s')
         ));

@@ -19,10 +19,12 @@ require_once('../../controllers/sessoes_controller.php');
 $sessoesController = new SessoesController();
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    
-    $sessoesController->create($_POST);
+    if (isset($_SESSION['empresa'])){
+        $sessoesController->create($_POST,$_SESSION['empresa']['id']);
+    } elseif (isset($_SESSION['funcionario'])) {
+        $sessoesController->create($_POST,$_SESSION['funcionario']['empresa_id']);
+    }
     header('Location: index.php?nova_sessao_criada');
-    exit();
 }
 ?>
 <?php require_once '../../views/layouts/user/footer.php'; ?>
