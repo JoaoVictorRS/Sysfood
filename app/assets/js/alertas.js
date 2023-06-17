@@ -64,7 +64,23 @@ if (window.location.href == "http://localhost/Sysfood/app/views/sessoes/index.ph
   })
 }
 
-//Alerta ao excluir sessão(excluir faltando fazer)
+//Alerta ao excluir sessão
+
+  async function confirmaExcluir() {
+    const result = await Swal.fire({
+        title: 'Confirmação',
+        text: 'Tem certeza de que deseja realizar esta ação?',
+        icon: 'question',
+        showCancelButton: true,
+        confirmButtonText: 'Confirmar',
+        cancelButtonText: 'Cancelar'
+    });
+
+    if (result.isConfirmed) {
+        // Enviar formulário para processar ação
+        document.getElementById('excluir_sessao').submit();
+    }
+}
 
 //Alerta ao editar sessão
 if (window.location.href == "http://localhost/Sysfood/app/views/sessoes/index.php?sessao_editada") {

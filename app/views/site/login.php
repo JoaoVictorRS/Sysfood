@@ -72,6 +72,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         }
     } else {
         session_destroy();
-        header('location: ../index.php?error=Usuário ou senha inválidos' . $row_F['id']);
+        header('location: ../index.php?login_invalido' . $row_F['id']);
     }
 }

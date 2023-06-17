@@ -159,3 +159,13 @@ function cepTamanho() {
   }else
     setSuccess(4);
 }
+
+//Erro ao logar
+
+if(window.location.href == "http://localhost/Sysfood/app/views/index.php?login_invalido"){
+  Swal.fire({
+    icon: 'error',
+    title: 'Login invalido!',
+    text: 'Email ou senha errado!',
+  })
+}
