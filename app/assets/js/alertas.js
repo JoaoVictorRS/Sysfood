@@ -40,6 +40,30 @@ if (window.location.href == "http://localhost/Sysfood/app/views/dashboard/bem_vi
   })
 }
 
+//Alerta ao editar as propias informaçoes
+
+if (window.location.href == "http://localhost/Sysfood/app/views/dashboard/bem_vindo.php?user_att") {
+  const Toast = Swal.mixin({
+    toast: true,
+    position: 'bottom-end',
+    showConfirmButton: false,
+    timer: 3000,
+    timerProgressBar: true,
+    didOpen: (toast) => {
+      toast.addEventListener('mouseenter', Swal.stopTimer)
+      toast.addEventListener('mouseleave', Swal.resumeTimer)
+    }
+  })
+  
+  Toast.fire({
+    icon: 'success',
+    title: 'Dados Atualizados!'
+  })
+}
+
+
+
+
 
 
 //Alertas em Sessao
@@ -66,21 +90,6 @@ if (window.location.href == "http://localhost/Sysfood/app/views/sessoes/index.ph
 
 //Alerta ao excluir sessão
 
-  async function confirmaExcluir() {
-    const result = await Swal.fire({
-        title: 'Confirmação',
-        text: 'Tem certeza de que deseja realizar esta ação?',
-        icon: 'question',
-        showCancelButton: true,
-        confirmButtonText: 'Confirmar',
-        cancelButtonText: 'Cancelar'
-    });
-
-    if (result.isConfirmed) {
-        // Enviar formulário para processar ação
-        document.getElementById('excluir_sessao').submit();
-    }
-}
 
 //Alerta ao editar sessão
 if (window.location.href == "http://localhost/Sysfood/app/views/sessoes/index.php?sessao_editada") {
@@ -122,11 +131,94 @@ if (window.location.href == "http://localhost/Sysfood/app/views/sessoes/index.ph
   })
 }
 
+//Alerta ao funcionario escolher a sessao que vai entrar
+if (window.location.href == "http://localhost/Sysfood/app/views/pedidos/pedidos_na_fila.php?sessao_selecionada") {
+  const Toast = Swal.mixin({
+    toast: true,
+    position: 'bottom-end',
+    showConfirmButton: false,
+    timer: 3000,
+    timerProgressBar: true,
+    didOpen: (toast) => {
+      toast.addEventListener('mouseenter', Swal.stopTimer)
+      toast.addEventListener('mouseleave', Swal.resumeTimer)
+    }
+    })
+      
+  Toast.fire({
+    icon: 'success',
+    title: 'Sessão Selecionada!'
+  })
+}
+
 //Alerta ao excluir sessão finalizada(esses excluir tao complicado)
 
 
 
-//Alertas em Produto(quando arrumar faço)
+
+
+
+//Alertas em Produto
+
+//Criar produto
+if (window.location.href == "http://localhost/Sysfood/app/views/produtos/index.php?produto_criado") {
+  const Toast = Swal.mixin({
+    toast: true,
+    position: 'bottom-end',
+    showConfirmButton: false,
+    timer: 3000,
+    timerProgressBar: true,
+    didOpen: (toast) => {
+      toast.addEventListener('mouseenter', Swal.stopTimer)
+      toast.addEventListener('mouseleave', Swal.resumeTimer)
+    }
+    })
+      
+  Toast.fire({
+    icon: 'success',
+    title: 'Produto Criado!'
+  })
+}
+
+//Editar produto
+if (window.location.href == "http://localhost/Sysfood/app/views/produtos/index.php?produto_editado") {
+  const Toast = Swal.mixin({
+    toast: true,
+    position: 'bottom-end',
+    showConfirmButton: false,
+    timer: 3000,
+    timerProgressBar: true,
+    didOpen: (toast) => {
+      toast.addEventListener('mouseenter', Swal.stopTimer)
+      toast.addEventListener('mouseleave', Swal.resumeTimer)
+    }
+    })
+      
+  Toast.fire({
+    icon: 'success',
+    title: 'Produto Editado!'
+  })
+}
+
+//Exlcuir produto
+if (window.location.href == "http://localhost/Sysfood/app/views/produtos/index.php?produto_deletado") {
+  const Toast = Swal.mixin({
+    toast: true,
+    position: 'bottom-end',
+    showConfirmButton: false,
+    timer: 3000,
+    timerProgressBar: true,
+    didOpen: (toast) => {
+      toast.addEventListener('mouseenter', Swal.stopTimer)
+      toast.addEventListener('mouseleave', Swal.resumeTimer)
+    }
+    })
+      
+  Toast.fire({
+    icon: 'success',
+    title: 'Produto Excluido!'
+  })
+}
 
 
 
@@ -152,8 +244,25 @@ if (window.location.href == "http://localhost/Sysfood/app/views/categorias/index
   })
 }
 
-//Alerta ao excluir categoria(INFERNOOOOOOOOOOOOOOOOOOOOOOOOOOOO)
-
+//Alerta ao excluir categoria
+if (window.location.href == "http://localhost/Sysfood/app/views/categorias/index.php?categoria_deletada") {
+  const Toast = Swal.mixin({
+    toast: true,
+    position: 'bottom-end',
+    showConfirmButton: false,
+    timer: 3000,
+    timerProgressBar: true,
+    didOpen: (toast) => {
+      toast.addEventListener('mouseenter', Swal.stopTimer)
+      toast.addEventListener('mouseleave', Swal.resumeTimer)
+    }
+    })
+      
+  Toast.fire({
+    icon: 'success',
+    title: 'Categoria Excluida!'
+  })
+}
 
 //Alerta ao editar categoria
 if (window.location.href == "http://localhost/Sysfood/app/views/categorias/index.php?categoria_editada") {
@@ -174,6 +283,10 @@ if (window.location.href == "http://localhost/Sysfood/app/views/categorias/index
     title: 'Categoria Editada!'
   })
 }
+
+
+
+
 
 
 
@@ -220,4 +333,116 @@ if (window.location.href == "http://localhost/Sysfood/app/views/funcionarios/ind
   })
 }
 
-//Alerta ao excluir funcionario(eeeeeeeeeeeee)
+//Alerta ao excluir funcionario
+
+if(window.location.href == "http://localhost/Sysfood/app/views/funcionarios/index.php?funcionario_deletado"){
+  const Toast = Swal.mixin({
+    toast: true,
+    position: 'bottom-end',
+    showConfirmButton: false,
+    timer: 3000,
+    timerProgressBar: true,
+    didOpen: (toast) => {
+      toast.addEventListener('mouseenter', Swal.stopTimer)
+      toast.addEventListener('mouseleave', Swal.resumeTimer)
+    }
+    })
+      
+  Toast.fire({
+    icon: 'success',
+    title: 'Funcionario Excluido!'
+  })
+}
+
+
+
+
+
+//Alertas em pedidos
+
+//Pedido Criado
+if(window.location.href == "http://localhost/Sysfood/app/views/pedidos/pedidos_na_fila.php?pedido_criado"){
+  const Toast = Swal.mixin({
+    toast: true,
+    position: 'bottom-end',
+    showConfirmButton: false,
+    timer: 3000,
+    timerProgressBar: true,
+    didOpen: (toast) => {
+      toast.addEventListener('mouseenter', Swal.stopTimer)
+      toast.addEventListener('mouseleave', Swal.resumeTimer)
+    }
+    })
+      
+  Toast.fire({
+    icon: 'success',
+    title: 'Pedido Criado!'
+  })
+}
+
+//Pedido Editado
+if(window.location.href == "http://localhost/Sysfood/app/views/pedidos/index.php?pedido_editado"){
+  const Toast = Swal.mixin({
+    toast: true,
+    position: 'bottom-end',
+    showConfirmButton: false,
+    timer: 3000,
+    timerProgressBar: true,
+    didOpen: (toast) => {
+      toast.addEventListener('mouseenter', Swal.stopTimer)
+      toast.addEventListener('mouseleave', Swal.resumeTimer)
+    }
+    })
+      
+  Toast.fire({
+    icon: 'success',
+    title: 'Pedido Editado!'
+  })
+}
+
+//Pedido Excluido
+if(window.location.href == "http://localhost/Sysfood/app/views/pedidos/index.php?pedido_excluido"){
+  const Toast = Swal.mixin({
+    toast: true,
+    position: 'bottom-end',
+    showConfirmButton: false,
+    timer: 3000,
+    timerProgressBar: true,
+    didOpen: (toast) => {
+      toast.addEventListener('mouseenter', Swal.stopTimer)
+      toast.addEventListener('mouseleave', Swal.resumeTimer)
+    }
+    })
+      
+  Toast.fire({
+    icon: 'success',
+    title: 'Pedido Excluido!'
+  })
+}
+
+
+
+
+
+//Pedidos_produtos
+
+//Pedido_na_fila excluido
+
+if(window.location.href == "http://localhost/Sysfood/app/views/pedidos/pedidos_na_fila.php?pedido_excluido"){
+  const Toast = Swal.mixin({
+    toast: true,
+    position: 'bottom-end',
+    showConfirmButton: false,
+    timer: 3000,
+    timerProgressBar: true,
+    didOpen: (toast) => {
+      toast.addEventListener('mouseenter', Swal.stopTimer)
+      toast.addEventListener('mouseleave', Swal.resumeTimer)
+    }
+    })
+      
+  Toast.fire({
+    icon: 'success',
+    title: 'Pedido Excluido!'
+  })
+}

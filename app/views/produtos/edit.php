@@ -62,7 +62,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $_POST["valor"] = str_replace(",", ".", $_POST["valor"]);
     
     $produtosController->update($produto['id'], $_POST);
-    header('Location: index.php');
+    header('Location: index.php?produto_editado');
 }
 ?>
 <?php require_once '../../views/layouts/user/footer.php'; ?>

@@ -80,7 +80,7 @@
 
         <div class="card-footer">
             <button type="submit" class="btn btn-primary">Salvar</button>
-            <a href="index.php" class="btn btn-secondary">Cancelar</a>
+            <a href="../dashboard/bem_vindo.php" class="btn btn-secondary">Cancelar</a>
         </div>
 </div>
 </form>
@@ -88,7 +88,7 @@
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         
         $test = $funcionariosController->update($_GET['id'], $_POST, $endereco_funcionario['id'], $usuario_funcionario['id']);
-        header('Location: index.php');
+        header('Location: ../dashboard/bem_vindo.php?user_att');
     }
 ?>
 <?php require_once '../../views/layouts/user/footer.php'; ?>

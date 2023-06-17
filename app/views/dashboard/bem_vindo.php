@@ -42,7 +42,7 @@
     }
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $_SESSION['funcionario']['sessao_id'] = $_POST['sessao'];
-        header('Location: ../pedidos/pedidos_na_fila.php');
+        header('Location: ../pedidos/pedidos_na_fila.php?sessao_selecionada');
     }
     ?>
     <?php

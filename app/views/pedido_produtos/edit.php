@@ -32,7 +32,7 @@
                 value="<?= $pedido_produto['quantidade'] ?>" required>
         </div>
         <button type="submit" class="btn btn-primary">Salvar</button>
-        <a href="index.php" class="btn btn-secondary">Cancelar</a>
+        <a href="../pedidos/index.php" class="btn btn-secondary">Cancelar</a>
     </form>
 </div>
 <?php

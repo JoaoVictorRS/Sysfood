@@ -109,7 +109,7 @@ $pedidosController = new PedidosController();
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         $pedidosController->delete($_POST['id']);
-        header("Location: pedidos_na_fila.php");
+        header("Location: pedidos_na_fila.php?pedido_excluido");
     }
     ?>
 </div>

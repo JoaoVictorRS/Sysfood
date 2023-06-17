@@ -56,7 +56,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     } elseif ((isset($_SESSION['funcionario']))){
         $produtosController->create($_POST, $_SESSION['funcionario']['empresa_id']);
     }
-    header('Location: index.php');
+    header('Location: index.php?produto_criado');
 }
 ?>
 <?php require_once '../../views/layouts/user/footer.php'; ?>

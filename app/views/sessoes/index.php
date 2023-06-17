@@ -33,8 +33,8 @@
                                 <div>
                                     <form action="" id="excluir_sessao" method="POST">
                                         <input type="hidden" name="id_sessao" value="<?= $sessao['id'] ?>">
-                                        <button type="button" class="btn btn-sm btn-danger"
-                                            onclick="confirmaExcluir()">Excluir</button>
+                                        <button type="submit" class="btn btn-sm btn-danger"
+                                            onclick="return confirm('Tem certeza que deseja excluir a sessão <?= $sessao['nome_sessao'] ?>?')">Excluir</button>
                                     </form>
                                     <a href="edit.php?id=<?= $sessao['id'] ?>" class="btn btn-sm btn-info">Editar</a>
                                     <a href="show.php?id=<?= $sessao['id'] ?>"
@@ -47,7 +47,7 @@
                                     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                         
                                         $sessoesController->delete($_POST['id_sessao']);
-                                        header("location: index.php?sessao_deletada");
+                                        header("Location: index.php?sessao_deletada");
                                     }
                                 ?>
                             </div>

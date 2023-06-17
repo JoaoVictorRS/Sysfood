@@ -24,7 +24,7 @@ $pedidosController = new PedidosController();
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $pedidosController->create($_POST, $_GET['id_sessao']);
-    header('Location: pedidos_na_fila.php');
+    header('Location: pedidos_na_fila.php?pedido_criado');
     exit();
 }
 ?>

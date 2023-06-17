@@ -85,7 +85,7 @@
         <?php endif; ?>
     </div>
     <div class="text-center">
-        <a class="btn btn-secondary" href="show.php?id=<?= $_GET['id'] ?>">Voltar</a>
+        <a class="btn btn-secondary" href="index.php">Voltar</a>
     </div>
 </div>
 <?php require_once '../../views/layouts/user/footer.php'; ?>

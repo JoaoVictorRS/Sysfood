@@ -82,7 +82,7 @@ $pedidosController = new PedidosController();
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         $pedidosController->delete($_POST['id']);
-        header("Location: index.php");
+        header("Location: index.php?pedido_excluido");
     }
     ?>
 </div>

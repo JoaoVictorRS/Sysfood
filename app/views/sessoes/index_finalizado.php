@@ -42,6 +42,7 @@
                                     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                         
                                         $sessoesController->delete($_POST['id_sessao']);
+                                        header("Location: index_finalizado.php?sesao_excluida");
                                     }
                                 ?>
                             </div>
