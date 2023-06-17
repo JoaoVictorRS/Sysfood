@@ -14,18 +14,18 @@
         </div>
         <hr>
         <button type="submit" class="btn btn-primary">Salvar</button>
-        <a href="index.php" class="btn btn-secondary">Cancelar</a>
+        <a href="pedidos_na_fila.php" class="btn btn-secondary">Cancelar</a>
     </form>
 </div>
 <?php
-    require_once('../../controllers/pedidos_controller.php');
-    
-    $pedidosController = new PedidosController();
-    
-    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        $pedidosController->create($_POST, $_GET['id_sessao']);
-        header('Location: index.php');
+require_once('../../controllers/pedidos_controller.php');
+
+$pedidosController = new PedidosController();
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $pedidosController->create($_POST, $_GET['id_sessao']);
+    header('Location: pedidos_na_fila.php');
     exit();
-    }
-    ?>
+}
+?>
 <?php require_once '../../views/layouts/user/footer.php'; ?>

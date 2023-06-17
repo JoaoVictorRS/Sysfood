@@ -33,8 +33,8 @@
     $pedido_produtosController = new PedidoProdutosController();
     
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        $pedido_produtosController->create($_POST, $_GET['id_produto']);
-        header('Location: ../pedidos/show.php?id='.$_GET['id_produto']);
+        $pedido_produtosController->create($_POST, $_GET['id_pedido']);
+        header('Location: ../pedidos/show.php?id='.$_GET['id_pedido']);
     }
     ?>
 <?php require_once '../../views/layouts/user/footer.php'; ?>

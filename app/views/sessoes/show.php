@@ -6,17 +6,15 @@ require_once('../../controllers/pedidos_controller.php');
 $pedidosController = new PedidosController();
 ?>
 <div class="container">
-    <div class="d-flex justify-content-between align-items-center">
+    <div class="d-flex justify-content-between align-items-center" style="margin-top: 20px;">
         <div class="flex-grow-1">
             <h1>Pedidos</h1>
         </div>
-        <a href="../pedidos/create.php?id_sessao=<?= $_GET['id'] ?>" class="btn btn-primary">Novo
-            pedido</a>
     </div>
     <?php
-        require_once('../../controllers/pedidos_controller.php');
-        $pedidosController = new PedidosController();
-        $pedidos = $pedidosController->show_pedidos($_GET['id']);
+    require_once('../../controllers/pedidos_controller.php');
+    $pedidosController = new PedidosController();
+    $pedidos = $pedidosController->show_pedidos($_GET['id']);
     ?>
     <div class="row">
         <?php foreach ($pedidos as $pedido) : ?>
@@ -65,11 +63,54 @@ $pedidosController = new PedidosController();
     <?php endif; ?>
 
     <?php
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-            $pedidosController->delete($_POST['id']);
-            header("Location: index.php");
-        }
-        ?>
+        $pedidosController->delete($_POST['id']);
+        header("Location: index.php");
+    }
+    ?>
 </div>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+const sessoesQuantidade = <?= $sessoes_quantidade ?>;
+const funcionariosQuantidade = <?= $funcionarios_quantidade ?>;
+const produtosQuantidade = <?= $produtos_quantidade ?>;
+const categoriasQuantidade = <?= $categorias_quantidade ?>;
+
+
+const dashboardChart = document.getElementById('dashboardChart');
+new Chart(dashboardChart, {
+    type: 'bar',
+    data: {
+        labels: ['Sessões', 'Funcionários', 'Produtos', 'Categorias'],
+        datasets: [{
+            label: 'Quantidade',
+            data: [sessoesQuantidade, funcionariosQuantidade, produtosQuantidade, categoriasQuantidade],
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(255, 159, 64, 0.2)',
+                'rgba(255, 205, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)'
+            ],
+            borderColor: [
+                'rgb(255, 99, 132)',
+                'rgb(255, 159, 64)',
+                'rgb(255, 205, 86)',
+                'rgb(75, 192, 192)'
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            y: {
+                beginAtZero: true,
+                ticks: {
+                    stepSize: 1
+                }
+            }
+        }
+    }
+});
+</script>
 <?php require_once '../../views/layouts/user/footer.php'; ?>

@@ -4,21 +4,24 @@
     <?php
     if (isset($_SESSION['funcionario'])) {
         if (strcmp($_SESSION['funcionario']['cargo'], 'Funcionário Gerente') == 0 || strcmp($_SESSION['funcionario']['cargo'], 'Funcionário Supervisor') == 0 || isset($_SESSION['empresa'])) {
-            echo '<div class="d-flex justify-content-between align-items-center">
+            echo '<div class="d-flex justify-content-between align-items-center" style="margin-top: 20px;">
                 <div class="flex-grow-1">
                     <h1>Categorias</h1>
                 </div>
                 <a href="create.php" class="btn btn-primary">Nova Categoria</a>
                 </div>';
         } else {
-            echo '<div >
+            echo '<div style="margin-top: 20px;">
             <h1>Categorias</h1>
             </div>';
         }
-    } else {
-        echo '<div >
-        <h1>Categorias</h1>
-        </div>';
+    } elseif (isset($_SESSION['empresa'])) {
+        echo '<div class="d-flex justify-content-between align-items-center" style="margin-top: 20px;">
+                <div class="flex-grow-1">
+                    <h1>Categorias</h1>
+                </div>
+                <a href="create.php" class="btn btn-primary">Nova Categoria</a>
+                </div>';
     }
 
     require_once('../../controllers/categorias_controller.php');
@@ -44,6 +47,15 @@
                             <a href="edit.php?id=' . $categoria["id"] . '" class="btn btn-sm btn-info">Editar</a>
                         </div>';
                             }
+                        } elseif (isset($_SESSION['empresa'])) {
+                            echo '<div>
+                                <form action="" method="POST" class="d-inline">
+                                    <input type="hidden" name="id_categoria" value=' . $categoria["id"] . '>
+                            <button type="submit" class="btn btn-sm btn-danger"';
+                            echo "<button onclick='return confirm(\"Tem certeza que deseja excluir a categoria " . $categoria["nome_categoria"] . "?\")'>Excluir</button>";
+                            echo '</form>
+                            <a href="edit.php?id=' . $categoria["id"] . '" class="btn btn-sm btn-info">Editar</a>
+                        </div>';
                         }
                         ?>
                 </div>

@@ -1,7 +1,7 @@
 <?php require_once '../../views/layouts/user/header.php'; ?>
 <?php require_once '../../views/layouts/user/left_menu.php'; ?>
 <div class="container">
-    <h1>Cadastrar Funcionário</h1>
+    <h1 style="margin-top: 20px">Cadastrar Funcionário</h1>
     <hr>
     <form action="" method="POST">
         <div class="row">

@@ -7,7 +7,7 @@ require_once('../../controllers/pedidos_controller.php');
 $pedidosController = new PedidosController();
 ?>
 <div class="container">
-    <div class="d-flex justify-content-between align-items-center">
+    <div class="d-flex justify-content-between align-items-center" style="margin-top: 20px;">
         <div class="flex-grow-1">
             <h1>Pedidos na fila</h1>
         </div>
@@ -46,24 +46,53 @@ $pedidosController = new PedidosController();
                                     <?= $pedido['valor_total'] ?></label></p>
                         </div>
                     </div>
-                    <div class="text-center mt-3">
-                        <form method="POST" class="d-inline-block">
-                            <input type="hidden" name="id" value="<?= $pedido['id'] ?>">
-                            <button type="submit" class="btn btn-danger"
-                                onclick="return confirm('Tem certeza que deseja excluir o pedido do cliente <?= $pedido['nome_cliente'] ?> ?')">Excluir</button>
-                        </form>
-                        <a href="show.php?id=<?= $pedido['id'] ?>" class="btn btn-primary ml-2">Refeições</a>
-                        <a href="edit.php?id=<?= $pedido['id'] ?>" class="btn btn-info ml-2">Editar</a>
-                        <?php
-                        if (isset($_SESSION['funcionario'])){ 
-                            if (strcmp($_SESSION['funcionario']['cargo'], 'Funcionário Gerente') == 0 ) {
-                                    echo '<a href="em_preparacao.php?id=' . $pedido['id'] . '" class="btn btn-warning">Atender
-                                pedido</a>';
+                    <?php
+                        if (isset($_SESSION['funcionario'])) {
+                            if (strcmp($_SESSION['funcionario']['cargo'], 'Funcionário Gerente') == 0 || strcmp($_SESSION['funcionario']['cargo'], 'Funcionário Supervisor') == 0) {
+                                echo '<div class="text-center mt-3">
+                                    <form method="POST" class="d-inline-block">
+                                        <input type="hidden" name="id" value="' . $pedido['id'] . '">
+                                    <button type="submit" class="btn btn-danger"';
+                                echo 'onclick="return confirm("' . 'Tem certeza que deseja excluir o pedido do cliente' . $pedido['nome_cliente'] . '
+                                    ?)">Excluir</button>';
+                                echo '</form>
+                                    <a href="show.php?id=' . $pedido['id'] . '" class="btn btn-primary ml-2">Refeições</a>
+                                    <a href="edit.php?id=' . $pedido['id'] . '" class="btn btn-info ml-2">Editar</a>
+                                </div>';
                             }
+                            if (strcmp($_SESSION['funcionario']['cargo'], 'Funcionário Cozinha') == 0) {
+                                echo '<div class="text-center mt-3">
+                                    <a href="show.php?id=' . $pedido['id'] . '" class="btn btn-primary ml-2">Refeições</a>
+                                    <a href="em_preparacao.php?id=' . $pedido['id'] . '" class="btn btn-warning">Atender
+                                pedido</a>
+                                </div>';
+                            }
+                            if (strcmp($_SESSION['funcionario']['cargo'], 'Funcionário Comum') == 0) {
+                                echo '<div class="text-center mt-3">
+                                    <form method="POST" class="d-inline-block">
+                                        <input type="hidden" name="id" value="' . $pedido['id'] . '">
+                                    <button type="submit" class="btn btn-danger"';
+                                echo 'onclick="return confirm("' . 'Tem certeza que deseja excluir o pedido do cliente' . $pedido['nome_cliente'] . '
+                                    ?)">Excluir</button>';
+                                echo '</form>
+                                    <a href="show.php?id=' . $pedido['id'] . '" class="btn btn-primary ml-2">Refeições</a>
+                                    <a href="edit.php?id=' . $pedido['id'] . '" class="btn btn-info ml-2">Editar</a>
+                                </div>';
+                            }
+                        } elseif (isset($_SESSION['empresa'])) {
+                            echo '<div class="text-center mt-3">
+                                <form method="POST" class="d-inline-block">
+                                    <input type="hidden" name="id" value="' . $pedido['id'] . '">
+                                <button type="submit" class="btn btn-danger"';
+                            echo 'onclick="return confirm("' . 'Tem certeza que deseja excluir o pedido do cliente' . $pedido['nome_cliente'] . '
+                                ?)">Excluir</button>';
+                            echo '</form>
+                                <a href="show.php?id=' . $pedido['id'] . '" class="btn btn-primary ml-2">Refeições</a>
+                                <a href="edit.php?id=' . $pedido['id'] . '" class="btn btn-info ml-2">Editar</a>
+                            </div>';
                         }
-                            ?>
+                        ?>
 
-                    </div>
                 </div>
             </div>
         </div>
@@ -80,7 +109,7 @@ $pedidosController = new PedidosController();
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         $pedidosController->delete($_POST['id']);
-        header("Location: index.php");
+        header("Location: pedidos_na_fila.php");
     }
     ?>
 </div>

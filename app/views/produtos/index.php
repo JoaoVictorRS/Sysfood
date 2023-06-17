@@ -14,11 +14,11 @@
     $categoriasController = new CategoriasController();
     if (isset($_SESSION['funcionario'])) {
         if (strcmp($_SESSION['funcionario']['cargo'], 'Funcionário Gerente') == 0 || strcmp($_SESSION['funcionario']['cargo'], 'Funcionário Supervisor') == 0) {
-            echo '<div class="d-flex justify-content-between align-items-center">
+            echo '<div class="d-flex justify-content-between align-items-center" style="margin-top: 20px;">
             <div class="flex-grow-1">
                 <h1>Produtos</h1>
             </div>';
-        
+
             $categorias_quantidade = $categoriasController->index_quantidade($_SESSION['funcionario']['empresa_id']);
             if ($categorias_quantidade > 0) {
                 echo '<a href="create.php" class="btn btn-primary">Nova Produto</a>';
@@ -27,21 +27,21 @@
             }
             echo '</div>';
         } else {
-            echo '<div class="flex-grow-1">
+            echo '<div class="flex-grow-1" style="margin-top: 20px;">
                 <h1>Produtos</h1>
             </div>';
         }
     } elseif (isset($_SESSION['empresa'])) {
-        echo '<div class="d-flex justify-content-between align-items-center">';
-           echo ' <div class="flex-grow-1">
+        echo '<div class="d-flex justify-content-between align-items-center" style="margin-top: 20px;">';
+        echo ' <div class="flex-grow-1">
                 <h1>Produtos</h1>
             </div>';
-            $categorias_quantidade = $categoriasController->index_quantidade($_SESSION['empresa']['id']);
-            if ($categorias_quantidade > 0) {
-                echo '<a href="create.php" class="btn btn-primary">Nova Produto</a>';
-            } else {
-                echo '<h6 style="color: red;">Crie pelo menos uma categoria antes de criar um produto!</h6>';
-            }
+        $categorias_quantidade = $categoriasController->index_quantidade($_SESSION['empresa']['id']);
+        if ($categorias_quantidade > 0) {
+            echo '<a href="create.php" class="btn btn-primary">Nova Produto</a>';
+        } else {
+            echo '<h6 style="color: red;">Crie pelo menos uma categoria antes de criar um produto!</h6>';
+        }
         echo '</div>';
     }
     ?>
@@ -62,13 +62,26 @@
                     <p class="card-text text-center">Valor: R$<?= $produto['valor']; ?></p>
                 </div>
                 <div class="d-flex justify-content-center text-center" style="gap: 0.5rem; margin-bottom: 20px;">
-                    <form action="" method="POST" class="mr-2">
-                        <input type="hidden" name="id" value="<?= $produto['id'] ?>">
-                        <button type="submit" class="btn btn-sm btn-danger"
-                            onclick="return confirm('Tem certeza que deseja excluir o produto <?= $produto['nome_produto'] ?>?')">Excluir</button>
-                    </form>
-                    <a href="show.php?id=<?= $produto['id'] ?>" class="btn btn-sm btn-primary">Pesquisar</a>
-                    <a href="edit.php?id=<?= $produto['id'] ?>" class="btn btn-sm btn-info">Editar</a>
+                    <?php
+                            if (isset($_SESSION['funcionario'])) {
+                                if (strcmp($_SESSION['funcionario']['cargo'], 'Funcionário Gerente') == 0 || strcmp($_SESSION['funcionario']['cargo'], 'Funcionário Supervisor') == 0) {
+                                    echo '<form action="" method="POST" class="mr-2">';
+                                    echo '<input type="hidden" name="id" value="' . $produto['id'] . '">';
+                                    echo '<button type="submit" class="btn btn-sm btn-danger"
+                        onclick="return confirm(\'Tem certeza que deseja excluir o produto' . $produto['nome_produto'] . '?\')">Excluir</button>
+                    </form>';
+                                    echo '<a href="edit.php?id=' . $produto['id'] . '" class="btn btn-sm btn-info">Editar</a>';
+                                }
+                            } elseif (isset($_SESSION['empresa'])) {
+                                echo '<form action="" method="POST" class="mr-2">';
+                                echo '<input type="hidden" name="id" value="' . $produto['id'] . '">';
+                                echo '<button type="submit" class="btn btn-sm btn-danger"
+                        onclick="return confirm(\'Tem certeza que deseja excluir o produto' . $produto['nome_produto'] . '?\')">Excluir</button>
+                    </form>';
+                                echo '<a href="edit.php?id=' . $produto['id'] . '" class="btn btn-sm btn-info">Editar</a>';
+                            }
+                            ?>
+
                 </div>
             </div>
         </div>

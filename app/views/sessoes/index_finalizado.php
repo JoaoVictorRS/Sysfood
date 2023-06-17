@@ -1,13 +1,12 @@
 <?php require_once '../../views/layouts/user/header.php'; ?>
 <?php require_once '../../views/layouts/user/left_menu.php'; ?>
 <div class="container">
-    <div class="d-flex justify-content-between align-items-center">
+    <div class="d-flex justify-content-between align-items-center" style="margin-top: 20px">
         <div class="flex-grow-1">
             <h1>Sessões finalizadas</h1>
         </div>
     </div>
     <table class="table">
-        <hr>
         <tbody>
             <?php
         require_once('../../controllers/sessoes_controller.php');

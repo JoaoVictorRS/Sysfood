@@ -56,7 +56,9 @@
     } elseif (isset($_SESSION['administrador'])) {
         echo '<h1>Área administrativa!</h1>';
     } else {
-        echo '<h1>Escolha uma Sessão!</h1>';
+        echo '<div>
+        <h1 style="margin-top: -10px;">Escolha uma Sessão!</h1>
+        </div>';
     }
     ?>
 </div>

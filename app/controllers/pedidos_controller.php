@@ -34,11 +34,10 @@ class PedidosController extends ApplicationController
     }
 
 
-    public function pedidos_finalizado($id_sessao, $id)
+    public function pedidos_finalizado($id_sessao)
     {
-        $stmt = $this->pdo->prepare('SELECT * FROM pedidos WHERE status_pedido = "Finalizado" AND funcionario_id = :id AND sessao_id = :sessao');
+        $stmt = $this->pdo->prepare('SELECT * FROM pedidos WHERE status_pedido = "Finalizado" AND sessao_id = :sessao');
         $stmt->execute(array(
-            ':id' => $id,
             ':sessao' => $id_sessao
         ));
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -71,7 +70,8 @@ class PedidosController extends ApplicationController
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function status_em_preparacao($id, $funcionario){
+    public function status_em_preparacao($id, $funcionario)
+    {
         $stmt = $this->pdo->prepare('UPDATE pedidos SET status_pedido = :status_pedido, funcionario_id = :funcionario_id WHERE id = :id');
         $stmt->execute(array(
             ':status_pedido' => 'Em preparação',
@@ -79,8 +79,9 @@ class PedidosController extends ApplicationController
             ':id' => $id
         ));
     }
-    
-    public function status_finalizado($id){
+
+    public function status_finalizado($id)
+    {
         $stmt = $this->pdo->prepare('UPDATE pedidos SET status_pedido = :status_pedido, hora_fim = :hora_fim WHERE id = :id');
         $stmt->execute(array(
             ':status_pedido' => 'Finalizado',
@@ -90,7 +91,7 @@ class PedidosController extends ApplicationController
     }
 
     public function update($id, $data)
-    {   
+    {
         $stmt = $this->pdo->prepare('UPDATE pedidos SET descricao = :descricao, nome_cliente = :nome_cliente WHERE id = :id');
         $stmt->execute(array(
             ':descricao' => $data['descricao'],
@@ -100,10 +101,10 @@ class PedidosController extends ApplicationController
     }
 
     public function delete($id)
-    {       
-            $deletar_pedidos = $this->pdo->prepare('DELETE FROM pedido_produtos WHERE pedido_id = :id');
-            $deletar_pedidos->execute(array(':id' => $id));
-            $stmt = $this->pdo->prepare('DELETE FROM pedidos WHERE id = :id');
-            $stmt->execute(array(':id' => $id));
-    }   
+    {
+        $deletar_pedidos = $this->pdo->prepare('DELETE FROM pedido_produtos WHERE pedido_id = :id');
+        $deletar_pedidos->execute(array(':id' => $id));
+        $stmt = $this->pdo->prepare('DELETE FROM pedidos WHERE id = :id');
+        $stmt->execute(array(':id' => $id));
+    }
 }

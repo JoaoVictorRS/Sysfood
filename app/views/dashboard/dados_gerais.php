@@ -3,7 +3,7 @@
     <div class="col-sm-12">
         <div class="card">
             <div class="card-body">
-                <h5 class="card-title text-center">Dados Gerais</h5>
+                <h5 class="card-title text-center">Informações gerais</h5>
                 <canvas id="dashboardChart"></canvas>
             </div>
         </div>
@@ -23,7 +23,7 @@ new Chart(dashboardChart, {
     data: {
         labels: ['Sessões', 'Funcionários', 'Produtos', 'Categorias'],
         datasets: [{
-            label: 'Todos',
+            label: 'Quantidade',
             data: [sessoesQuantidade, funcionariosQuantidade, produtosQuantidade, categoriasQuantidade],
             backgroundColor: [
                 'rgba(255, 99, 132, 0.2)',
@@ -43,7 +43,10 @@ new Chart(dashboardChart, {
     options: {
         scales: {
             y: {
-                beginAtZero: true
+                beginAtZero: true,
+                ticks: {
+                    stepSize: 1
+                }
             }
         }
     }
