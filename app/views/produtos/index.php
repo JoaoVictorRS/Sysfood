@@ -48,7 +48,11 @@
     <?php
     require_once('../../controllers/produtos_controller.php');
     $produtosController = new ProdutosController();
-    $produtos = $produtosController->index();
+    if (isset($_SESSION['funcionario'])){
+        $produtos = $produtosController->index($_SESSION['funcionario']['empresa_id']);
+    } elseif(isset($_SESSION['empresa'])){
+        $produtos = $produtosController->index($_SESSION['empresa']['id']);
+    }
     ?>
     <div class="row">
         <?php if (!empty($produtos)) : ?>
@@ -87,8 +91,8 @@
         </div>
         <?php endforeach; ?>
         <?php else : ?>
-        <div class="col-12">
-            <p>Nenhum produto encontrado.</p>
+        <div>
+            <h5 colspan="6" class="text-center">Nenhum produto encontrado.</h5>
         </div>
         <?php endif; ?>
     </div>

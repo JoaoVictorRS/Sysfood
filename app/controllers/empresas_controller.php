@@ -38,15 +38,24 @@ class EmpresasController extends ApplicationController
     }
 
     public function update($id, $data)
-    {
-        $stmt = $this->pdo->prepare('UPDATE empresas SET nome_empresa = :nome_empresa, cnpj = :cnpj, email = :email, senha = :senha WHERE id = :id');
-        $stmt->execute(array(
-            ':nome_empresa' => $data['nome_empresa'],
-            ':cnpj' => $data['cnpj'],
-            ':email' => $data['email'],
-            ':senha' => $data['senha'],
-            ':id' => $id
-        ));
+    {   if (!empty($data['senha'])){
+            $stmt = $this->pdo->prepare('UPDATE empresas SET nome_empresa = :nome_empresa, cnpj = :cnpj, email = :email, senha = :senha WHERE id = :id');
+            $stmt->execute(array(
+                ':nome_empresa' => $data['nome_empresa'],
+                ':cnpj' => $data['cnpj'],
+                ':email' => $data['email'],
+                ':senha' => $data['senha'],
+                ':id' => $id
+            ));
+        } else {
+            $stmt = $this->pdo->prepare('UPDATE empresas SET nome_empresa = :nome_empresa, cnpj = :cnpj, email = :email WHERE id = :id');
+            $stmt->execute(array(
+                ':nome_empresa' => $data['nome_empresa'],
+                ':cnpj' => $data['cnpj'],
+                ':email' => $data['email'],
+                ':id' => $id
+            ));
+        }
     }
 
     public function delete($id)

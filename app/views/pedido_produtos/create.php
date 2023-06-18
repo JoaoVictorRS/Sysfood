@@ -8,7 +8,11 @@
             <?php
             require_once('../../controllers/produtos_controller.php');
             $produtosController = new ProdutosController();
-            $produtos = $produtosController->index();
+            if (isset($_SESSION['funcionario'])){
+                $produtos = $produtosController->index($_SESSION['funcionario']['empresa_id']);
+            } elseif(isset($_SESSION['empresa'])){
+                $produtos = $produtosController->index($_SESSION['empresa']['id']);
+            }
             ?>
             <label for="produto_id">Produto:</label>
             <select name="produto_id" id="produto_id" class="form-control" required>

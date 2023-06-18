@@ -27,41 +27,51 @@
     require_once('../../controllers/categorias_controller.php');
 
     $categoriasController = new CategoriasController();
-    $categorias = $categoriasController->index();
+    if (isset($_SESSION['funcionario'])) {
+        $categorias = $categoriasController->index($_SESSION['funcionario']['empresa_id']);
+    } elseif (isset($_SESSION['empresa'])) {
+        $categorias = $categoriasController->index($_SESSION['empresa']['id']);
+    }
     ?>
     <div class="row">
+        <?php if (!empty($categorias)) : ?>
         <?php foreach ($categorias as $categoria) : ?>
         <div class="col-sm-6 col-md-4 col-lg-3 mb-4">
             <div class="card">
                 <div class=" card-body text-center">
                     <h5 class="card-title"><?= $categoria['nome_categoria'] ?></h5>
                     <?php
-                        if (isset($_SESSION['funcionario'])) {
-                            if (strcmp($_SESSION['funcionario']['cargo'], 'Funcionário Gerente') == 0 || strcmp($_SESSION['funcionario']['cargo'], 'Funcionário Supervisor') == 0) {
+                            if (isset($_SESSION['funcionario'])) {
+                                if (strcmp($_SESSION['funcionario']['cargo'], 'Funcionário Gerente') == 0 || strcmp($_SESSION['funcionario']['cargo'], 'Funcionário Supervisor') == 0) {
+                                    echo '<div>
+                                <form action="" method="POST" class="d-inline">
+                                    <input type="hidden" name="id_categoria" value=' . $categoria["id"] . '>
+                            <button type="submit" class="btn btn-sm btn-danger"';
+                                    echo 'onclick="return confirm(' . 'Tem certeza que deseja excluir a categoria' . $categoria["nome_categoria"] . '?)">Excluir</button>';
+                                    echo '</form>
+                            <a href="edit.php?id=' . $categoria["id"] . '" class="btn btn-sm btn-info">Editar</a>
+                        </div>';
+                                }
+                            } elseif (isset($_SESSION['empresa'])) {
                                 echo '<div>
                                 <form action="" method="POST" class="d-inline">
                                     <input type="hidden" name="id_categoria" value=' . $categoria["id"] . '>
                             <button type="submit" class="btn btn-sm btn-danger"';
-                                echo 'onclick="return confirm(' . 'Tem certeza que deseja excluir a categoria' . $categoria["nome_categoria"] . '?)">Excluir</button>';
+                                echo "<button onclick='return confirm(\"Tem certeza que deseja excluir a categoria " . $categoria["nome_categoria"] . "?\")'>Excluir</button>";
                                 echo '</form>
                             <a href="edit.php?id=' . $categoria["id"] . '" class="btn btn-sm btn-info">Editar</a>
                         </div>';
                             }
-                        } elseif (isset($_SESSION['empresa'])) {
-                            echo '<div>
-                                <form action="" method="POST" class="d-inline">
-                                    <input type="hidden" name="id_categoria" value=' . $categoria["id"] . '>
-                            <button type="submit" class="btn btn-sm btn-danger"';
-                            echo "<button onclick='return confirm(\"Tem certeza que deseja excluir a categoria " . $categoria["nome_categoria"] . "?\")'>Excluir</button>";
-                            echo '</form>
-                            <a href="edit.php?id=' . $categoria["id"] . '" class="btn btn-sm btn-info">Editar</a>
-                        </div>';
-                        }
-                        ?>
+                            ?>
                 </div>
             </div>
         </div>
         <?php endforeach; ?>
+        <?php else : ?>
+        <div>
+            <h5 colspan="6" class="text-center">Nenhuma categoria encontrada.</h5>
+        </div>
+        <?php endif; ?>
         <?php
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 

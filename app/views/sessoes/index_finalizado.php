@@ -9,10 +9,14 @@
     <table class="table">
         <tbody>
             <?php
-        require_once('../../controllers/sessoes_controller.php');
-        $sessoesController = new SessoesController();
-        $sessoes = $sessoesController->index_finalizado();
-        ?>
+            require_once('../../controllers/sessoes_controller.php');
+            $sessoesController = new SessoesController();
+            if (isset($_SESSION['funcionario'])) {
+                $sessoes = $sessoesController->index_finalizado($_SESSION['funcionario']['empresa_id']);
+            } elseif (isset($_SESSION['empresa'])) {
+                $sessoes = $sessoesController->index_finalizado($_SESSION['empresa']['id']);
+            }
+            ?>
             <?php if (!empty($sessoes)) : ?>
             <div class="row mb-6">
                 <?php foreach ($sessoes as $sessao) : ?>
@@ -39,12 +43,12 @@
                                         class="btn btn-sm btn-primary">Pesquisar</a>
                                 </div>
                                 <?php
-                                    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-                                        
-                                        $sessoesController->delete($_POST['id_sessao']);
-                                        header("Location: index_finalizado.php?sesao_excluida");
-                                    }
-                                ?>
+                                        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+                                            $sessoesController->delete($_POST['id_sessao']);
+                                            header("Location: index_finalizado.php?sesao_excluida");
+                                        }
+                                        ?>
                             </div>
                         </div>
                     </div>
@@ -53,7 +57,7 @@
             </div>
             <?php else : ?>
             <tr>
-                <td colspan="6" class="text-center">Nenhuma sessão encontrada.</td>
+                <h5 colspan="6" class="text-center">Nenhuma sessão encontrado.</h5>
             </tr>
             <?php endif; ?>
         </tbody>
