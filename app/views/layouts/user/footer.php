@@ -24,6 +24,7 @@
 <script src="../../assets/js/dash_left_menu.js"></script>
 <script src="../../assets/js/alertas.js"></script>
 <script src="../../assets/js/mascara_prod.js"></script>
+<script src="../../assets/js/edit_empresa_filtros.js"></script>
 </body>
 
 </html>
