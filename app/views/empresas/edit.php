@@ -35,7 +35,7 @@
             <div class="col-md-6">
                 <label>Senha</label>
                 <input type="password" name="senha" class="form-control form_edit" />
-                <span class="edit_span">A senha deve possuir ao menos 8 caracteres<br>Com:<br> 1 Chacaractere Especial<br>1 Chacaractere Numerico</span>
+                <span class="edit_span">A senha deve possuir ao menos 8 caracteres<br>Com:<br> 1 Caractere Especial<br>1 Caractere Numerico</span>
             </div>
         </div>
         <label for="">Endereço</label>

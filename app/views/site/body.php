@@ -109,7 +109,7 @@
                                     <div class="col-md-6">
                                         <label style="color: #0d6efd">Senha</label>
                                         <input type="password" name="senha" class="form-control cadastro-input" required />
-                                        <span class="cadastro-span">A senha deve possuir ao menos 8 caracteres<br>Com:<br> 1 Chacaractere Especial<br>1 Chacaractere Numerico</span>
+                                        <span class="cadastro-span">A senha deve possuir ao menos 8 caracteres<br>Com:<br> 1 Caractere Especial<br>1 Caractere Numerico</span>
                                     </div>
                                 </div>
                                 <label for="">Endereço</label>
