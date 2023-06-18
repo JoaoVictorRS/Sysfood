@@ -8,9 +8,10 @@ class ProdutosController extends ApplicationController
         parent::__construct();
     }
 
-    public function index()
+    public function index($id)
     {
-        $stmt = $this->pdo->query('SELECT * FROM produtos');
+        $stmt = $this->pdo->prepare('SELECT * FROM produtos WHERE empresa_id = :id');
+        $stmt->execute(array(':id' => $id));
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 

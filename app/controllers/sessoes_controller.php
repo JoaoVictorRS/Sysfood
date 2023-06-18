@@ -21,9 +21,10 @@ class SessoesController extends ApplicationController
         return $stmt->rowCount();
     }
 
-    public function index_finalizado()
+    public function index_finalizado($id)
     {
-        $stmt = $this->pdo->query('SELECT * FROM sessoes WHERE status_sessao = "Finalizada"');
+        $stmt = $this->pdo->prepare('SELECT * FROM sessoes WHERE status_sessao = "Finalizada" AND empresa_id = :id');
+        $stmt->execute(array(':id' => $id));
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
@@ -78,8 +79,5 @@ class SessoesController extends ApplicationController
         $pedido->execute(array(':id' => $id));
         $stmt = $this->pdo->prepare('DELETE FROM sessoes WHERE id = :id');
         $stmt->execute(array(':id' => $id));
-
-        header("Location: index.php");
-        exit;
     }
 }

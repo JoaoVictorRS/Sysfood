@@ -39,18 +39,28 @@ class EmpresasController extends ApplicationController
 
     public function update($id, $data)
     {
-        $stmt = $this->pdo->prepare('UPDATE empresas SET nome_empresa = :nome_empresa, cnpj = :cnpj, email = :email, senha = :senha WHERE id = :id');
-        $stmt->execute(array(
-            ':nome_empresa' => $data['nome_empresa'],
-            ':cnpj' => $data['cnpj'],
-            ':email' => $data['email'],
-            ':senha' => $data['senha'],
-            ':id' => $id
-        ));
+        if (!empty($data['senha'])) {
+            $stmt = $this->pdo->prepare('UPDATE empresas SET nome_empresa = :nome_empresa, cnpj = :cnpj, email = :email, senha = :senha WHERE id = :id');
+            $stmt->execute(array(
+                ':nome_empresa' => $data['nome_empresa'],
+                ':cnpj' => $data['cnpj'],
+                ':email' => $data['email'],
+                ':senha' => md5($data['senha']),
+                ':id' => $id
+            ));
+        } else {
+            $stmt = $this->pdo->prepare('UPDATE empresas SET nome_empresa = :nome_empresa, cnpj = :cnpj, email = :email WHERE id = :id');
+            $stmt->execute(array(
+                ':nome_empresa' => $data['nome_empresa'],
+                ':cnpj' => $data['cnpj'],
+                ':email' => $data['email'],
+                ':id' => $id
+            ));
+        }
     }
 
     public function delete($id)
-    {   
+    {
         $stmt = $this->pdo->prepare('SELECT * FROM funcionarios WHERE empresa_id = :id');
         $stmt->execute(array(':id' => $id));
         $funcionarios = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -59,7 +69,7 @@ class EmpresasController extends ApplicationController
         foreach ($funcionarios as $funcionario) {
             $stmt = $this->pdo->prepare('DELETE FROM pedidos WHERE id = :id');
             $stmt->execute(array(':id' => $funcionario['id']));
-            
+
             $stmt = $this->pdo->prepare('DELETE FROM enderecos WHERE id = :id');
             $stmt->execute(array(':id' => $funcionario['endereco_id']));
             $stmt = $this->pdo->prepare('DELETE FROM funcionarios WHERE id = :id');

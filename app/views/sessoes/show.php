@@ -58,7 +58,7 @@ $pedidosController = new PedidosController();
 
     <?php if (empty($pedidos)) : ?>
     <div class="col-12">
-        <p class="text-center">Nenhum pedido encontrado.</p>
+        <h5 class="text-center">Nenhum pedido encontrado.</h5>
     </div>
     <?php endif; ?>
 

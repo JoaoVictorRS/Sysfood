@@ -8,9 +8,10 @@ class CategoriasController extends ApplicationController
         parent::__construct();
     }
 
-    public function index()
+    public function index($id)
     {
-        $stmt = $this->pdo->query('SELECT * FROM categorias');
+        $stmt = $this->pdo->prepare('SELECT * FROM categorias WHERE empresa_id = :id');
+        $stmt->execute(array(':id' => $id));
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 

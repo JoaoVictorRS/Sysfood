@@ -202,7 +202,7 @@ if (!$_SESSION) {
                             </a>';
                             } elseif (isset($_SESSION['empresa'])) {
                                 echo '<a class="dropdown-item"
-                            href="../empresas/edit.php?id=' . $_SESSION['empresa']['id'] . '">
+                            href="../empresas/edit.php?id=' . $_SESSION['empresa']['id'] . '&empresa=empresa">
                             <i class="bx bx-user me-2"></i>
                             <span class="align-middle">Meu Perfil</span>
                             </a>';

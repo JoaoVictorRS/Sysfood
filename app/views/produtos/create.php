@@ -20,7 +20,11 @@
                 <?php
                 require_once('../../controllers/categorias_controller.php');
                 $categoriasController = new CategoriasController();
-                $categorias = $categoriasController->index();
+                if (isset($_SESSION['funcionario'])) {
+                    $categorias = $categoriasController->index($_SESSION['funcionario']['empresa_id']);
+                } elseif (isset($_SESSION['empresa'])) {
+                    $categorias = $categoriasController->index($_SESSION['empresa']['id']);
+                }
                 ?>
                 <label for="categoria_id">Categoria:</label>
                 <select name="categoria_id" id="categoria_id" class="form-control" required>

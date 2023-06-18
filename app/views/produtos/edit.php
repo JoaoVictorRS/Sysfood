@@ -4,11 +4,11 @@
     <h1>Editar Produto</h1>
     <hr>
     <?php
-        require_once('../../controllers/produtos_controller.php');
-        
-        $produtosController = new ProdutosController();
-        $produto = $produtosController->show($_GET['id']);
-            
+    require_once('../../controllers/produtos_controller.php');
+
+    $produtosController = new ProdutosController();
+    $produto = $produtosController->show($_GET['id']);
+
     ?>
     <form action="" method="post" enctype="multipart/form-data">
         <div class="form-group">
@@ -24,19 +24,23 @@
         <div class="row justify-content-center align-items-center">
             <div class="col-md-2 text-center">
                 <label for="valor">Preço do Produto:</label>
-                <input maxlength="8" type="text" name="valor" id="valor" class="form-control preco_class" value="<?= $produto['valor'] ?>"
-                    required>
+                <input maxlength="8" type="text" name="valor" id="valor" class="form-control preco_class"
+                    value="<?= $produto['valor'] ?>" required>
             </div>
             <div class="col-md-2 text-center">
                 <?php
-            require_once('../../controllers/categorias_controller.php');
-            $categoriasController = new CategoriasController();
-            $categorias = $categoriasController->index();
-            ?>
+                require_once('../../controllers/categorias_controller.php');
+                $categoriasController = new CategoriasController();
+                if (isset($_SESSION['funcionario'])) {
+                    $categorias = $categoriasController->index($_SESSION['funcionario']['empresa_id']);
+                } elseif (isset($_SESSION['empresa'])) {
+                    $categorias = $categoriasController->index($_SESSION['empresa']['id']);
+                }
+                ?>
                 <label for="categoria_id">Categoria:</label>
                 <select name="categoria_id" id="categoria_id" class="form-control" required
                     value="<?= $produto['categoria_id'] ?>">
-                    <?php foreach ($categorias as $categoria): ?>
+                    <?php foreach ($categorias as $categoria) : ?>
                     <option value="<?= $categoria['id'] ?>">
                         <?= $categoria['nome_categoria'] ?>
                     </option>
@@ -60,7 +64,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $_POST["valor"] = str_replace("R$", "", $_POST["valor"]);
     $_POST["valor"] = str_replace(",", ".", $_POST["valor"]);
-    
+
     $produtosController->update($produto['id'], $_POST);
     header('Location: index.php?produto_editado');
 }
