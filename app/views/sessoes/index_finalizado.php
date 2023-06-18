@@ -27,11 +27,11 @@
                                 <div class="flex-grow-1">
                                     <h5 class="card-title"><?= $sessao['nome_sessao']; ?></h5>
                                 </div>
-                                <label for=""><?= $sessao['status_sessao']; ?></label>
+                                <label for="">Status: <Strong><?=  $sessao['status_sessao']; ?></Strong></label>
                             </div>
                             <div class="d-flex justify-content-between align-items-center">
                                 <div class="flex-grow-1">
-                                    <label for=""><?= $sessao['hora_inicio']; ?></label>
+                                    <label for="">Finalizada: <Strong><?= $sessao['hora_fim']; ?></Strong></label>
                                 </div>
                                 <div>
                                     <form action="" method="POST">

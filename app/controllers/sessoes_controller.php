@@ -79,8 +79,5 @@ class SessoesController extends ApplicationController
         $pedido->execute(array(':id' => $id));
         $stmt = $this->pdo->prepare('DELETE FROM sessoes WHERE id = :id');
         $stmt->execute(array(':id' => $id));
-
-        header("Location: index.php");
-        exit;
     }
 }
