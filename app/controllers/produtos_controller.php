@@ -8,12 +8,12 @@ class ProdutosController extends ApplicationController
         parent::__construct();
     }
 
-    public function index($id)
-    {
-        $stmt = $this->pdo->prepare('SELECT * FROM produtos WHERE empresa_id = :id');
-        $stmt->execute(array(':id' => $id));
+    public function index($id, $nome_produto = null) {
+        $stmt = $this->pdo->prepare('SELECT * FROM produtos WHERE empresa_id = :id AND nome_produto LIKE :nome_produto');
+        $stmt->execute(array(':id' => $id, ':nome_produto' => '%' . $nome_produto . '%'));
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+    
 
     public function index_quantidade($id)
     {

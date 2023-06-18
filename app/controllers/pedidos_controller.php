@@ -24,24 +24,26 @@ class PedidosController extends ApplicationController
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function pedidos_na_fila($id_sessao)
+    public function pedidos_na_fila($id_sessao, $nome_cliente = null)
     {
-        $stmt = $this->pdo->prepare('SELECT * FROM pedidos WHERE status_pedido = "Na fila" AND sessao_id = :sessao');
+        $stmt = $this->pdo->prepare('SELECT * FROM pedidos WHERE status_pedido = "Na fila" AND sessao_id = :sessao AND nome_cliente LIKE :nome_cliente');
         $stmt->execute(array(
-            ':sessao' => $id_sessao
+            ':sessao' => $id_sessao,
+            ':nome_cliente' => '%' . $nome_cliente . '%'
         ));
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-
-    public function pedidos_finalizado($id_sessao)
+    public function pedidos_finalizados($id_sessao, $nome_cliente = null)
     {
-        $stmt = $this->pdo->prepare('SELECT * FROM pedidos WHERE status_pedido = "Finalizado" AND sessao_id = :sessao');
+        $stmt = $this->pdo->prepare('SELECT * FROM pedidos WHERE status_pedido = "Finalizado" AND sessao_id = :sessao AND nome_cliente LIKE :nome_cliente');
         $stmt->execute(array(
-            ':sessao' => $id_sessao
+            ':sessao' => $id_sessao,
+            ':nome_cliente' => '%' . $nome_cliente . '%'
         ));
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+
 
     public function create($data, $id_sessao)
     {
@@ -80,12 +82,13 @@ class PedidosController extends ApplicationController
         ));
     }
 
+
     public function status_finalizado($id)
     {
         $stmt = $this->pdo->prepare('UPDATE pedidos SET status_pedido = :status_pedido, hora_fim = :hora_fim WHERE id = :id');
         $stmt->execute(array(
             ':status_pedido' => 'Finalizado',
-            ':hora_fim' => date('Y-m-d H:i:s'),
+            ':hora_fim' => date('H:i:s'),
             ':id' => $id
         ));
     }

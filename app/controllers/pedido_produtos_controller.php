@@ -9,15 +9,40 @@ class PedidoProdutosController extends ApplicationController
         parent::__construct();
     }
 
-    public function index($idPedido)
+    public function index($idPedido, $nomeProduto = null)
     {
-        $stmt = $this->pdo->prepare('SELECT * FROM pedido_produtos WHERE pedido_id = :idPedido');
-        $stmt->execute(array(':idPedido' => $idPedido));
+        $query = 'SELECT pp.*, p.nome_produto 
+                FROM pedido_produtos pp 
+                INNER JOIN produtos p ON pp.produto_id = p.id 
+                WHERE pp.pedido_id = :idPedido';
+
+        $params = array(':idPedido' => $idPedido);
+
+        if ($nomeProduto) {
+            $query .= ' AND p.nome_produto LIKE :nomeProduto';
+            $params[':nomeProduto'] = '%' . $nomeProduto . '%';
+        }
+
+        $stmt = $this->pdo->prepare($query);
+        $stmt->execute($params);
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
-    
-    public function create($data, $pedido)        
-    {   
+
+
+    public function valor_total($pedido)
+    {
+        $valor_total = 0;
+        $stmt = $this->pdo->prepare('SELECT valor_total FROM pedido_produtos WHERE pedido_id = :id');
+        $stmt->execute(array(':id' => $pedido));
+        $valores = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        foreach ($valores as $valor) {
+            $valor_total += $valor['valor_total'];
+        }
+        return $valor_total;
+    }
+
+    public function create($data, $pedido)
+    {
         $produtosController = new ProdutosController();
         $pedido_dados = $produtosController->show($data['produto_id']);
         $total = $data['quantidade'] * $pedido_dados['valor'];
@@ -46,7 +71,7 @@ class PedidoProdutosController extends ApplicationController
     }
 
     public function update($id, $data, $pedido)
-    {   
+    {
         $produtosController = new ProdutosController();
         $pedido_dados = $produtosController->show($data['produto_id']);
         $total = $data['quantidade'] * $pedido_dados['valor'];

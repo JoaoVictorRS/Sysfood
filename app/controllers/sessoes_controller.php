@@ -8,9 +8,10 @@ class SessoesController extends ApplicationController
         parent::__construct();
     }
 
-    public function index()
+    public function index($id, $nome_sessao = null)
     {
-        $stmt = $this->pdo->query('SELECT * FROM sessoes WHERE status_sessao = "Em andamento"');
+        $stmt = $this->pdo->prepare('SELECT * FROM sessoes WHERE status_sessao = "Em andamento" AND nome_sessao LIKE :nome_sessao AND empresa_id = :id');
+        $stmt->execute(array(':id' => $id, ':nome_sessao' => '%' . $nome_sessao . '%'));
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
@@ -21,12 +22,12 @@ class SessoesController extends ApplicationController
         return $stmt->rowCount();
     }
 
-    public function index_finalizado($id)
-    {
-        $stmt = $this->pdo->prepare('SELECT * FROM sessoes WHERE status_sessao = "Finalizada" AND empresa_id = :id');
-        $stmt->execute(array(':id' => $id));
+    public function index_finalizado($id, $nome_sessao = null) {
+        $stmt = $this->pdo->prepare('SELECT * FROM sessoes WHERE status_sessao = "Finalizada" AND nome_sessao LIKE :nome_sessao AND empresa_id = :id');
+        $stmt->execute(array(':id' => $id, ':nome_sessao' => '%' . $nome_sessao . '%'));
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+    
 
     public function finalizar_sessao($id)
     {
