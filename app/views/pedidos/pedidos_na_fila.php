@@ -198,13 +198,13 @@ $pedidosController = new PedidosController();
                                 echo 'onclick="return confirm("' . 'Tem certeza que deseja excluir o pedido do cliente' . $pedido['nome_cliente'] . '
                                     ?)">Excluir</button>';
                                 echo '</form>
-                                    <a href="show.php?id=' . $pedido['id'] . '&status=na_fila" class="btn btn-primary ml-2">Refeições</a>
+                                    <a href="show.php?id=' . $pedido['id'] . '" class="btn btn-primary ml-2">Refeições</a>
                                     <a href="edit.php?id=' . $pedido['id'] . '" class="btn btn-info ml-2">Editar</a>
                                 </div>';
                             }
                             if (strcmp($_SESSION['funcionario']['cargo'], 'Funcionário Cozinha') == 0) {
                                 echo '<div class="text-center mt-3">
-                                    <a href="show.php?id=' . $pedido['id'] . '&status=na_fila" class="btn btn-primary ml-2">Refeições</a>
+                                    <a href="show.php?id=' . $pedido['id'] . '" class="btn btn-primary ml-2">Refeições</a>
                                     <a href="em_preparacao.php?id=' . $pedido['id'] . '" class="btn btn-warning">Atender
                                 pedido</a>
                                 </div>';
@@ -213,11 +213,10 @@ $pedidosController = new PedidosController();
                                 echo '<div class="text-center mt-3">
                                     <form method="POST" class="d-inline-block">
                                         <input type="hidden" name="id" value="' . $pedido['id'] . '">
-                                    <button type="submit" class="btn btn-danger"';
-                                echo 'onclick="return confirm("' . 'Tem certeza que deseja excluir o pedido do cliente' . $pedido['nome_cliente'] . '
-                                    ?)">Excluir</button>';
-                                echo '</form>
-                                    <a href="show.php?id=' . $pedido['id'] . '&status=na_fila" class="btn btn-primary ml-2">Refeições</a>
+                                        <button type="submit" class="btn btn-danger" onclick="return confirm(\'Tem certeza que deseja excluir o pedido do cliente ' . $pedido['nome_cliente'] . '?\')">Excluir</button>
+                                    </form>
+
+                                    <a href="show.php?id=' . $pedido['id'] . '" class="btn btn-primary ml-2">Refeições</a>
                                     <a href="edit.php?id=' . $pedido['id'] . '" class="btn btn-info ml-2">Editar</a>
                                 </div>';
                             }
@@ -229,7 +228,7 @@ $pedidosController = new PedidosController();
                             echo 'onclick="return confirm("' . 'Tem certeza que deseja excluir o pedido do cliente' . $pedido['nome_cliente'] . '
                                 ?)">Excluir</button>';
                             echo '</form>
-                                <a href="show.php?id=' . $pedido['id'] . '&status=na_fila" class="btn btn-primary ml-2">Refeições</a>
+                                <a href="show.php?id=' . $pedido['id'] . '" class="btn btn-primary ml-2">Refeições</a>
                                 <a href="edit.php?id=' . $pedido['id'] . '" class="btn btn-info ml-2">Editar</a>
                             </div>';
                         }

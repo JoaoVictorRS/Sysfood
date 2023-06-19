@@ -188,13 +188,13 @@ $pedidosController = new PedidosController();
                                 echo 'onclick="return confirm("' . 'Tem certeza que deseja excluir o pedido do cliente' . $pedido['nome_cliente'] . '
                                     ?)">Excluir</button>';
                                 echo '</form>
-                                    <a href="show.php?id=' . $pedido['id'] . '&status=finalizado" class="btn btn-primary ml-2">Refeições</a>
+                                    <a href="show.php?id=' . $pedido['id'] . '" class="btn btn-primary ml-2">Refeições</a>
                                     <a href="edit.php?id=' . $pedido['id'] . '" class="btn btn-info ml-2">Editar</a>
                                 </div>';
                             }
                             if (strcmp($_SESSION['funcionario']['cargo'], 'Funcionário Comum') == 0 || strcmp($_SESSION['funcionario']['cargo'], 'Funcionário Cozinha') == 0) {
                                 echo '<div class="text-center mt-3">   
-                                <a href="show.php?id=' . $pedido['id'] . '&status=finalizado" class="btn btn-primary ml-2">Refeições</a>
+                                <a href="show.php?id=' . $pedido['id'] . '" class="btn btn-primary ml-2">Refeições</a>
                             </div>';
                             }
                         } elseif (isset($_SESSION['empresa'])) {
@@ -205,7 +205,7 @@ $pedidosController = new PedidosController();
                             echo 'onclick="return confirm("' . 'Tem certeza que deseja excluir o pedido do cliente' . $pedido['nome_cliente'] . '
                             ?)">Excluir</button>';
                             echo '</form>
-                            <a href="show.php?id=' . $pedido['id'] . '&status=finalizado" class="btn btn-primary ml-2">Refeições</a>
+                            <a href="show.php?id=' . $pedido['id'] . '" class="btn btn-primary ml-2">Refeições</a>
                             <a href="edit.php?id=' . $pedido['id'] . '" class="btn btn-info ml-2">Editar</a>
                         </div>';
                         }
