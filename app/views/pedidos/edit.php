@@ -138,14 +138,14 @@
         <hr>
         <div class="text-center">
             <button type="submit" class="btn btn-primary">Salvar</button>
-            <a href="index.php" class="btn btn-secondary">Cancelar</a>
+            <a href="pedidos_na_fila.php" class="btn btn-secondary">Cancelar</a>
         </div>
     </form>
 </div>
 <?php
 if ($_SERVER['REQUEST_METHOD'] === 'POST' ) { 
     $pedidosController->update($_GET['id'], $_POST);
-    header("Location: index.php?pedido_editado");
+    header("Location: pedidos_na_fila.php?pedido_editado");
 }
 require_once '../../views/layouts/user/footer.php';
 ?>
