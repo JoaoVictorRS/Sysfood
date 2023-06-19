@@ -381,7 +381,7 @@ if(window.location.href == "http://localhost/Sysfood/app/views/pedidos/pedidos_n
 }
 
 //Pedido Editado
-if(window.location.href == "http://localhost/Sysfood/app/views/pedidos/index.php?pedido_editado"){
+if(window.location.href == "http://localhost/Sysfood/app/views/pedidos/pedidos_na_fila.php?pedido_editado"){
   const Toast = Swal.mixin({
     toast: true,
     position: 'bottom-end',

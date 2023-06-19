@@ -22,7 +22,7 @@
             <div class="nav-item d-flex align-items-center">
                 <i class="bx bx-search fs-4 lh-0"></i>
                 <form method="GET" action="">
-                    <input type="text" name="search" class="form-control border-0 shadow-none" placeholder="Search..."
+                    <input type="text" name="search" class="form-control border-0 shadow-none" placeholder="Buscar..."
                         aria-label="Search..." />
                 </form>
             </div>
