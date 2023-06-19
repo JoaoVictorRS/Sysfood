@@ -19,7 +19,7 @@ class FuncionariosController extends ApplicationController
 
     if ($nome) {
       $nome = str_replace(['.', '-'], '', $nome);
-        $nome = '%' . $nome . '%';
+      $nome = '%' . $nome . '%';
       $query .= ' AND (u.nome LIKE :nome OR f.cargo LIKE :nome OR f.cpf LIKE :nome)';
       $params[':nome'] = '%' . $nome . '%';
     }

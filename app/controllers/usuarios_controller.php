@@ -50,18 +50,31 @@ class UsuariosController extends ApplicationController
 
     public function update($id, $data)
     {
-        $stmt = $this->pdo->prepare('UPDATE usuarios SET nome = :nome, sobrenome = :sobrenome, data_nascimento = :data_nascimento, email = :email WHERE id = :id');
-        $stmt->execute(array(
-            ':nome' => $data['nome'],
-            ':sobrenome' => $data['sobrenome'],
-            ':data_nascimento' => $data['data_nascimento'],
-            ':email' => $data['email'],
-            ':id' => $id
-        ));
+        if (empty($data['senha'])) {
+            $stmt = $this->pdo->prepare('UPDATE usuarios SET nome = :nome, sobrenome = :sobrenome, data_nascimento = :data_nascimento, email = :email WHERE id = :id');
+            $stmt->execute(array(
+                ':nome' => $data['nome'],
+                ':sobrenome' => $data['sobrenome'],
+                ':data_nascimento' => $data['data_nascimento'],
+                ':email' => $data['email'],
+                ':id' => $id
+            ));
+        } else {
+            $stmt = $this->pdo->prepare('UPDATE usuarios SET nome = :nome, sobrenome = :sobrenome, data_nascimento = :data_nascimento, senha = :senha, email = :email WHERE id = :id');
+            $stmt->execute(array(
+                ':nome' => $data['nome'],
+                ':sobrenome' => $data['sobrenome'],
+                ':data_nascimento' => $data['data_nascimento'],
+                ':senha' => md5($data['senha']),
+                ':email' => $data['email'],
+                ':id' => $id
+            ));
+        }
     }
 
     public function update_admin($id, $data)
-    {   if (empty($data['senha'])){
+    {
+        if (empty($data['senha'])) {
             $stmt = $this->pdo->prepare('UPDATE usuarios SET nome = :nome, sobrenome = :sobrenome, data_nascimento = :data_nascimento, email = :email WHERE id = :id');
             $stmt->execute(array(
                 ':nome' => $data['nome'],
