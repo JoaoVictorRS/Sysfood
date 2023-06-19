@@ -149,7 +149,6 @@
                                 onclick="return confirm('Tem certeza que deseja excluir a empresa <?= $usuario['nome'] ?>?')">Excluir
                                 arrumar</button>
                         </form>
-                        <a href="show.php?id=<?= $empresa['id'] ?>" class="btn btn-sm btn-primary">Pesquisar</a>
                         <a href="edit.php?id=<?= $empresa['id'] ?>" class="btn btn-sm btn-info">Editar</a>
                     </div>
                 </div>

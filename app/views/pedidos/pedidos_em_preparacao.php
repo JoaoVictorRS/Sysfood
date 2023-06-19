@@ -146,10 +146,10 @@ $pedidosController = new PedidosController();
         if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 
             $nome = $_GET['search'];
-            $pedidos = $pedidosController->pedidos_em_preparacao($_SESSION['funcionario']['sessao_id'], $_SESSION['funcionario']['id'], $nome);
+            $pedidos = $pedidosController->pedidos_em_preparacao($_SESSION['funcionario']['sessao_id'], $nome);
         }
     } else {
-        $pedidos = $pedidosController->pedidos_em_preparacao($_SESSION['funcionario']['sessao_id'], $_SESSION['funcionario']['id']);
+        $pedidos = $pedidosController->pedidos_em_preparacao($_SESSION['funcionario']['sessao_id']);
     }
     ?>
     <div class="row">

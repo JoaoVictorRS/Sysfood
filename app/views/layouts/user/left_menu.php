@@ -28,6 +28,7 @@ if (!$_SESSION) {
     ?>
 
     <?php
+    if (isset($_SESSION['empresa']) || isset($_SESSION['funcionario'])){
     if (isset($_SESSION['empresa']) || strcmp($_SESSION['funcionario']['cargo'], 'Funcionário Gerente') == 0 || strcmp($_SESSION['funcionario']['cargo'], 'Funcionário Supervisor') == 0) {
         echo '<li class="menu-item">
                 <a href="javascript:void(0);" class="menu-link menu-toggle">
@@ -67,6 +68,7 @@ if (!$_SESSION) {
             </a>
         </li>';
     }
+}
     ?>
     <?php
     if (isset($_SESSION['funcionario'])) {

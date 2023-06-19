@@ -14,11 +14,10 @@ class PedidosController extends ApplicationController
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function pedidos_em_preparacao($id_sessao, $id)
+    public function pedidos_em_preparacao($id_sessao)
     {
-        $stmt = $this->pdo->prepare('SELECT * FROM pedidos WHERE status_pedido = "Em preparação" AND funcionario_id = :id AND sessao_id = :sessao');
+        $stmt = $this->pdo->prepare('SELECT * FROM pedidos WHERE status_pedido = "Em preparação" AND sessao_id = :sessao');
         $stmt->execute(array(
-            ':id' => $id,
             ':sessao' => $id_sessao
         ));
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
