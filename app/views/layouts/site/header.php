@@ -16,7 +16,7 @@
 
     <script type="text/javascript" src="assets/js/modal.js"></script>
     <link href="assets/css/modal.css" rel="stylesheet">
-    <title>Projeto PCC</title>
+    <title>Sysfood</title>
 </head>
 
 <body>
